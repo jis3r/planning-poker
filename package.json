@@ -1,0 +1,28 @@
+{
+  "name": "planning-poker",
+  "version": "0.0.1",
+  "description": "A simple web-based planning-poker application.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jis3r/planning-poker.git"
+  },
+  "author": "jis3r",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jis3r/planning-poker/issues"
+  },
+  "homepage": "https://github.com/jis3r/planning-poker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "socket.io": "^3.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
