@@ -10,11 +10,12 @@ function toggleButton(id) {
 }
 
 function toggleState() {
-    var el = document.getElementById(userdata.username);
-    if (el.innerHTML === "") {
-      el.innerHTML = "ready";
+    var el = document.getElementById(socket.id);
+    console.log(el.style.color);
+    if (el.style.color === 'rgb(255, 255, 255)') {
+        el.style.color = '#8dcb1a';
     } else {
-      el.innerHTML = "";
+        el.style.color = 'rgb(255, 255, 255)';
     }
 }
 
@@ -30,22 +31,25 @@ function setUserdata() {
     console.log('client', userdata);
 
     document.getElementById('roomID').innerHTML = userdata.roomID;
-    addPlayer(userdata.username);
-
     socket.emit('joinRoom', userdata);
 }
 
-function addPlayer(playername) {
+function fillUserList(users) {
     let playerlist = document.getElementById('playerlist');
-    let listRow = document.createElement('tr');
-    let player = document.createElement('td');
-    let state = document.createElement('td');
-    player.appendChild(document.createTextNode(playername));
-    state.className = "readycolor";
-    state.setAttribute("id", playername); //anpassen um doppelte ids zu vermeiden
-    listRow.appendChild(player);
-    listRow.appendChild(state);
-    playerlist.appendChild(listRow);
+    playerlist.innerHTML = '';
+
+    for(let i = 0; i < users.length; i++){
+        let listRow = document.createElement('tr');
+        let player = document.createElement('td');
+        let state = document.createElement('td');
+        player.appendChild(document.createTextNode(users[i].username));
+        state.appendChild(document.createTextNode('ready'));
+        state.style.color = '#ffffff';
+        state.setAttribute("id", users[i].id);
+        listRow.appendChild(player);
+        listRow.appendChild(state);
+        playerlist.appendChild(listRow);
+    }
 }
 
 function copyToClipboard(content) {
@@ -60,8 +64,9 @@ function checkRooms(roomID) {
     socket.emit('checkRoom', roomID);
 }
 
-socket.on('message', (message) => {
+socket.on('bannermessage', (message) => {
     console.log(message);
+    document.getElementById('banner').innerHTML = message;
 });
 
 socket.on('newRoom', (newRoom) => {
@@ -79,4 +84,10 @@ socket.on('validation', (validation) => {
         //el.value = "";
         alert('This room-id does not exist.');
     }
+});
+
+// Get room and users
+socket.on('roomUsers', ({ room, users }) => {
+    document.getElementById('playerlist').innerHTML = '';
+    fillUserList(users);
 });
