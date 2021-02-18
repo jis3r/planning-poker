@@ -6,7 +6,7 @@ var userdata = {
 
 function toggleButton(id) {
     el = document.getElementById(id);
-    el.classList.toggle('button-primary-ready');
+    el.classList.toggle('button-primary-positive');
 }
 
 function toggleState() {
@@ -14,8 +14,10 @@ function toggleState() {
     console.log(el.style.color);
     if (el.style.color === 'rgb(255, 255, 255)') {
         el.style.color = '#8dcb1a';
+        socket.emit('ready');
     } else {
         el.style.color = 'rgb(255, 255, 255)';
+        socket.emit('unready');
     }
 }
 
