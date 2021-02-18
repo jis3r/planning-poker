@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Werwolph</title>
+        <title>Planning Poker</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
@@ -12,13 +12,13 @@
 
         <link rel="icon" type="image/png" href="img/favicon.png">
     </head>
-    <body onresize="//init()">
+    <body>
         <div class="header">
             <div class="container">
                 <div class="row">
                     <div class="twelve columns">
                         <div onclick="location.href = 'index.html';">
-                            <h2 class="header-title">Werwolph</h2>
+                            <h2 class="header-title">Planning Poker</h2>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
 
         <div class="container">
             <div class="row" style="margin-top: 15%;">
-                <form action="main.html" onsubmit="return checkRooms(document.getElementById('roomIDInput').value);">
+                <form id="form" action="main.html" onsubmit="return checkRooms(document.getElementById('roomIDInput').value);">
                     <div class="five columns">
                         <label for="usernameInput">Please enter your username.</label>
                         <input class="u-full-width" type="text" placeholder="Username" name="username" id="usernameInput" minlength="3" maxlength="20" required>
@@ -42,6 +42,7 @@
                 </form>
             </div>
         </div>
+        <script src="/socket.io/socket.io.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

@@ -3,35 +3,6 @@ var userdata = {
     username : '',
     roomID : ''
 }
-var blockedRooms = ['00000', '12345', '54321', '99999'];
-
-
-function init () {
-    setHeight("rulecard", 0.45);
-    setHeight("rolecard1", 1.5);
-    setHeight("rolecard2", 1.5);
-    setHeight("rolecard3", 1.5);
-    setHeight("rolecard4", 1.5);
-    setHeight("rolecard5", 1.5);
-    setHeight("rolecard6", 1.5);
-    setHeight("rolecard7", 1.5);
-    setHeight("rolecard8", 1.5);
-}
-
-function flip(id) {
-    console.log(id);
-    let element = document.getElementById(id)    
-    element.classList.toggle('is-flipped');
-}
-
-function setHeight(id, proportion) {
-    let el = document.getElementById(id);
-    //console.log(el.clientWidth);
-    let newHeight = (Math.ceil( el.clientWidth * proportion )).toString();
-    newHeight = newHeight + "px";
-    //console.log(newHeight);
-    el.style.height = newHeight;
-}
 
 function toggleButton(id) {
     el = document.getElementById(id);
@@ -47,21 +18,6 @@ function toggleState() {
     }
 }
 
-function generateRoomID() {
-    let roomID = '';
-    for(let i = 0; i < 5; i++) {
-        roomID += Math.floor(Math.random() * 10).toString();
-    }
-    if( blockedRooms.includes(roomID) === false ) {
-        blockedRooms.push(roomID);
-    }
-    else {
-        generateRoomID();
-    }
-    console.log('Generator Output: ', roomID);
-    return roomID;
-}
-
 function setUserdata() {
     var url = window.location.href;
     var getQuery = url.split('?')[1];
@@ -71,7 +27,6 @@ function setUserdata() {
 
     userdata.username = username;
     userdata.roomID = roomID;
-    Object.freeze(userdata);
     console.log('client', userdata);
 
     document.getElementById('roomID').innerHTML = userdata.roomID;
@@ -102,20 +57,26 @@ function copyToClipboard(content) {
 }
 
 function checkRooms(roomID) {
-	if (blockedRooms.includes(roomID) === false )
-	{
-        el = document.getElementById("roomIDInput");
-        el.placeholder = "Please enter an existing room-id.";
-        el.value = "";
-        alert('This room-id does not exist.');
-		return false;
-	}
-    else {
-        return true;
-    }
+    socket.emit('checkRoom', roomID);
 }
 
-
-socket.on('message', message => {
+socket.on('message', (message) => {
     console.log(message);
+});
+
+socket.on('newRoom', (newRoom) => {
+    userdata.roomID = newRoom;
+    Object.freeze(userdata);
+    document.getElementById('roomID').innerHTML = userdata.roomID;
+});
+
+socket.on('validation', (validation) => {
+    console.log('validation', validation);
+    if ( validation === false ) {
+        location.href='join.html'
+        //el = document.getElementById("roomIDInput");
+        //el.placeholder = "Please enter an existing room-id.";
+        //el.value = "";
+        alert('This room-id does not exist.');
+    }
 });
