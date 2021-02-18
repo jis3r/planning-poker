@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Werwolph</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/skeleton.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+        <link rel="icon" type="image/png" href="img/favicon.png">
+    </head>
+    <body onresize="//init()">
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="twelve columns">
+                        <div onclick="location.href = 'index.html';">
+                            <h2 class="header-title">Werwolph</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" style="margin-top: 15%;">
+                <form action="main.html" onsubmit="return checkRooms(document.getElementById('roomIDInput').value);">
+                    <div class="five columns">
+                        <label for="usernameInput">Please enter your username.</label>
+                        <input class="u-full-width" type="text" placeholder="Username" name="username" id="usernameInput" minlength="3" maxlength="20" required>
+                    </div>
+                    <div class="four columns">
+                        <label for="roomIdInput">Please enter the room-id.</label>
+                        <input class="u-full-width" type="text" placeholder="12345" name="room" id="roomIDInput" minlength="5" maxlength="5" required>
+                    </div>
+                    <div class="three columns">
+                        <button class="button-primary button-submit u-full-width" type="submit">submit input</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>

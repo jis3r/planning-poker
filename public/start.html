@@ -12,7 +12,7 @@
 
         <link rel="icon" type="image/png" href="img/favicon.png">
     </head>
-    <body onresize="//init()">
+    <body onload="document.getElementById('roomIDInput').value = generateRoomID();">
         <div class="header">
             <div class="container">
                 <div class="row">
@@ -26,19 +26,19 @@
         </div>
 
         <div class="container">
-            <div class="row" style="margin-top: 15%; margin-bottom: 5%;">
-                <div class="nine columns" style="margin-bottom: 10%;">
-                    This is a simple, online planning poker tool.<br>
-                    Just host a new sessions and invite your teammates to start estimating your userstories<br>
-                    or join an existing session.
-                </div>
-                <div class="three columns" style="margin-bottom: 10%;">
-                    <button class="button-primary-start u-full-width" onclick="location.href = 'start.html';">Start new session</button>
-                    <button class="button-primary-join u-full-width" onclick="location.href = 'join.html';">Join a session</button>
-                </div>
+            <div class="row" style="margin-top: 15%;">
+                <form action="main.html">
+                    <div class="nine columns">
+                        <label for="usernameInput">Please enter your username.</label>
+                        <input class="u-full-width" type="text" placeholder="Username" name="username" id="usernameInput" minlength="3" maxlength="20" required>
+                        <input type="hidden" name="room" id="roomIDInput" value="">
+                    </div>
+                    <div class="three columns">
+                        <button class="button-primary button-submit u-full-width" type="submit" onclick="generateRoomID();">submit input</button>
+                    </div>
+                </form>
             </div>
         </div>
         <script type="text/javascript" src="js/main.js"></script>
-        <script>//window.onload = init();</script>
     </body>
 </html>

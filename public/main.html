@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Planning Poker</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/skeleton.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+        <link rel="icon" type="image/png" href="img/favicon.png">
+    </head>
+    <body onload="setUserdata()">
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="twelve columns">
+                        <div onclick="location.href = 'index.html';">
+                            <h2 class="header-title">Planning Poker</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" style="margin-top: 15%;">
+                <div class="four columns">
+                    <h4>Lobby</h4>
+                </div>
+                <div class="four columns">
+                    <h4></h4>
+                </div>
+                <div class="four columns">
+                    <h4 class="u-pull-left">room-id: 
+                        <span id="roomID" class="readycolor">12345</span>                        
+                    </h4>
+                    <div class="copyicon u-pull-left">
+                        <img src="/img/copy.svg" alt="copy" onclick="copyToClipboard(document.getElementById('roomID').innerHTML); alert('Room-id was copied to clipboard.')">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 10%;">
+                <div class="four columns">
+                    <table class="u-full-width">
+                        <thead>
+                            <tr>
+                                <th>Players</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody id="playerlist"></tbody>
+                    </table>
+                </div>
+                <div class="four columns">
+                    <h4></h4>
+                </div>
+                <div class="three columns">
+                    <button id="ready" class="u-full-width" onclick="toggleButton('ready'); toggleState();">ready</button>
+                    <button class="button-primary-cancel u-full-width" onclick="location.href='index.html'">leave</button>
+                    <button class="button-primary u-full-width" onclick="location.href='game.html'">start</button>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>
