@@ -49,7 +49,7 @@
                         <thead>
                             <tr>
                                 <th>Players</th>
-                                <th>State</th>
+                                <th>Estimation</th>
                             </tr>
                         </thead>
                         <tbody id="playerlist"></tbody>
@@ -59,8 +59,49 @@
                     <h4></h4>
                 </div>
                 <div class="three columns">
-                    <button id="ready" class="u-full-width" onclick="toggleButton('ready'); toggleState();">ready</button>
+                    <button id="ready" class="u-full-width" >ready</button>
                     <button class="button-primary-negative u-full-width" onclick="location.href='index.html'">leave</button>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 10%;">
+                <div class="two columns">
+                    <button id="0" class="u-full-width" onclick="toggleButton(id); toggleState('0');">0</button>
+                </div>
+                <div class="two columns">
+                    <button id="1" class="u-full-width" onclick="toggleButton(id); toggleState('1');">1</button>
+                </div>
+                <div class="two columns">
+                    <button id="2" class="u-full-width" onclick="toggleButton(id); toggleState('2');">2</button>
+                </div>
+                <div class="two columns">
+                    <button id="3" class="u-full-width" onclick="toggleButton(id); toggleState('3');">3</button>
+                </div>
+                <div class="two columns">
+                    <button id="5" class="u-full-width" onclick="toggleButton(id); toggleState('5');">5</button>
+                </div>
+                <div class="two columns">
+                    <button id="8" class="u-full-width" onclick="toggleButton(id); toggleState('8');">8</button>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 2.8%;">
+                <div class="two columns">
+                    <button id="13" class="u-full-width" onclick="toggleButton(id); toggleState('13');">13</button>
+                </div>
+                <div class="two columns">
+                    <button id="20" class="u-full-width" onclick="toggleButton(id); toggleState('20');">20</button>
+                </div>
+                <div class="two columns">
+                    <button id="40" class="u-full-width" onclick="toggleButton(id); toggleState('40');">40</button>
+                </div>
+                <div class="two columns">
+                    <button id="100" class="u-full-width" onclick="toggleButton(id); toggleState('100');">100</button>
+                </div>
+                <div class="two columns">
+                    <button id="?" class="u-full-width" onclick="toggleButton(id); toggleState('?');">?</button>
+                </div>
+                <div class="two columns">
+                    <button id="Coffee" class="u-full-width" onclick="toggleButton(id); toggleState('coffee');">Coffee</button>
                 </div>
             </div>
         </div>

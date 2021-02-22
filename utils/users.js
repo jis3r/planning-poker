@@ -1,4 +1,4 @@
-const activeRooms = ['00000', '12345', '54321', '99999'];
+const activeRooms = ['00000'];
 const users = [];
 
 function generateRoomID() {

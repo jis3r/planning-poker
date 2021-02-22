@@ -5,12 +5,18 @@ var userdata = {
 }
 
 function toggleButton(id) {
+    let el = document.getElementsByClassName('button-primary-positive');
+    console.log('El', el);
+    if(el.length !== 0) {
+        el[0].classList.toggle('button-primary-positive');
+    }
     el = document.getElementById(id);
     el.classList.toggle('button-primary-positive');
 }
 
-function toggleState() {
+function toggleState(estimation) {
     var el = document.getElementById(socket.id);
+    el.innerHTML = estimation;
     console.log(el.style.color);
     if (el.style.color === 'rgb(255, 255, 255)') {
         el.style.color = '#8dcb1a';
