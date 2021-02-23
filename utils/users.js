@@ -54,11 +54,27 @@ function getRoomUsers(room) {
   return users.filter(user => user.room === room);
 }
 
+//checks if all users of given room have submitted their estimation
+function checkAllEstimated(room) {
+    return getRoomUsers(room).every(hasUserEstimated);
+}
+
+//checks if user has already submitted an estimation
+function hasUserEstimated(user){
+    if( user.estimation !== '') {
+        return true
+    }
+    else {
+        return false;
+    }
+}
+
 module.exports = {
     generateRoomID,
     validateRoomID,
     userJoin,
     userLeave,
     getCurrentUser,
-    getRoomUsers
+    getRoomUsers,
+    checkAllEstimated
 };

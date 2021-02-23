@@ -7,7 +7,8 @@ const { generateRoomID,
         userJoin,
         userLeave,
         getCurrentUser,
-        getRoomUsers    } = require('./utils/users');
+        getRoomUsers,
+        checkAllEstimated } = require('./utils/users');
 
 
 const app = express();
@@ -59,6 +60,12 @@ io.on('connection', socket => {
       
       //broadcasts estimation to all room-members
       socket.broadcast.to(user.room).emit('newEstimation', user);
+      if( checkAllEstimated(user.room) === true ) {
+        console.log('all users estimated');
+      }
+      else {
+        console.log(`waiting for all users of room ${user.room} to estimate`);
+      }
     });
 
     // Runs when client disconnects
