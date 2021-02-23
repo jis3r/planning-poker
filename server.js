@@ -62,6 +62,7 @@ io.on('connection', socket => {
       socket.broadcast.to(user.room).emit('newEstimation', user);
       if( checkAllEstimated(user.room) === true ) {
         console.log('all users estimated');
+        socket.emit('reveal', '');
       }
       else {
         console.log(`waiting for all users of room ${user.room} to estimate`);

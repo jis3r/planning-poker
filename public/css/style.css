@@ -77,3 +77,8 @@ input[type=number] {
   transition: 5s;
   color: #ffffff;
 }
+
+.estimation {
+  color: #8dcb1a;
+  opacity: 0;
+}

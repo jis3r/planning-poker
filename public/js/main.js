@@ -46,7 +46,7 @@ function fillUserList(users) {
         let estimation = document.createElement('td');
         player.appendChild(document.createTextNode(users[i].username));
         estimation.appendChild(document.createTextNode(' '));
-        estimation.style.color = '#8dcb1a';
+        estimation.classList.add('estimation');
         estimation.setAttribute("id", users[i].id);
         listRow.appendChild(player);
         listRow.appendChild(estimation);
@@ -75,6 +75,14 @@ function showBannermessage(message) {
         banner.innerHTML = ' ';
         banner.style.color = 'rgb(0, 0, 0)';
     }, 4000);
+}
+
+function revealEstimations() {
+    let est = document.getElementsByClassName('estimation');
+    console.log('all esti', est);
+    for(let i = 0; i < est.length; i++) {
+        est[i].style.opacity = 1;
+    }
 }
 
 
@@ -111,4 +119,8 @@ socket.on('roomUsers', ({ room, users }) => {
 socket.on('newEstimation', (user) => {
     console.log(user.estimation);
     document.getElementById(user.id).innerHTML = user.estimation;
+});
+
+socket.on('reveal', (foo) => {
+    revealEstimations();
 });
