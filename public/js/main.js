@@ -85,6 +85,19 @@ function revealEstimations() {
     }
 }
 
+function clearList() {
+    let est = document.getElementsByClassName('estimation');
+    console.log('all esti', est);
+    for(let i = 0; i < est.length; i++) {
+        est[i].style.opacity = 0;
+        est[i].innerHTML = '';
+    }
+
+    let button = document.getElementsByClassName('button-primary-positive');
+    button[0].classList.remove('button-primary-positive');
+    showBannermessage('Values reseted.');
+}
+
 
 //////////////////////////////////////////////////////////////////////
 //socket communication////////////////////////////////////////////////
@@ -123,4 +136,8 @@ socket.on('newEstimation', (user) => {
 
 socket.on('reveal', (foo) => {
     revealEstimations();
+});
+
+socket.on('emptyList', (foo) => {
+    clearList();
 });

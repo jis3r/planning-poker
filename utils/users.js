@@ -69,6 +69,16 @@ function hasUserEstimated(user){
     }
 }
 
+//resets the estimations of all users
+function resetEstimations(room){
+    let test = getRoomUsers(room)
+    for(let i = 0; i < test.length; i++) {
+        console.log(test[i]);
+        test[i].estimation = '';
+    }
+    console.log('all estimations were sucessfully reseted.', users);
+}
+
 module.exports = {
     generateRoomID,
     validateRoomID,
@@ -76,5 +86,6 @@ module.exports = {
     userLeave,
     getCurrentUser,
     getRoomUsers,
-    checkAllEstimated
+    checkAllEstimated,
+    resetEstimations
 };
