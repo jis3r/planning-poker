@@ -6,7 +6,8 @@ const { generateRoomID,
         validateRoomID,
         userJoin,
         userLeave,
-        getRoomUsers        } = require('./utils/users');
+        getCurrentUser,
+        getRoomUsers    } = require('./utils/users');
 
 
 const app = express();
@@ -49,6 +50,13 @@ io.on('connection', socket => {
             room: user.room,
             users: getRoomUsers(user.room)
         });
+    });
+
+    socket.on('estimated', (estimation) => {
+      let user = getCurrentUser(socket.id);
+      console.log('User ', user.id, 'with alias ', user.username, 'estimated ', estimation);
+      //socket.emit('newEstimation');
+
     });
 
     // Runs when client disconnects

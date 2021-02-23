@@ -14,17 +14,11 @@ function toggleButton(id) {
     el.classList.toggle('button-primary-positive');
 }
 
-function toggleState(estimation) {
+function setEstimation(estimation) {
     var el = document.getElementById(socket.id);
     el.innerHTML = estimation;
     console.log(el.style.color);
-    if (el.style.color === 'rgb(255, 255, 255)') {
-        el.style.color = '#8dcb1a';
-        socket.emit('ready');
-    } else {
-        el.style.color = 'rgb(255, 255, 255)';
-        socket.emit('unready');
-    }
+    socket.emit('estimated', estimation);
 }
 
 function setUserdata() {
@@ -49,13 +43,13 @@ function fillUserList(users) {
     for(let i = 0; i < users.length; i++){
         let listRow = document.createElement('tr');
         let player = document.createElement('td');
-        let state = document.createElement('td');
+        let estimation = document.createElement('td');
         player.appendChild(document.createTextNode(users[i].username));
-        state.appendChild(document.createTextNode('ready'));
-        state.style.color = '#ffffff';
-        state.setAttribute("id", users[i].id);
+        estimation.appendChild(document.createTextNode(' '));
+        estimation.style.color = '#8dcb1a';
+        estimation.setAttribute("id", users[i].id);
         listRow.appendChild(player);
-        listRow.appendChild(state);
+        listRow.appendChild(estimation);
         playerlist.appendChild(listRow);
     }
 }
@@ -73,8 +67,14 @@ function checkRooms(roomID) {
 }
 
 socket.on('bannermessage', (message) => {
-    console.log(message);
-    document.getElementById('banner').innerHTML = message;
+    let banner = document.getElementById('banner');
+    banner.innerHTML = message;
+    banner.style.transition = '4s';
+    banner.style.color = 'rgb(255, 255, 255)';
+    setTimeout(function(){
+        banner.innerHTML = ' ';
+        banner.style.color = 'rgb(0, 0, 0)';
+    }, 4000);
 });
 
 socket.on('newRoom', (newRoom) => {

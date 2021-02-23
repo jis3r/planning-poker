@@ -378,6 +378,18 @@ label > .label-body {
   margin-left: .5rem;
   font-weight: normal; }
 
+input[type="email"]:invalid,
+input[type="number"]:invalid,
+input[type="search"]:invalid,
+input[type="text"]:invalid,
+input[type="tel"]:invalid,
+input[type="url"]:invalid,
+input[type="password"]:invalid,
+textarea:invalid,
+select:invalid {
+  border: 1px solid #d80032;
+  outline: 0; }
+
 
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
