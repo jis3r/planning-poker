@@ -106,3 +106,9 @@ socket.on('roomUsers', ({ room, users }) => {
     document.getElementById('playerlist').innerHTML = '';
     fillUserList(users);
 });
+
+// Recieve Validation from another User
+socket.on('newEstimation', (user) => {
+    console.log(user.estimation);
+    document.getElementById(user.id).innerHTML = user.estimation;
+});
