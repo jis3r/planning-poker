@@ -66,7 +66,7 @@ function checkRooms(roomID) {
     socket.emit('checkRoom', roomID);
 }
 
-socket.on('bannermessage', (message) => {
+function showBannermessage(message) {
     let banner = document.getElementById('banner');
     banner.innerHTML = message;
     banner.style.transition = '4s';
@@ -75,6 +75,13 @@ socket.on('bannermessage', (message) => {
         banner.innerHTML = ' ';
         banner.style.color = 'rgb(0, 0, 0)';
     }, 4000);
+}
+
+
+//////////////////////////////////////////////////////////////////////
+//socket communication////////////////////////////////////////////////
+socket.on('bannermessage', (message) => {
+    showBannermessage(message);
 });
 
 socket.on('newRoom', (newRoom) => {

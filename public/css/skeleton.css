@@ -227,7 +227,6 @@ input[type="button"].button-primary:focus {
 /* Customized-Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-/*
 .button.button-primary-start,
 button.button-primary-start,
 input[type="submit"].button-primary-start,
@@ -270,7 +269,7 @@ input[type="reset"].button-primary-join:focus,
 input[type="button"].button-primary-join:focus {
   color: #FFF;
   background-color: #274B91;
-  border-color: #274B91; }*/
+  border-color: #274B91; }
 
 .button.button-primary-negative,
 button.button-primary-negative,

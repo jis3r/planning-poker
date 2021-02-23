@@ -32,16 +32,18 @@
                         <span id="roomID" class="readycolor">12345</span>                        
                     </h4>
                     <div class="copyicon u-pull-left">
-                        <img src="/img/copy.svg" alt="copy" onclick="copyToClipboard(document.getElementById('roomID').innerHTML); alert('Room-id was copied to clipboard.')">
+                        <img src="/img/copy.svg" alt="copy" onclick="copyToClipboard(document.getElementById('roomID').innerHTML); showBannermessage('Room-id was copied to clipboard.')">
                     </div>
                 </div>
                 <div class="four columns">
                     <h4 id="banner" style="text-align: center; transition-timing-function: ease-in;"></h4>
                 </div>
-                <div class="one column">
-                    <h4></h4>
+                <div class="two columns">
+                    <button class="button-primary-join u-full-width" onclick="alert('reload');" style="display: grid; place-items: center;">
+                        <img class="reloadicon" src="/img/reload.svg" alt="reload">
+                    </button>
                 </div>
-                <div class="three columns">
+                <div class="two columns">
                     <button class="button-primary-negative u-full-width" onclick="location.href='index.html'">leave</button>
                 </div>
             </div>

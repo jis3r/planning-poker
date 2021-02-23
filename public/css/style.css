@@ -30,23 +30,18 @@
   }
 
   .button-primary-join:hover{
-    background-color: #274B91;
+    background-color: #3E5FA0;
+    /*background-color: #00406e;*/
     color: #ffffff;
   }
 
   .button-primary-join:active{
-    background-color: #103783;
+    background-color: #274B91;
     color: #ffffff;
   }
 
   .copyicon:hover {
     transform: translateY(-3px);
-  }
-}
-
-@media (min-width: 550px) {
-  .button-submit {
-    margin-top: 29px;
   }
 }
 
@@ -71,6 +66,11 @@ input[type=number] {
   height: 3.24rem;
   transition: 0.3s;
   margin-left: .8rem;
+}
+
+.reloadicon {
+  width: 3.24rem;
+  height: 3.24rem;
 }
 
 .fadeout {
