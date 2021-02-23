@@ -3,6 +3,7 @@ var userdata = {
     username : '',
     roomID : ''
 }
+var count = 0;
 
 function toggleButton(id) {
     let el = document.getElementsByClassName('button-primary-positive');
@@ -67,14 +68,29 @@ function checkRooms(roomID) {
 }
 
 function showBannermessage(message) {
-    let banner = document.getElementById('banner');
-    banner.innerHTML = message;
-    banner.style.transition = '4s';
-    banner.style.color = 'rgb(255, 255, 255)';
+    let oldBanner = document.getElementById('newBanner');
+    if( oldBanner !== null ) {
+        oldBanner.remove();
+    }
+    let bannerfield = document.getElementById('bannerfield');
+    let banner = document.createElement('h4');
+    banner.setAttribute('id', 'newBanner');
+    banner.appendChild(document.createTextNode(message));
+    banner.style.color = 'rgb(0, 0, 0)';
+    banner.style.textAlign = 'center';
+    bannerfield.appendChild(banner);
+    
+    //let banner = document.getElementById('banner');
+    //banner.innerHTML = message;
+    //banner.style.position = 'absolute';
+    banner.style.transition = '3s';
+
     setTimeout(function(){
-        banner.innerHTML = ' ';
-        banner.style.color = 'rgb(0, 0, 0)';
-    }, 4000);
+        banner.style.color = 'rgb(255, 255, 255)';
+        setTimeout(function(){
+            banner.remove();
+        }, 3000);
+    }, 2000);
 }
 
 function revealEstimations() {
