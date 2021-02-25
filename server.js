@@ -19,9 +19,6 @@ const io = socketio(server);
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-const botName = 'Werwolph';
-
 //run when a client connects
 io.on('connection', socket => {
     console.log('New websocket connection');
@@ -80,6 +77,8 @@ io.on('connection', socket => {
 
     // Runs when client disconnects
     socket.on('disconnect', () => {
+      let tempUser = getCurrentUser(socket.id);
+      console.log(tempUser);
       const user = userLeave(socket.id);
 
       if (user) {
@@ -90,6 +89,16 @@ io.on('connection', socket => {
           room: user.room,
           users: getRoomUsers(user.room)
         });
+      }
+
+      if(tempUser) {
+        if( checkAllEstimated(tempUser.room) === true ) {
+          console.log('all users estimated');
+          io.to(tempUser.room).emit('reveal', '');
+        }
+        else {
+          console.log(`waiting for all users of room ${tempUser.room} to estimate`);
+        }
       }
     });
 });

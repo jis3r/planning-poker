@@ -46,7 +46,7 @@ function fillUserList(users) {
         let player = document.createElement('td');
         let estimation = document.createElement('td');
         player.appendChild(document.createTextNode(users[i].username));
-        estimation.appendChild(document.createTextNode(' '));
+        estimation.appendChild(document.createTextNode(users[i].estimation));
         estimation.classList.add('estimation');
         estimation.setAttribute("id", users[i].id);
         listRow.appendChild(player);
