@@ -98,9 +98,16 @@ input[type=number] {
 .svgmoon {
   color: #34073D;
   filter: invert(4%) sepia(50%) saturate(7487%) hue-rotate(286deg) brightness(112%) contrast(99%);
+  transition: 1s;
 }
 
 .svgsun {
   color: #ffd500;
   filter: invert(73%) sepia(96%) saturate(543%) hue-rotate(355deg) brightness(100%) contrast(109%);
+  transition: 1s;
+}
+
+.animation {
+  transform: translateY(31px);
+  opacity: 0;
 }

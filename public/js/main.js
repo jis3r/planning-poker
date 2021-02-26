@@ -3,7 +3,6 @@ var userdata = {
     username : '',
     roomID : ''
 }
-var count = 0;
 
 function toggleButton(id) {
     let el = document.getElementsByClassName('button-primary-positive');
@@ -133,32 +132,42 @@ function getTheme() {
 }
 
 function toggleTheme(theme) {
-    changeThemeIcon(theme);
     changeThemeStyle(theme);
+    changeThemeIcon(theme);
 }
 
 function changeThemeIcon(theme) {
     let trigger = document.getElementById('darkmodetrigger');
     let icon = document.createElement("IMG");
+    let oldIcon = document.getElementById('themeIcon');
     let src = 'img/sun.svg';
     let alt = 'sun';
     let param = 'light';
-    let style = 'svgsun'
+    let style = 'svgsun';
+    let animation = 'animation';
+    oldIcon.style.transform = 'translateY(-62px)';
 
-    while (trigger.firstChild) {
-        trigger.removeChild(trigger.firstChild);
-    }
-    if( theme === 'light' ) {
-        src = 'img/moon.svg';
-        alt = 'moon';
-        param = 'dark';
-        style = 'svgmoon';
-    }
-    icon.setAttribute("src", src);
-    icon.setAttribute("alt", alt);
-    icon.onclick=function(){toggleTheme(param)};
-    icon.classList.add(style);
-    trigger.appendChild(icon);
+    setTimeout(function(){
+        while (trigger.firstChild) {
+            trigger.removeChild(trigger.firstChild);
+        }
+        if( theme === 'light' ) {
+            src = 'img/moon.svg';
+            alt = 'moon';
+            param = 'dark';
+            style = 'svgmoon';
+        }
+        icon.setAttribute("src", src);
+        icon.setAttribute("alt", alt);
+        icon.setAttribute("id", 'themeIcon');
+        icon.onclick=function(){toggleTheme(param)};
+        icon.classList.add(style);
+        icon.classList.add(animation);
+        trigger.appendChild(icon);
+        setTimeout(function(){
+            icon.classList.remove(animation);
+        }, 3);
+    }, 500);
 }
 
 function changeThemeStyle(theme) {
