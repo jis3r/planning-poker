@@ -118,6 +118,53 @@ function clearList() {
     showBannermessage('Values reseted.');
 }
 
+function toggleDarkmode(theme) {
+    changeThemeIcon(theme);
+    changeBackground(theme);
+}
+
+function changeThemeIcon(theme) {
+    let trigger = document.getElementById('darkmodetrigger');
+    let icon = document.createElement("IMG");
+    let src = 'img/sun.svg';
+    let alt = 'sun';
+    let param = 'light';
+    let style = 'svgsun'
+
+    while (trigger.firstChild) {
+        trigger.removeChild(trigger.firstChild);
+    }
+    if( theme === 'light' ) {
+        src = 'img/moon.svg';
+        alt = 'moon';
+        param = 'dark';
+        style = 'svgmoon';
+    }
+    icon.setAttribute("src", src);
+    icon.setAttribute("alt", alt);
+    icon.onclick=function(){toggleDarkmode(param)};
+    icon.classList.add(style);
+    trigger.appendChild(icon);
+}
+
+function changeBackground(theme) {
+    let header = document.getElementById('header');
+    if( theme === 'light') {
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#000000';
+        header.style.backgroundColor = '#ffffff';
+        header.style.color = '00000';
+        header.style.boxShadow = '0 2px 4px 0 rgba(208, 208, 208, 0.5)';
+
+    } else {
+        document.body.style.backgroundColor = '#121212';//#0b132b
+        document.body.style.color = '#ffffff';
+        header.style.backgroundColor = '#24292e';//#10002b
+        header.style.color = '00000';
+        header.style.boxShadow = 'none';
+    }
+}
+
 
 //////////////////////////////////////////////////////////////////////
 //socket communication////////////////////////////////////////////////

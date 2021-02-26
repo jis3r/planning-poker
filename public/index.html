@@ -12,13 +12,22 @@
 
         <link rel="icon" type="image/png" href="img/favicon.png">
     </head>
-    <body>
-        <div class="header">
+    <body id="body">
+        <div id="header" class="header">
             <div class="container">
                 <div class="row">
-                    <div class="twelve columns">
+                    <div class="three columns"><h6></h6></div>
+                    <div class="six columns">
                         <div onclick="location.href = 'index.html';">
                             <h2 class="header-title">Planning Poker</h2>
+                        </div>
+                    </div>
+                    <div class="two columns">
+                        <h6></h6>
+                    </div>
+                    <div class="one column" style="height: 100%; margin-bottom: 0%;">
+                        <div id="darkmodetrigger" class="darkmodetrigger u-pull-right">
+                            <img src="img/moon.svg" alt="moon" onclick="toggleDarkmode('dark')">
                         </div>
                     </div>
                 </div>

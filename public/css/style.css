@@ -11,8 +11,8 @@
   font-size: 50px;
   text-align: center;
   vertical-align: middle;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 0px;
+  margin-right: 0px;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -41,6 +41,9 @@
   }
 
   .copyicon:hover {
+    transform: translateY(-3px);
+  }
+  .darkmodetrigger:hover {
     transform: translateY(-3px);
   }
 }
@@ -73,6 +76,15 @@ input[type=number] {
   height: 3rem;
 }
 
+.darkmodetrigger {
+  width: 31px;
+  height: 31px;
+  transition: 0.3s;
+  margin-top: 15.5px;
+  margin-bottom: 15.5px;
+  box-sizing: border-box;
+}
+
 .fadeout {
   transition: 5s;
   color: #ffffff;
@@ -81,4 +93,15 @@ input[type=number] {
 .estimation {
   color: #8dcb1a;
   opacity: 0;
+}
+
+
+.svgmoon {
+  color: #34073D;
+  filter: invert(4%) sepia(50%) saturate(7487%) hue-rotate(286deg) brightness(112%) contrast(99%);
+}
+
+.svgsun {
+  color: #ffd500;
+  filter: invert(73%) sepia(96%) saturate(543%) hue-rotate(355deg) brightness(100%) contrast(109%);
 }
