@@ -97,7 +97,7 @@ function createBanner(message, id) {
 
 function revealEstimations() {
     let est = document.getElementsByClassName('estimation');
-    console.log('all esti', est);
+    //console.log('all esti', est);
     for(let i = 0; i < est.length; i++) {
         est[i].style.opacity = 1;
     }
