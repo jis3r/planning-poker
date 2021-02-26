@@ -1,0 +1,11 @@
+/*DARK-THEME*/
+body {
+    color: #ffffff;
+    background-color: #121212;
+}
+
+.header {
+    color: #ffffff;
+    background-color: #161a1d;
+    box-shadow: none;
+}

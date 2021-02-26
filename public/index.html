@@ -2,9 +2,12 @@
 <html>
     <head>
         <title>Planning Poker</title>
-        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/skeleton.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/light.css" id="themeStyle">
+
+
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,7 +15,7 @@
 
         <link rel="icon" type="image/png" href="img/favicon.png">
     </head>
-    <body id="body">
+    <body style="visibility: hidden;" onload="getTheme();">
         <div id="header" class="header">
             <div class="container">
                 <div class="row">
@@ -27,7 +30,7 @@
                     </div>
                     <div class="one column" style="height: 100%; margin-bottom: 0%;">
                         <div id="darkmodetrigger" class="darkmodetrigger u-pull-right">
-                            <img src="img/moon.svg" alt="moon" onclick="toggleDarkmode('dark')">
+                            <img src="img/moon.svg" alt="moon" onclick="toggleTheme('dark')">
                         </div>
                     </div>
                 </div>

@@ -105,7 +105,7 @@ function revealEstimations() {
 
 function clearList() {
     let est = document.getElementsByClassName('estimation');
-    console.log('all esti', est);
+    //console.log('all esti', est);
     for(let i = 0; i < est.length; i++) {
         est[i].style.opacity = 0;
         est[i].innerHTML = '';
@@ -118,9 +118,23 @@ function clearList() {
     showBannermessage('Values reseted.');
 }
 
-function toggleDarkmode(theme) {
+function getTheme() {
+    document.getElementById('themeStyle').setAttribute('href', localStorage.getItem('theme'));
+    document.body.style.visibility = 'visible';
+
+    if(location.pathname.split("/").slice(-1)[0] === 'index.html' ) {
+        if(localStorage.getItem('theme') === 'css/dark.css') {
+            changeThemeIcon('dark');
+        }
+        else {
+            changeThemeIcon('light');
+        }
+    }
+}
+
+function toggleTheme(theme) {
     changeThemeIcon(theme);
-    changeBackground(theme);
+    changeThemeStyle(theme);
 }
 
 function changeThemeIcon(theme) {
@@ -142,26 +156,22 @@ function changeThemeIcon(theme) {
     }
     icon.setAttribute("src", src);
     icon.setAttribute("alt", alt);
-    icon.onclick=function(){toggleDarkmode(param)};
+    icon.onclick=function(){toggleTheme(param)};
     icon.classList.add(style);
     trigger.appendChild(icon);
 }
 
-function changeBackground(theme) {
-    let header = document.getElementById('header');
+function changeThemeStyle(theme) {
+    let themeStyle = document.getElementById('themeStyle');
+    if(localStorage.getItem('theme') === undefined) {
+        localStorage.setItem('theme', 'css/light.css');
+    }
     if( theme === 'light') {
-        document.body.style.backgroundColor = '#ffffff';
-        document.body.style.color = '#000000';
-        header.style.backgroundColor = '#ffffff';
-        header.style.color = '00000';
-        header.style.boxShadow = '0 2px 4px 0 rgba(208, 208, 208, 0.5)';
-
+        themeStyle.setAttribute('href', 'css/light.css');
+        localStorage.setItem('theme', 'css/light.css');
     } else {
-        document.body.style.backgroundColor = '#121212';//#0b132b
-        document.body.style.color = '#ffffff';
-        header.style.backgroundColor = '#24292e';//#10002b
-        header.style.color = '00000';
-        header.style.boxShadow = 'none';
+        themeStyle.setAttribute('href', 'css/dark.css')
+        localStorage.setItem('theme', 'css/dark.css');
     }
 }
 
