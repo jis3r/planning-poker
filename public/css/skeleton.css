@@ -261,89 +261,53 @@ input[type="button"].button-primary:focus {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .button.button-primary-start,
-button.button-primary-start,
-input[type="submit"].button-primary-start,
-input[type="reset"].button-primary-start,
-input[type="button"].button-primary-start {
+button.button-primary-start {
   color: #FFF;
   background-color: #7DA3DA;
   border-color: #7DA3DA; }
 .button.button-primary-start:hover,
-button.button-primary-start:hover,
-input[type="submit"].button-primary-start:hover,
-input[type="reset"].button-primary-start:hover,
-input[type="button"].button-primary-start:hover,
+button.button-primary-start:hover
 .button.button-primary-start:focus,
-button.button-primary-start:focus,
-input[type="submit"].button-primary-start:focus,
-input[type="reset"].button-primary-start:focus,
-input[type="button"].button-primary-start:focus {
+button.button-primary-start:focus {
   color: #FFF;
   background-color: #61A2E2;
   border-color: #61A2E2; }
 
 .button.button-primary-join,
-button.button-primary-join,
-input[type="submit"].button-primary-join,
-input[type="reset"].button-primary-join,
-input[type="button"].button-primary-join {
+button.button-primary-join {
   color: #FFF;
   background-color: #3E5FA0;
   border-color: #3E5FA0; }
 .button.button-primary-join:hover,
-button.button-primary-join:hover,
-input[type="submit"].button-primary-join:hover,
-input[type="reset"].button-primary-join:hover,
-input[type="button"].button-primary-join:hover,
+button.button-primary-join:hover
 .button.button-primary-join:focus,
-button.button-primary-join:focus,
-input[type="submit"].button-primary-join:focus,
-input[type="reset"].button-primary-join:focus,
-input[type="button"].button-primary-join:focus {
+button.button-primary-join:focus {
   color: #FFF;
   background-color: #274B91;
   border-color: #274B91; }
 
 .button.button-primary-negative,
-button.button-primary-negative,
-input[type="submit"].button-primary-negative,
-input[type="reset"].button-primary-negative,
-input[type="button"].button-primary-negative {
+button.button-primary-negative {
   color: #FFF;
   background-color: #d80032;
   border-color: #d80032; }
 .button.button-primary-negative:hover,
-button.button-primary-negative:hover,
-input[type="submit"].button-primary-negative:hover,
-input[type="reset"].button-primary-negative:hover,
-input[type="button"].button-primary-negative:hover,
+button.button-primary-negative:hover
 .button.button-primary-negative:focus,
-button.button-primary-negative:focus,
-input[type="submit"].button-primary-negative:focus,
-input[type="reset"].button-primary-negative:focus,
-input[type="button"].button-primary-negative:focus {
+button.button-primary-negative:focus {
   color: #FFF;
   background-color: #cc0030;
   border-color: #cc0030; }
 
 .button.button-primary-positive,
-button.button-primary-positive,
-input[type="submit"].button-primary-positive,
-input[type="reset"].button-primary-positive,
-input[type="button"].button-primary-positive {
+button.button-primary-positive {
   color: #FFF;
   background-color: #8dcb1a;
   border-color: #8dcb1a; }
 .button.button-primary-positive:hover,
-button.button-primary-positive:hover,
-input[type="submit"].button-primary-positive:hover,
-input[type="reset"].button-primary-positive:hover,
-input[type="button"].button-primary-positive:hover/*,
+button.button-primary-positive:hover/*,
 .button.button-primary-positive:focus,
-button.button-primary-positive:focus,
-input[type="submit"].button-primary-positive:focus,
-input[type="reset"].button-primary-positive:focus,
-input[type="button"].button-primary-positive:focus*/ {
+button.button-primary-positive:focus,*/ {
   color: #FFF;
   background-color: #7eb517;
   border-color: #7eb517; }
