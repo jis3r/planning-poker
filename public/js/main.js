@@ -69,28 +69,30 @@ function checkRooms(roomID) {
 
 function showBannermessage(message) {
     let oldBanner = document.getElementById('newBanner');
-    if( oldBanner !== null ) {
+    if( oldBanner !== null || undefined ) {
         oldBanner.remove();
     }
     let bannerfield = document.getElementById('bannerfield');
-    let banner = document.createElement('h4');
-    banner.setAttribute('id', 'newBanner');
-    banner.appendChild(document.createTextNode(message));
-    banner.style.color = 'rgb(0, 0, 0)';
-    banner.style.textAlign = 'center';
-    bannerfield.appendChild(banner);
+    let banner = createBanner(message, 'newBanner');
     
-    //let banner = document.getElementById('banner');
-    //banner.innerHTML = message;
-    //banner.style.position = 'absolute';
-    banner.style.transition = '3s';
+    bannerfield.appendChild(banner);
 
     setTimeout(function(){
         banner.style.color = 'rgb(255, 255, 255)';
-        setTimeout(function(){
-            banner.remove();
-        }, 3000);
     }, 2000);
+}
+
+function createBanner(message, id) {
+    let newBanner = document.createElement('h4');
+    newBanner.setAttribute('id', id);
+    newBanner.appendChild(document.createTextNode(message));
+    newBanner.style.color = 'rgb(255, 0, 0)';
+    newBanner.style.textAlign = 'center';
+    setTimeout(function(){
+        newBanner.style.color = 'rgb(0, 0, 0)';
+        newBanner.style.transition = '3s';
+    }, 20);
+    return newBanner;
 }
 
 function revealEstimations() {
@@ -110,7 +112,9 @@ function clearList() {
     }
 
     let button = document.getElementsByClassName('button-primary-positive');
-    button[0].classList.remove('button-primary-positive');
+    if(button[0] !== undefined) {
+        button[0].classList.remove('button-primary-positive');
+    }
     showBannermessage('Values reseted.');
 }
 
