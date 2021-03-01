@@ -111,3 +111,18 @@ button.button-primary-positive:hover {
     border-color: rgb(141, 203, 26, 1);
     color: rgb(141, 203, 26, 1);
 }
+
+.banner-red {
+    color: #ff0000;
+    text-align: center;
+}
+
+.banner-visible {
+    color: #C9D1D9;
+    transition: 3s;
+}
+
+.banner-invisible {
+    color: #121212;
+    visibility: hidden;
+}

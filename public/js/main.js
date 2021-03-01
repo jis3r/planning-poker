@@ -77,7 +77,7 @@ function showBannermessage(message) {
     bannerfield.appendChild(banner);
 
     setTimeout(function(){
-        banner.style.color = 'rgb(255, 255, 255)';
+        newBanner.classList.add('banner-invisible');
     }, 2000);
 }
 
@@ -85,11 +85,9 @@ function createBanner(message, id) {
     let newBanner = document.createElement('h4');
     newBanner.setAttribute('id', id);
     newBanner.appendChild(document.createTextNode(message));
-    newBanner.style.color = 'rgb(255, 0, 0)';
-    newBanner.style.textAlign = 'center';
+    newBanner.classList.add('banner-red');
     setTimeout(function(){
-        newBanner.style.color = 'rgb(0, 0, 0)';
-        newBanner.style.transition = '3s';
+        newBanner.classList.add('banner-visible');
     }, 20);
     return newBanner;
 }

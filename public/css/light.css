@@ -42,3 +42,18 @@ input[type="reset"].button-primary-positive,
 input[type="button"].button-primary-positive {
     opacity: 1;
 }
+
+.banner-red {
+    color: #ff0000;
+    text-align: center;
+}
+
+.banner-visible {
+    color: #000000;
+    transition: 3s;
+}
+
+.banner-invisible {
+    color: #ffffff;
+    visibility: hidden;
+}
