@@ -164,7 +164,7 @@ function changeThemeIcon(theme) {
         trigger.appendChild(icon);
         setTimeout(function(){
             icon.classList.remove(animation);
-        }, 3);
+        }, 10);
     }, 500);
 }
 
