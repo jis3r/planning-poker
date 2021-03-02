@@ -97,5 +97,6 @@ select:focus {
 }
 
 .svg-icon {
-    filter: invert(0%) sepia(100%) saturate(21%) hue-rotate(2deg) brightness(101%) contrast(107%);
+    /*filter: invert(0%) sepia(100%) saturate(21%) hue-rotate(2deg) brightness(101%) contrast(107%);*/
+    filter: invert(99%) sepia(13%) saturate(2%) hue-rotate(295deg) brightness(112%) contrast(100%);
 }
