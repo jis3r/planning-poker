@@ -154,6 +154,10 @@ select:focus {
     visibility: hidden;
 }
 
-.svg-icon {
+.copyicon {
+    filter: invert(96%) sepia(2%) saturate(1760%) hue-rotate(179deg) brightness(85%) contrast(100%);
+}
+
+.reloadicon {
     filter: invert(96%) sepia(2%) saturate(1760%) hue-rotate(179deg) brightness(85%) contrast(100%);
 }

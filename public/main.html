@@ -33,7 +33,7 @@
                         <span id="roomID" class="readycolor">12345</span>                        
                     </h4>
                     <div class="copyicon u-pull-left">
-                        <img class="svg-icon" src="/img/copy.svg" alt="copy" onclick="copyToClipboard(document.getElementById('roomID').innerHTML); showBannermessage('Copied.');">
+                        <img src="/img/copy.svg" alt="copy" onclick="copyToClipboard(document.getElementById('roomID').innerHTML); showBannermessage('Copied.');">
                     </div>
                 </div>
                 <div class="four columns" id="bannerfield">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="two columns">
                     <button class="button-primary-join u-full-width" onclick="socket.emit('reset', '' );" style="display: grid; place-items: center;">
-                        <img class="reloadicon svg-icon" src="/img/reload.svg" alt="reload">
+                        <img class="reloadicon" src="/img/reload.svg" alt="reload">
                     </button>
                 </div>
                 <div class="two columns">
