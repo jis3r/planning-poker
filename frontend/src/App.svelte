@@ -1,30 +1,34 @@
 <script>
-	export let name;
+	import Navbar from './Navbar.svelte';
+	import Landing from './Landing.svelte';
+	import Start from './Start.svelte';
+	import Join from './Join.svelte';
+	import Lobby from './Lobby.svelte';
+
+	var currentPage = 0;
+
+	const setPage = (e) => {
+		currentPage = e.detail;
+	}
+
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<Navbar on:changepage={setPage}/>
+	<div class="container">
+		{#if currentPage === 0}
+		<Landing on:changepage={setPage}/>
+		{:else if currentPage === 1}
+		<Start on:changepage={setPage}/>
+		{:else if currentPage === 2}
+		<Join on:changepage={setPage}/>
+		{:else if currentPage === 3}
+		<Lobby />
+		{:else}
+		<Landing />
+		{/if}	
+	</div>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
 </style>
