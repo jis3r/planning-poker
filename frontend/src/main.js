@@ -1,4 +1,5 @@
 import App from './App.svelte';
+import io from '../node_modules/socket.io/client-dist/socket.io';
 
 const app = new App({
 	target: document.body,
@@ -7,7 +8,7 @@ const app = new App({
 });
 
 
-const socket = io();
+const socket = io('http://localhost:3000');
 var userdata = {
     username : '',
     roomID : ''

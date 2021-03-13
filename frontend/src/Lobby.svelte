@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="four columns" id="bannerfield">
-        <h4 id="newBanner" style="text-align: center; transition-timing-function: ease-in;"></h4>
+        <h4 id="newBanner" style="text-align: center; transition-timing-function: ease-in;"> </h4>
     </div>
     <div class="two columns">
         <button class="button-primary-join u-full-width" onclick="socket.emit('reset', '' );" style="display: grid; place-items: center;">
@@ -33,10 +33,10 @@
         </table>
     </div>
     <div class="four columns">
-        <h4></h4>
+        <h4> </h4>
     </div>
     <div class="three columns">
-        <h4></h4>
+        <h4> </h4>
     </div>
 </div>
 
