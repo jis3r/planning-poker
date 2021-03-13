@@ -31,18 +31,17 @@ function setEstimation(estimation) {
     socket.emit('estimated', estimation);
 }
 
-function setUserdata() {
-    var url = window.location.href;
+function setUserdata(username, roomID) {
+    /*var url = window.location.href;
     var getQuery = url.split('?')[1];
     var params = getQuery.split('&');
     var username = params[0].split('=')[1];
-    var roomID = params[1].split('=')[1];
+    var roomID = params[1].split('=')[1];*/
 
     userdata.username = username;
     userdata.roomID = roomID;
     console.log('client', userdata);
 
-    document.getElementById('roomID').innerHTML = userdata.roomID;
     socket.emit('joinRoom', userdata);
 }
 
@@ -236,4 +235,7 @@ socket.on('emptyList', (foo) => {
     clearList();
 });
 
+export {
+    setUserdata
+}
 export default app;
