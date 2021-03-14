@@ -1,13 +1,17 @@
 <script>
     import { createEventDispatcher } from "svelte";
-    import { leaveRoom } from "./main.js";
+    import { leaveRoom, socket } from "./main.js";
 
 
     const dispatch = createEventDispatcher();
 
-    const leaveLobby = (e) => {
+    const leaveLobby = () => {
         leaveRoom();
         dispatch("changepage", 0);
+    }
+
+    const resetValues = () => {
+        socket.emit('reset', '' );
     }
 </script>
 
@@ -24,7 +28,7 @@
         <h4 id="newBanner" style="text-align: center; transition-timing-function: ease-in;"> </h4>
     </div>
     <div class="two columns">
-        <button class="button-primary-join u-full-width" onclick="socket.emit('reset', '' );" style="display: grid; place-items: center;">
+        <button class="button-primary-join u-full-width" on:click={resetValues} style="display: grid; place-items: center;">
             <img class="reloadicon" src="/img/reload.svg" alt="reload">
         </button>
     </div>

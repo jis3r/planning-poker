@@ -236,6 +236,7 @@ socket.on('emptyList', (foo) => {
 });
 
 export {
+    socket,
     setUserdata,
     getTheme,
     checkRooms,
