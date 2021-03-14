@@ -240,6 +240,8 @@ export {
     setUserdata,
     getTheme,
     checkRooms,
-    leaveRoom
+    leaveRoom,
+    copyToClipboard,
+    showBannermessage
 }
 export default app;

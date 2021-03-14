@@ -1,9 +1,11 @@
 <script>
     import { createEventDispatcher } from "svelte";
-    import { leaveRoom, socket } from "./main.js";
+    import { leaveRoom, socket, copyToClipboard, showBannermessage } from "./main.js";
 
 
     const dispatch = createEventDispatcher();
+
+    let roomID;
 
     const leaveLobby = () => {
         leaveRoom();
@@ -13,15 +15,20 @@
     const resetValues = () => {
         socket.emit('reset', '' );
     }
+
+    const copyRoomID = () => {
+        copyToClipboard(roomID.innerHTML);
+        showBannermessage('Copied.');
+    }
 </script>
 
 <div class="row" style="margin-top: 15%;">
     <div class="four columns">
         <h4 class="u-pull-left">room-id: 
-            <span id="roomID" class="readycolor">12345</span>                        
+            <span id="roomID" class="readycolor" bind:this={roomID}>00000</span>                        
         </h4>
         <div class="copyicon u-pull-left">
-            <img src="/img/copy.svg" alt="copy" onclick="copyToClipboard(document.getElementById('roomID').innerHTML); showBannermessage('Copied.');">
+            <img src="/img/copy.svg" alt="copy" on:click={copyRoomID}>
         </div>
     </div>
     <div class="four columns" id="bannerfield">
