@@ -1,11 +1,20 @@
 <script>
     import { createEventDispatcher } from "svelte";
-    import { leaveRoom, socket, copyToClipboard, showBannermessage } from "./main.js";
+    import {    leaveRoom, 
+                socket, 
+                copyToClipboard, 
+                showBannermessage   } from "./main.js";
 
+    import Button_Estimation from './Button_Estimation.svelte';
 
     const dispatch = createEventDispatcher();
 
     let roomID;
+
+    let firstRowValues = ['0', '1', '2', '3', '5', '8'];
+
+    let secondRowValues = ['13', '20', '40', '100', '?', 'coffee'];
+
 
     const leaveLobby = () => {
         leaveRoom();
@@ -65,42 +74,12 @@
 </div>
 
 <div class="row" style="margin-top: 5%;">
-    <div class="two columns">
-        <button id="0" class="u-full-width" onclick="toggleButton(id); setEstimation('0');">0</button>
-    </div>
-    <div class="two columns">
-        <button id="1" class="u-full-width" onclick="toggleButton(id); setEstimation('1');">1</button>
-    </div>
-    <div class="two columns">
-        <button id="2" class="u-full-width" onclick="toggleButton(id); setEstimation('2');">2</button>
-    </div>
-    <div class="two columns">
-        <button id="3" class="u-full-width" onclick="toggleButton(id); setEstimation('3');">3</button>
-    </div>
-    <div class="two columns">
-        <button id="5" class="u-full-width" onclick="toggleButton(id); setEstimation('5');">5</button>
-    </div>
-    <div class="two columns">
-        <button id="8" class="u-full-width" onclick="toggleButton(id); setEstimation('8');">8</button>
-    </div>
+    {#each firstRowValues as currentValue}
+    <Estimation value={currentValue}/>
+    {/each}
 </div>
 <div class="row lowerrow">
-    <div class="two columns">
-        <button id="13" class="u-full-width" onclick="toggleButton(id); setEstimation('13');">13</button>
-    </div>
-    <div class="two columns">
-        <button id="20" class="u-full-width" onclick="toggleButton(id); setEstimation('20');">20</button>
-    </div>
-    <div class="two columns">
-        <button id="40" class="u-full-width" onclick="toggleButton(id); setEstimation('40');">40</button>
-    </div>
-    <div class="two columns">
-        <button id="100" class="u-full-width" onclick="toggleButton(id); setEstimation('100');">100</button>
-    </div>
-    <div class="two columns">
-        <button id="?" class="u-full-width" onclick="toggleButton(id); setEstimation('?');">?</button>
-    </div>
-    <div class="two columns">
-        <button id="Coffee" class="u-full-width" onclick="toggleButton(id); setEstimation('coffee');">Coffee</button>
-    </div>
+    {#each secondRowValues as currentValue}
+        <Estimation value={currentValue}/>
+    {/each}
 </div>

@@ -242,6 +242,8 @@ export {
     checkRooms,
     leaveRoom,
     copyToClipboard,
-    showBannermessage
+    showBannermessage,
+    toggleButton,
+    setEstimation
 }
 export default app;
