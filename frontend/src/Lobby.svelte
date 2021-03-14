@@ -1,3 +1,13 @@
+<script>
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
+
+    const setLanding = (e) => {
+        dispatch("changepage", 0);
+    }
+</script>
+
 <div class="row" style="margin-top: 15%;">
     <div class="four columns">
         <h4 class="u-pull-left">room-id: 
@@ -16,7 +26,7 @@
         </button>
     </div>
     <div class="two columns">
-        <button class="button-primary-negative u-full-width" onclick="location.href='index.html'">leave</button>
+        <button class="button-primary-negative u-full-width" on:click={setLanding}>leave</button>
     </div>
 </div>
 

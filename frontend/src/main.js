@@ -7,8 +7,8 @@ const app = new App({
 	}
 });
 
-
 const socket = io('http://localhost:3000');
+
 var userdata = {
     username : '',
     roomID : ''
@@ -32,16 +32,9 @@ function setEstimation(estimation) {
 }
 
 function setUserdata(username, roomID) {
-    /*var url = window.location.href;
-    var getQuery = url.split('?')[1];
-    var params = getQuery.split('&');
-    var username = params[0].split('=')[1];
-    var roomID = params[1].split('=')[1];*/
-
     userdata.username = username;
     userdata.roomID = roomID;
     console.log('client', userdata);
-
     socket.emit('joinRoom', userdata);
 }
 
@@ -206,8 +199,10 @@ socket.on('newRoom', (newRoom) => {
 
 socket.on('validation', (validation) => {
     console.log('validation', validation);
-    if ( validation === false ) {
-        location.href='join.html'
+    if ( validation === true ) {
+        setLobby();
+    }
+    else {
         //el = document.getElementById("roomIDInput");
         //el.placeholder = "Please enter an existing room-id.";
         //el.value = "";
@@ -236,6 +231,8 @@ socket.on('emptyList', (foo) => {
 });
 
 export {
-    setUserdata
+    setUserdata,
+    getTheme,
+    checkRooms,
 }
 export default app;

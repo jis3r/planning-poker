@@ -1,5 +1,9 @@
 <script>
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
+    import { getTheme } from "./main.js";
+
+    
+    export const onload = null;
 
     const dispatch = createEventDispatcher();
     
@@ -9,6 +13,12 @@
     const setJoin = (e) => {
         dispatch("changepage", 2);
     }
+
+    onMount(async () => {
+        //getTheme();
+	});
+
+
 </script>
 
 

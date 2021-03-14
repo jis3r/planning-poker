@@ -2,7 +2,7 @@
     import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
-    let darktheme = false;
+    let darktheme = true;
 
     const setLanding = (e) => {
         e.preventDefault();
@@ -15,18 +15,18 @@
     }
 
     function changeThemeStyle() {
-    let themeStyle = document.getElementById('themeStyle');
-    if(localStorage.getItem('theme') === undefined) {
-        localStorage.setItem('theme', 'css/light.css');
+        let themeStyle = document.getElementById('themeStyle');
+        if( localStorage.getItem('theme') === undefined ) {
+            localStorage.setItem('theme', 'css/light.css');
+        }
+        if( darktheme ) {
+            themeStyle.setAttribute('href', 'css/dark.css');
+            localStorage.setItem('theme', 'css/dark.css');
+        } else {
+            themeStyle.setAttribute('href', 'css/light.css')
+            localStorage.setItem('theme', 'css/light.css');
+        }
     }
-    if( darktheme) {
-        themeStyle.setAttribute('href', 'css/dark.css');
-        localStorage.setItem('theme', 'css/dark.css');
-    } else {
-        themeStyle.setAttribute('href', 'css/light.css')
-        localStorage.setItem('theme', 'css/light.css');
-    }
-}
 </script>
 
 

@@ -23,9 +23,9 @@
 		{:else if currentPage === 2}
 		<Join on:changepage={setPage}/>
 		{:else if currentPage === 3}
-		<Lobby />
+		<Lobby on:changepage={setPage}/>
 		{:else}
-		<Landing />
+		<Landing on:changepage={setPage}/>
 		{/if}	
 	</div>
 </main>

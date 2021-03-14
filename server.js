@@ -21,35 +21,35 @@ app.use(express.static(path.join(__dirname, 'frontend', 'public')));
 
 //run when a client connects
 io.on('connection', socket => {
-    console.log('New websocket connection');
+  console.log('New websocket connection');
 
-    socket.on('checkRoom', (roomID) => {
-        console.log('Server recieved ', roomID, '. It will now be validated.')
-        socket.emit('validation', validateRoomID(roomID));
-    });
+  socket.on('checkRoom', (roomID) => {
+    console.log('Server recieved ', roomID, '. It will now be validated.');
+    socket.emit('validation', validateRoomID(roomID));
+  });
 
-    socket.on('joinRoom', (userdata) => {
-        if (userdata.roomID === "") {
-            userdata.roomID = generateRoomID();
-            socket.emit('newRoom', userdata.roomID);
-        }
-        console.log('Server recieved userdata:', userdata.username, '\n', userdata.roomID);
-
-        const user = userJoin(socket.id, userdata.username, userdata.roomID);
-        socket.join(user.room);
+  socket.on('joinRoom', (userdata) => {
+    if (userdata.roomID === "") {
+      userdata.roomID = generateRoomID();
+    }
     
-        //welcome current user
-        socket.emit('bannermessage', 'Welcome.');
-    
-        //broadcast when a user connects
-        socket.broadcast.to(user.room).emit('bannermessage', `${user.username} has joined.`);
+    socket.emit('newRoom', userdata.roomID);
+    console.log('Server recieved userdata:', userdata.username, '\n', userdata.roomID);
+    const user = userJoin(socket.id, userdata.username, userdata.roomID);
+    socket.join(user.room);
 
-        // Send users and room info
-        io.to(user.room).emit('roomUsers', {
-            room: user.room,
-            users: getRoomUsers(user.room)
-        });
+    //welcome current user
+    socket.emit('bannermessage', 'Welcome.');
+
+    //broadcast when a user connects
+    socket.broadcast.to(user.room).emit('bannermessage', `${user.username} has joined.`);
+    
+    // Send users and room info
+    io.to(user.room).emit('roomUsers', {
+      room: user.room,
+      users: getRoomUsers(user.room)
     });
+  });
 
     socket.on('estimated', (estimation) => {
       let user = getCurrentUser(socket.id);
