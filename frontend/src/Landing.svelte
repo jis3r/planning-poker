@@ -1,5 +1,5 @@
 <script>
-    import { createEventDispatcher, onMount } from "svelte";
+    import { createEventDispatcher, beforeUpdate } from "svelte";
     import { getTheme } from "./main.js";
 
     
@@ -14,8 +14,8 @@
         dispatch("changepage", 2);
     }
 
-    onMount(async () => {
-        //getTheme();
+    beforeUpdate(() => {
+        getTheme();
 	});
 
 

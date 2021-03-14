@@ -75,11 +75,11 @@
 
 <div class="row" style="margin-top: 5%;">
     {#each firstRowValues as currentValue}
-    <Estimation value={currentValue}/>
+    <Button_Estimation value={currentValue}/>
     {/each}
 </div>
 <div class="row lowerrow">
     {#each secondRowValues as currentValue}
-        <Estimation value={currentValue}/>
+        <Button_Estimation value={currentValue}/>
     {/each}
 </div>

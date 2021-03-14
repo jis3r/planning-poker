@@ -1,5 +1,5 @@
 <script>
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
 
     const dispatch = createEventDispatcher();
     let darktheme = true;
@@ -27,6 +27,12 @@
             localStorage.setItem('theme', 'css/light.css');
         }
     }
+
+    onMount(() => {
+        if(localStorage.getItem('theme') === 'css/light.css') {
+            darktheme = false;
+        }
+	});
 </script>
 
 

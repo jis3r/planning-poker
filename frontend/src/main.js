@@ -121,15 +121,6 @@ function clearList() {
 function getTheme() {
     document.getElementById('themeStyle').setAttribute('href', localStorage.getItem('theme'));
     document.body.style.visibility = 'visible';
-
-    if(location.pathname.split("/").slice(-1)[0] === 'index.html' ) {
-        if(localStorage.getItem('theme') === 'css/dark.css') {
-            changeThemeIcon('dark');
-        }
-        else {
-            changeThemeIcon('light');
-        }
-    }
 }
 
 function toggleTheme(theme) {
