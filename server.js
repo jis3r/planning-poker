@@ -75,39 +75,10 @@ io.on('connection', socket => {
     io.to(user.room).emit('emptyList', '');
   });
 
-  // Runs when client leaves
-  socket.on('leave', (foo) => {
-    /*let tempUser = getCurrentUser(socket.id);
-    console.log(tempUser);
-    const user = userLeave(socket.id);
-    
-    if (user) {
-      io.to(user.room).emit('bannermessage', `${user.username} has left.`);
-
-      // Send users and room info
-      io.to(user.room).emit('roomUsers', {
-        room: user.room,
-        users: getRoomUsers(user.room)
-      });
-    }
-
-    if(tempUser) {
-      if( checkAllEstimated(tempUser.room) === true ) {
-        console.log('all users estimated');
-        io.to(tempUser.room).emit('reveal', '');
-      }
-      else {
-        console.log(`waiting for all users of room ${tempUser.room} to estimate`);
-      }
-      console.log(user, 'has left room', tempUser.room, 'due to manual leave');
-    }*/
-
-    socket.disconnect();
-  });
-
+  // Runs when client leaves or disconnects
   socket.on('disconnect', () => {
     let tempUser = getCurrentUser(socket.id);
-    console.log(tempUser);
+    console.log('tempuser', tempUser);
     const user = userLeave(socket.id);
     
     if (user) {
@@ -128,8 +99,8 @@ io.on('connection', socket => {
       else {
         console.log(`waiting for all users of room ${tempUser.room} to estimate`);
       }
-      console.log(user, 'has left room', tempUser.room, 'due to connection-error');
     }
+    //socket.disconnect();
   });
 });
 

@@ -186,7 +186,6 @@ function changeThemeStyle(theme) {
 }
 
 function leaveRoom() {
-    //(socket.emit('leave', '');
     socket.disconnect();
 }
 
@@ -199,7 +198,7 @@ socket.on('bannermessage', (message) => {
 
 socket.on('newRoom', (newRoom) => {
     userdata.roomID = newRoom;
-    Object.freeze(userdata);
+    //Object.freeze(userdata);
     document.getElementById('roomID').innerHTML = userdata.roomID;
 });
 
