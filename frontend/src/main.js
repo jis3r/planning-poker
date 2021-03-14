@@ -7,7 +7,7 @@ const app = new App({
 	}
 });
 
-const socket = io('http://localhost:3000');
+const socket = io('http://localhost:3000', {autoConnect: false});
 
 var userdata = {
     username : '',
@@ -35,6 +35,7 @@ function setUserdata(username, roomID) {
     userdata.username = username;
     userdata.roomID = roomID;
     console.log('client', userdata);
+    socket.connect();
     socket.emit('joinRoom', userdata);
 }
 
@@ -184,6 +185,11 @@ function changeThemeStyle(theme) {
     }
 }
 
+function leaveRoom() {
+    //(socket.emit('leave', '');
+    socket.disconnect();
+}
+
 
 //////////////////////////////////////////////////////////////////////
 //socket communication////////////////////////////////////////////////
@@ -234,5 +240,6 @@ export {
     setUserdata,
     getTheme,
     checkRooms,
+    leaveRoom
 }
 export default app;

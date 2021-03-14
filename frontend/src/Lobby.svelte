@@ -1,9 +1,12 @@
 <script>
     import { createEventDispatcher } from "svelte";
+    import { leaveRoom } from "./main.js";
+
 
     const dispatch = createEventDispatcher();
 
-    const setLanding = (e) => {
+    const leaveLobby = (e) => {
+        leaveRoom();
         dispatch("changepage", 0);
     }
 </script>
@@ -26,7 +29,7 @@
         </button>
     </div>
     <div class="two columns">
-        <button class="button-primary-negative u-full-width" on:click={setLanding}>leave</button>
+        <button class="button-primary-negative u-full-width" on:click={leaveLobby}>leave</button>
     </div>
 </div>
 

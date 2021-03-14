@@ -51,56 +51,86 @@ io.on('connection', socket => {
     });
   });
 
-    socket.on('estimated', (estimation) => {
-      let user = getCurrentUser(socket.id);
-      user.estimation = estimation;
-      console.log('User ', user.id, 'with alias ', user.username, 'estimated ', estimation);
-      
-      //broadcasts estimation to all room-members
-      socket.broadcast.to(user.room).emit('newEstimation', user);
-      if( checkAllEstimated(user.room) === true ) {
+  socket.on('estimated', (estimation) => {
+    let user = getCurrentUser(socket.id);
+    user.estimation = estimation;
+    console.log('User ', user.id, 'with alias ', user.username, 'estimated ', estimation);
+    
+    //broadcasts estimation to all room-members
+    socket.broadcast.to(user.room).emit('newEstimation', user);
+    if( checkAllEstimated(user.room) === true ) {
+      console.log('all users estimated');
+      io.to(user.room).emit('reveal', '');
+    }
+    else {
+      console.log(`waiting for all users of room ${user.room} to estimate`);
+    }
+  });
+
+  socket.on('reset', (foo) => {
+    let user = getCurrentUser(socket.id);
+    resetEstimations(user.room);
+
+    //broadcast command to empty all estimations to all room-members
+    io.to(user.room).emit('emptyList', '');
+  });
+
+  // Runs when client leaves
+  socket.on('leave', (foo) => {
+    /*let tempUser = getCurrentUser(socket.id);
+    console.log(tempUser);
+    const user = userLeave(socket.id);
+    
+    if (user) {
+      io.to(user.room).emit('bannermessage', `${user.username} has left.`);
+
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: getRoomUsers(user.room)
+      });
+    }
+
+    if(tempUser) {
+      if( checkAllEstimated(tempUser.room) === true ) {
         console.log('all users estimated');
-        io.to(user.room).emit('reveal', '');
+        io.to(tempUser.room).emit('reveal', '');
       }
       else {
-        console.log(`waiting for all users of room ${user.room} to estimate`);
+        console.log(`waiting for all users of room ${tempUser.room} to estimate`);
       }
-    });
+      console.log(user, 'has left room', tempUser.room, 'due to manual leave');
+    }*/
 
-    socket.on('reset', (foo) => {
-      let user = getCurrentUser(socket.id);
-      resetEstimations(user.room);
+    socket.disconnect();
+  });
 
-      //broadcast command to empty all estimations to all room-members
-      io.to(user.room).emit('emptyList', '');
-    });
+  socket.on('disconnect', () => {
+    let tempUser = getCurrentUser(socket.id);
+    console.log(tempUser);
+    const user = userLeave(socket.id);
+    
+    if (user) {
+      io.to(user.room).emit('bannermessage', `${user.username} has left.`);
 
-    // Runs when client disconnects
-    socket.on('disconnect', () => {
-      let tempUser = getCurrentUser(socket.id);
-      console.log(tempUser);
-      const user = userLeave(socket.id);
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: getRoomUsers(user.room)
+      });
+    }
 
-      if (user) {
-        io.to(user.room).emit('bannermessage', `${user.username} has left.`);
-
-        // Send users and room info
-        io.to(user.room).emit('roomUsers', {
-          room: user.room,
-          users: getRoomUsers(user.room)
-        });
+    if(tempUser) {
+      if( checkAllEstimated(tempUser.room) === true ) {
+        console.log('all users estimated');
+        io.to(tempUser.room).emit('reveal', '');
       }
-
-      if(tempUser) {
-        if( checkAllEstimated(tempUser.room) === true ) {
-          console.log('all users estimated');
-          io.to(tempUser.room).emit('reveal', '');
-        }
-        else {
-          console.log(`waiting for all users of room ${tempUser.room} to estimate`);
-        }
+      else {
+        console.log(`waiting for all users of room ${tempUser.room} to estimate`);
       }
-    });
+      console.log(user, 'has left room', tempUser.room, 'due to connection-error');
+    }
+  });
 });
 
 const PORT = 3000 || process.env.PORT;
