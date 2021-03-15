@@ -7,7 +7,7 @@ const app = new App({
 	}
 });
 
-const socket = io('http://localhost:3000', {autoConnect: false});
+const socket = io( {autoConnect: false} );
 
 var userdata = {
     username : '',
