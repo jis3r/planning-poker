@@ -16,7 +16,6 @@ var userdata = {
 
 function toggleButton(id) {
     let el = document.getElementsByClassName('button-primary-positive');
-    console.log('El', el);
     if(el.length !== 0) {
         el[0].classList.toggle('button-primary-positive');
     }
@@ -27,14 +26,12 @@ function toggleButton(id) {
 function setEstimation(estimation) {
     var el = document.getElementById(socket.id);
     el.innerHTML = estimation;
-    console.log(el.style.color);
     socket.emit('estimated', estimation);
 }
 
 function setUserdata(username, roomID) {
     userdata.username = username;
     userdata.roomID = roomID;
-    console.log('client', userdata);
     socket.connect();
     socket.emit('joinRoom', userdata);
 }
@@ -59,7 +56,7 @@ function fillUserList(users) {
 
 function copyToClipboard(content) {
     navigator.clipboard.writeText(content).then(function() {
-        console.log('Async: Copying to clipboard was successful!');
+        //console.log('Async: Copying to clipboard was successful!');
     }, function(err) {
     console.error('Async: Could not copy text: ', err);
     });
@@ -97,7 +94,6 @@ function createBanner(message, id) {
 
 function revealEstimations() {
     let est = document.getElementsByClassName('estimation');
-    //console.log('all esti', est);
     for(let i = 0; i < est.length; i++) {
         est[i].style.opacity = 1;
     }
@@ -105,7 +101,6 @@ function revealEstimations() {
 
 function clearList() {
     let est = document.getElementsByClassName('estimation');
-    //console.log('all esti', est);
     for(let i = 0; i < est.length; i++) {
         est[i].style.opacity = 0;
         est[i].innerHTML = '';
@@ -194,7 +189,6 @@ socket.on('newRoom', (newRoom) => {
 });
 
 socket.on('validation', (validation) => {
-    console.log('validation', validation);
     if ( validation === true ) {
         setLobby();
     }
@@ -214,7 +208,6 @@ socket.on('roomUsers', ({ room, users }) => {
 
 // Recieve Validation from another User
 socket.on('newEstimation', (user) => {
-    console.log(user.estimation);
     document.getElementById(user.id).innerHTML = user.estimation;
 });
 
