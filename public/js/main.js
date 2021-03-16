@@ -6,7 +6,6 @@ var userdata = {
 
 function toggleButton(id) {
     let el = document.getElementsByClassName('button-primary-positive');
-    console.log('El', el);
     if(el.length !== 0) {
         el[0].classList.toggle('button-primary-positive');
     }
@@ -17,7 +16,6 @@ function toggleButton(id) {
 function setEstimation(estimation) {
     var el = document.getElementById(socket.id);
     el.innerHTML = estimation;
-    console.log(el.style.color);
     socket.emit('estimated', estimation);
 }
 
@@ -30,7 +28,7 @@ function setUserdata() {
 
     userdata.username = username;
     userdata.roomID = roomID;
-    console.log('client', userdata);
+    //console.log('client', userdata);
 
     document.getElementById('roomID').innerHTML = userdata.roomID;
     socket.emit('joinRoom', userdata);
@@ -94,7 +92,6 @@ function createBanner(message, id) {
 
 function revealEstimations() {
     let est = document.getElementsByClassName('estimation');
-    //console.log('all esti', est);
     for(let i = 0; i < est.length; i++) {
         est[i].style.opacity = 1;
     }
@@ -102,7 +99,6 @@ function revealEstimations() {
 
 function clearList() {
     let est = document.getElementsByClassName('estimation');
-    //console.log('all esti', est);
     for(let i = 0; i < est.length; i++) {
         est[i].style.opacity = 0;
         est[i].innerHTML = '';
@@ -196,7 +192,6 @@ socket.on('newRoom', (newRoom) => {
 });
 
 socket.on('validation', (validation) => {
-    console.log('validation', validation);
     if ( validation === false ) {
         location.href='join.html'
         //el = document.getElementById("roomIDInput");
@@ -214,7 +209,6 @@ socket.on('roomUsers', ({ room, users }) => {
 
 // Recieve Validation from another User
 socket.on('newEstimation', (user) => {
-    console.log(user.estimation);
     document.getElementById(user.id).innerHTML = user.estimation;
 });
 
