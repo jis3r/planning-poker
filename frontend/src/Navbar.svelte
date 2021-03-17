@@ -13,12 +13,13 @@
 
     function toggleTheme() {
         darktheme = !darktheme;
-        changeThemeStyle();
+        changeThemeStyle( datktheme );
     }
 
     onMount(() => {
         if(localStorage.getItem('theme') === 'css/light.css') {
             darktheme = false;
+            changeThemeStyle( datktheme );
         }
 	});
 </script>

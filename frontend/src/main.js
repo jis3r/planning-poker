@@ -152,7 +152,7 @@ function changeThemeIcon(theme) {
     }, 500);
 }
 
-function changeThemeStyle() {
+function changeThemeStyle(darktheme) {
     let themeStyle = document.getElementById('themeStyle');
     if( localStorage.getItem('theme') === undefined ) {
         localStorage.setItem('theme', 'css/dark.css');

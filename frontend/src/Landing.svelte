@@ -15,7 +15,7 @@
     }
 
     beforeUpdate(() => {
-        changeThemeStyle();
+        changeThemeStyle( true );
     });
 
 
