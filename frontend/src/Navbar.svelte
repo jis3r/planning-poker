@@ -1,5 +1,7 @@
 <script>
     import { createEventDispatcher, onMount } from "svelte";
+    import { changeThemeStyle } from "./main.js";
+
 
     const dispatch = createEventDispatcher();
     let darktheme = true;
@@ -12,20 +14,6 @@
     function toggleTheme() {
         darktheme = !darktheme;
         changeThemeStyle();
-    }
-
-    function changeThemeStyle() {
-        let themeStyle = document.getElementById('themeStyle');
-        if( localStorage.getItem('theme') === undefined ) {
-            localStorage.setItem('theme', 'css/light.css');
-        }
-        if( darktheme ) {
-            themeStyle.setAttribute('href', 'css/dark.css');
-            localStorage.setItem('theme', 'css/dark.css');
-        } else {
-            themeStyle.setAttribute('href', 'css/light.css')
-            localStorage.setItem('theme', 'css/light.css');
-        }
     }
 
     onMount(() => {

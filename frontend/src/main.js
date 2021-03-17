@@ -113,11 +113,6 @@ function clearList() {
     showBannermessage('Values reseted.');
 }
 
-function getTheme() {
-    document.getElementById('themeStyle').setAttribute('href', localStorage.getItem('theme'));
-    document.body.style.visibility = 'visible';
-}
-
 function toggleTheme(theme) {
     changeThemeStyle(theme);
     changeThemeIcon(theme);
@@ -157,17 +152,17 @@ function changeThemeIcon(theme) {
     }, 500);
 }
 
-function changeThemeStyle(theme) {
+function changeThemeStyle() {
     let themeStyle = document.getElementById('themeStyle');
-    if(localStorage.getItem('theme') === undefined) {
-        localStorage.setItem('theme', 'css/light.css');
-    }
-    if( theme === 'light') {
-        themeStyle.setAttribute('href', 'css/light.css');
-        localStorage.setItem('theme', 'css/light.css');
-    } else {
-        themeStyle.setAttribute('href', 'css/dark.css')
+    if( localStorage.getItem('theme') === undefined ) {
         localStorage.setItem('theme', 'css/dark.css');
+    }
+    if( darktheme ) {
+        themeStyle.setAttribute('href', 'css/dark.css');
+        localStorage.setItem('theme', 'css/dark.css');
+    } else {
+        themeStyle.setAttribute('href', 'css/light.css')
+        localStorage.setItem('theme', 'css/light.css');
     }
 }
 
@@ -222,12 +217,12 @@ socket.on('emptyList', (foo) => {
 export {
     socket,
     setUserdata,
-    getTheme,
     checkRooms,
     leaveRoom,
     copyToClipboard,
     showBannermessage,
     toggleButton,
-    setEstimation
+    setEstimation,
+    changeThemeStyle
 }
 export default app;

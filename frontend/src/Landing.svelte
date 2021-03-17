@@ -1,6 +1,6 @@
 <script>
     import { createEventDispatcher, beforeUpdate } from "svelte";
-    import { getTheme } from "./main.js";
+    import { changeThemeStyle } from "./main.js";
 
     
     export const onload = null;
@@ -15,8 +15,8 @@
     }
 
     beforeUpdate(() => {
-        getTheme();
-	});
+        changeThemeStyle();
+    });
 
 
 </script>
