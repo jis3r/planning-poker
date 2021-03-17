@@ -19,7 +19,7 @@
     onMount(() => {
         if(localStorage.getItem('theme') === 'css/light.css') {
             darktheme = false;
-            changeThemeStyle( datktheme );
+            changeThemeStyle( darktheme );
         }
 	});
 </script>
