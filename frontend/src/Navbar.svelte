@@ -13,7 +13,7 @@
 
     function toggleTheme() {
         darktheme = !darktheme;
-        changeThemeStyle( datktheme );
+        changeThemeStyle( darktheme );
     }
 
     onMount(() => {
