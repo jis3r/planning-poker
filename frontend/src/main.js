@@ -215,6 +215,7 @@ socket.on('emptyList', (foo) => {
 });
 
 export {
+    app,
     socket,
     setUserdata,
     checkRooms,
@@ -225,4 +226,3 @@ export {
     setEstimation,
     changeThemeStyle
 }
-export default app;

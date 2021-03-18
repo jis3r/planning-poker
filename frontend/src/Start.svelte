@@ -20,14 +20,12 @@
 
 
 <div class="row" style="margin-top: 15%;">
-    <form on:submit={setLobby} autocomplete="off">
-        <div class="nine columns">
-            <input class="u-full-width" type="text" placeholder="Username" name="username" id="usernameInput" minlength="3" maxlength="20" required bind:value={userdata.username}>
-            <label for="usernameInput">Please enter your username.</label>
-            <input type="hidden" name="room" id="roomIDInput" bind:value={userdata.roomID}>
-        </div>
-        <div class="three columns">
-            <button class="button-primary button-submit u-full-width" type="submit">submit</button>
-        </div>
-    </form>
+    <div class="nine columns">
+        <input class="u-full-width" type="text" placeholder="Username" name="username" id="usernameInput" minlength="3" maxlength="20" autocomplete="off" required bind:value={userdata.username}>
+        <label for="usernameInput">Please enter your username.</label>
+        <input type="hidden" name="room" id="roomIDInput" bind:value={userdata.roomID}>
+    </div>
+    <div class="three columns">
+        <button class="button-primary button-submit u-full-width" type="submit" on:click={setLobby}>submit</button>
+    </div>
 </div>
