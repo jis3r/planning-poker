@@ -50,8 +50,22 @@
   margin-left: 0%;
 }
 
+.title-column { 
+  max-width: 82.6666666667%;
+}
+
+.theme-column { 
+  max-width: 4.66666666667%; 
+}
+
 .indexbuttons {
   margin-top: 0%;
+}
+
+.header-title {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  font-size: 40px;
 }
 
 /* For devices larger than 400px */
@@ -90,6 +104,15 @@
 
   .indexbuttons {
     margin-top: 0;
+  }
+
+  .theme-column { 
+    max-width: 100%;
+  }
+
+  .header-title {
+    margin: auto;
+    font-size: 50px;
   }
 
   .one.column,

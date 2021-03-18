@@ -1,18 +1,14 @@
 .header {
   width: 100%;
   height: 5%;
-  transition: .5s;
+  transition: 0.15s;
 }
 
 .header-title {
   box-sizing: border-box;
-  font-size: 50px;
   text-align: center;
-  vertical-align: middle;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: auto;
-  margin-bottom: auto;
+  vertical-align: bottom;
+  height: 5%;
 }
 
 /* hover-attributes only used for desktop devices*/
