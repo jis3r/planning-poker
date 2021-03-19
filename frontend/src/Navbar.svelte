@@ -39,9 +39,9 @@
             <div class="one column theme-column u-pull-right" style="height: 100%; margin-bottom: 0%;">
                 <div id="darkmodetrigger" class="darkmodetrigger u-pull-right" on:click={toggleTheme}>
                     {#if darktheme}
-                    <img id="themeIcon" src="img/sun.svg" alt="sun" class="svgsun" in:fly="{{ y: 50, duration: 2000 }}" out:fly="{{ y: -50, duration: 2000 }}">
+                    <img id="themeIcon" src="img/sun.svg" alt="sun" class="svgsun" in:fly="{{ y: 50, duration: 500 }}" out:fly="{{ y: -50, duration: 500 }}">
                     {:else}
-                    <img id="themeIcon" src="img/moon.svg" alt="moon" class="svgmoon" in:fly="{{ y: 50, duration: 2000 }}" out:fly="{{ y: -50, duration: 2000 }}">
+                    <img id="themeIcon" src="img/moon.svg" alt="moon" class="svgmoon" in:fly="{{ y: 50, duration: 500 }}" out:fly="{{ y: -50, duration: 500 }}">
                     {/if}
                 </div>
             </div>

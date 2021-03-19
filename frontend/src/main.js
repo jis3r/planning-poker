@@ -118,40 +118,6 @@ function toggleTheme(theme) {
     changeThemeIcon(theme);
 }
 
-function changeThemeIcon(theme) {
-    let trigger = document.getElementById('darkmodetrigger');
-    let icon = document.createElement("IMG");
-    let oldIcon = document.getElementById('themeIcon');
-    let src = 'img/sun.svg';
-    let alt = 'sun';
-    let param = 'light';
-    let style = 'svgsun';
-    let animation = 'animation';
-    oldIcon.style.transform = 'translateY(-62px)';
-
-    setTimeout(function(){
-        while (trigger.firstChild) {
-            trigger.removeChild(trigger.firstChild);
-        }
-        if( theme === 'light' ) {
-            src = 'img/moon.svg';
-            alt = 'moon';
-            param = 'dark';
-            style = 'svgmoon';
-        }
-        icon.setAttribute("src", src);
-        icon.setAttribute("alt", alt);
-        icon.setAttribute("id", 'themeIcon');
-        icon.onclick=function(){toggleTheme(param)};
-        icon.classList.add(style);
-        icon.classList.add(animation);
-        trigger.appendChild(icon);
-        setTimeout(function(){
-            icon.classList.remove(animation);
-        }, 10);
-    }, 500);
-}
-
 function changeThemeStyle(darktheme) {
     let themeStyle = document.getElementById('themeStyle');
     if( localStorage.getItem('theme') === undefined ) {
