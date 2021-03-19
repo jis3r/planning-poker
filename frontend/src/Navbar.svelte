@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher, onMount } from "svelte";
-    import { changeThemeStyle } from "./main.js";
+    import { fade, fly } from "svelte/transition";
+    import { changeThemeStyle, leaveRoom } from "./main.js";
 
 
     const dispatch = createEventDispatcher();
@@ -8,6 +9,7 @@
 
     const setLanding = (e) => {
         e.preventDefault();
+        leaveRoom();
         dispatch("changepage", 0);
     }
 
@@ -37,9 +39,9 @@
             <div class="one column theme-column u-pull-right" style="height: 100%; margin-bottom: 0%;">
                 <div id="darkmodetrigger" class="darkmodetrigger u-pull-right" on:click={toggleTheme}>
                     {#if darktheme}
-                    <img id="themeIcon" src="img/sun.svg" alt="sun" class="svgsun">
+                    <img id="themeIcon" src="img/sun.svg" alt="sun" class="svgsun" in:fly="{{ y: 50, duration: 2000 }}" out:fly="{{ y: -50, duration: 2000 }}">
                     {:else}
-                    <img id="themeIcon" src="img/moon.svg" alt="moon" class="svgmoon">
+                    <img id="themeIcon" src="img/moon.svg" alt="moon" class="svgmoon" in:fly="{{ y: 50, duration: 2000 }}" out:fly="{{ y: -50, duration: 2000 }}">
                     {/if}
                 </div>
             </div>
