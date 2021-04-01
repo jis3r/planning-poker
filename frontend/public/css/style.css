@@ -9,6 +9,7 @@
   text-align: center;
   vertical-align: bottom;
   height: 5%;
+  margin-bottom: 0;
 }
 
 /* hover-attributes only used for desktop devices*/
@@ -91,13 +92,13 @@ input[type=number] {
 
 
 .svgmoon {
-  color: #34073D;
+  /*color: #34073D;*/
   filter: invert(4%) sepia(50%) saturate(7487%) hue-rotate(286deg) brightness(112%) contrast(99%);
   transition: 1s;
 }
 
 .svgsun {
-  color: #ffd500;
+  /*color: #ffd500;*/
   filter: invert(73%) sepia(96%) saturate(543%) hue-rotate(355deg) brightness(100%) contrast(109%);
   transition: 1s;
 }

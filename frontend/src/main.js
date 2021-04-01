@@ -113,11 +113,6 @@ function clearList() {
     showBannermessage('Values reseted.');
 }
 
-function toggleTheme(theme) {
-    changeThemeStyle(theme);
-    changeThemeIcon(theme);
-}
-
 function changeThemeStyle(darktheme) {
     let themeStyle = document.getElementById('themeStyle');
     if( localStorage.getItem('theme') === undefined ) {
