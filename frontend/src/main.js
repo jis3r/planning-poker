@@ -66,32 +66,6 @@ function checkRooms(roomID) {
     socket.emit('checkRoom', roomID);
 }
 
-function showBannermessage(message) {
-    let oldBanner = document.getElementById('newBanner');
-    if( oldBanner !== null || undefined ) {
-        oldBanner.remove();
-    }
-    let bannerfield = document.getElementById('bannerfield');
-    let banner = createBanner(message, 'newBanner');
-    
-    bannerfield.appendChild(banner);
-
-    setTimeout(function(){
-        newBanner.classList.add('banner-invisible');
-    }, 2000);
-}
-
-function createBanner(message, id) {
-    let newBanner = document.createElement('h4');
-    newBanner.setAttribute('id', id);
-    newBanner.appendChild(document.createTextNode(message));
-    newBanner.classList.add('banner-red');
-    setTimeout(function(){
-        newBanner.classList.add('banner-visible');
-    }, 20);
-    return newBanner;
-}
-
 function revealEstimations() {
     let est = document.getElementsByClassName('estimation');
     for(let i = 0; i < est.length; i++) {
@@ -110,7 +84,7 @@ function clearList() {
     if(button[0] !== undefined) {
         button[0].classList.remove('button-primary-positive');
     }
-    showBannermessage('Values reseted.');
+    //showBannermessage('Values reseted.');
 }
 
 function changeThemeStyle(darktheme) {
@@ -134,13 +108,9 @@ function leaveRoom() {
 
 //////////////////////////////////////////////////////////////////////
 //socket communication////////////////////////////////////////////////
-socket.on('bannermessage', (message) => {
-    showBannermessage(message);
-});
 
 socket.on('newRoom', (newRoom) => {
     userdata.roomID = newRoom;
-    //Object.freeze(userdata);
     document.getElementById('roomID').innerHTML = userdata.roomID;
 });
 
@@ -182,7 +152,6 @@ export {
     checkRooms,
     leaveRoom,
     copyToClipboard,
-    showBannermessage,
     toggleButton,
     setEstimation,
     changeThemeStyle

@@ -139,21 +139,6 @@ select:focus {
   color: #C9D1D9; 
 }
 
-.banner-red {
-    color: #ff0000;
-    text-align: center;
-}
-
-.banner-visible {
-    color: #C9D1D9;
-    transition: 3s;
-}
-
-.banner-invisible {
-    color: #121212;
-    visibility: hidden;
-}
-
 .copyicon {
     filter: invert(96%) sepia(2%) saturate(1760%) hue-rotate(179deg) brightness(85%) contrast(100%);
 }

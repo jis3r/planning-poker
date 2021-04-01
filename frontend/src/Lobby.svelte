@@ -2,10 +2,11 @@
     import { createEventDispatcher } from "svelte";
     import {    leaveRoom, 
                 socket, 
-                copyToClipboard, 
-                showBannermessage   } from "./main.js";
+                copyToClipboard   } from "./main.js";
 
     import Button_Estimation from './Button_Estimation.svelte';
+    import Banner from './Banner.svelte';
+
 
     const dispatch = createEventDispatcher();
 
@@ -15,6 +16,9 @@
 
     let secondRowValues = ['13', '20', '40', '100', '?', 'coffee'];
 
+    let bannermessage = "";
+    let bannerIsVisible = false;
+
 
     const leaveLobby = () => {
         leaveRoom();
@@ -23,11 +27,26 @@
 
     const resetValues = () => {
         socket.emit('reset', '' );
+        newMessage('Values reseted.');
     }
 
     const copyRoomID = () => {
         copyToClipboard(roomID.innerHTML);
-        showBannermessage('Copied.');
+        //showBannermessage('Copied.');
+        newMessage('Copied.');
+    }
+
+    socket.on('bannermessage', (message) => {
+        newMessage(message)
+    });
+
+    function newMessage(msg) {
+        bannermessage = msg;
+        bannerIsVisible = true;
+
+        setTimeout(function(){
+            bannerIsVisible = false;
+    }, 3000);
     }
 </script>
 
@@ -41,7 +60,11 @@
         </div>
     </div>
     <div class="four columns" id="bannerfield">
-        <h4 id="newBanner" style="text-align: center; transition-timing-function: ease-in;"> </h4>
+        {#if bannerIsVisible}
+        <Banner msg={bannermessage} transition={true}/>
+        {:else}
+        <Banner msg={" "} transition={false}/>
+        {/if}
     </div>
     <div class="two columns">
         <button class="button-primary-join u-full-width" on:click={resetValues} style="display: grid; place-items: center;">
