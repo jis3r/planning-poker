@@ -43,9 +43,8 @@
     });
 
     // Get room and users
-    socket.on('roomUsers', ({ room, users }) => {
+    socket.on('roomUsers', ({ /*room,*/ users }) => {
         allUsers = users;
-        console.log(users);
     });
 
     function newMessage(msg) {
