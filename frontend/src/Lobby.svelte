@@ -6,6 +6,7 @@
 
     import Button_Estimation from './Button_Estimation.svelte';
     import Banner from './Banner.svelte';
+    import Userdetails from './Userdetails.svelte';
 
 
     const dispatch = createEventDispatcher();
@@ -18,6 +19,8 @@
 
     let bannermessage = "";
     let bannerIsVisible = false;
+
+    let allUsers = [];
 
 
     const leaveLobby = () => {
@@ -32,12 +35,17 @@
 
     const copyRoomID = () => {
         copyToClipboard(roomID.innerHTML);
-        //showBannermessage('Copied.');
         newMessage('Copied.');
     }
 
     socket.on('bannermessage', (message) => {
         newMessage(message)
+    });
+
+    // Get room and users
+    socket.on('roomUsers', ({ room, users }) => {
+        allUsers = users;
+        console.log(users);
     });
 
     function newMessage(msg) {
@@ -85,7 +93,13 @@
                     <th>Estimation</th>
                 </tr>
             </thead>
-            <tbody id="playerlist"></tbody>
+            <tbody id="playerlist">
+                {#each allUsers as user}
+                    <Userdetails name={user.username}
+                            id={user.id}
+                            estimation={user.estimation}/>
+                {/each}
+            </tbody>
         </table>
     </div>
     <div class="four columns">

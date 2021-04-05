@@ -36,24 +36,6 @@ function setUserdata(username, roomID) {
     socket.emit('joinRoom', userdata);
 }
 
-function fillUserList(users) {
-    let playerlist = document.getElementById('playerlist');
-    playerlist.innerHTML = '';
-
-    for(let i = 0; i < users.length; i++){
-        let listRow = document.createElement('tr');
-        let player = document.createElement('td');
-        let estimation = document.createElement('td');
-        player.appendChild(document.createTextNode(users[i].username));
-        estimation.appendChild(document.createTextNode(users[i].estimation));
-        estimation.classList.add('estimation');
-        estimation.setAttribute("id", users[i].id);
-        listRow.appendChild(player);
-        listRow.appendChild(estimation);
-        playerlist.appendChild(listRow);
-    }
-}
-
 function copyToClipboard(content) {
     navigator.clipboard.writeText(content).then(function() {
         //console.log('Async: Copying to clipboard was successful!');
@@ -124,12 +106,6 @@ socket.on('validation', (validation) => {
         //el.value = "";
         alert('This room-id does not exist.');
     }
-});
-
-// Get room and users
-socket.on('roomUsers', ({ room, users }) => {
-    document.getElementById('playerlist').innerHTML = '';
-    fillUserList(users);
 });
 
 // Recieve Validation from another User
