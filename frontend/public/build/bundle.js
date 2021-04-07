@@ -2009,23 +2009,23 @@ var app = (function (exports) {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[12] = list[i];
+    	child_ctx[15] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[12] = list[i];
+    	child_ctx[15] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[17] = list[i];
+    	child_ctx[20] = list[i];
     	return child_ctx;
     }
 
-    // (72:8) {:else}
+    // (118:8) {:else}
     function create_else_block$1(ctx) {
     	let banner;
     	let current;
@@ -2062,14 +2062,14 @@ var app = (function (exports) {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(72:8) {:else}",
+    		source: "(118:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (70:8) {#if bannerIsVisible}
+    // (116:8) {#if bannerIsVisible}
     function create_if_block$1(ctx) {
     	let banner;
     	let current;
@@ -2113,23 +2113,23 @@ var app = (function (exports) {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(70:8) {#if bannerIsVisible}",
+    		source: "(116:8) {#if bannerIsVisible}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (96:16) {#each allUsers as user}
+    // (142:16) {#each allUsers as user}
     function create_each_block_2(ctx) {
     	let userdetails;
     	let current;
 
     	userdetails = new Userdetails({
     			props: {
-    				name: /*user*/ ctx[17].username,
-    				id: /*user*/ ctx[17].id,
-    				estimation: /*user*/ ctx[17].estimation
+    				name: /*user*/ ctx[20].username,
+    				id: /*user*/ ctx[20].id,
+    				estimation: /*user*/ ctx[20].estimation
     			},
     			$$inline: true
     		});
@@ -2144,9 +2144,9 @@ var app = (function (exports) {
     		},
     		p: function update(ctx, dirty) {
     			const userdetails_changes = {};
-    			if (dirty & /*allUsers*/ 8) userdetails_changes.name = /*user*/ ctx[17].username;
-    			if (dirty & /*allUsers*/ 8) userdetails_changes.id = /*user*/ ctx[17].id;
-    			if (dirty & /*allUsers*/ 8) userdetails_changes.estimation = /*user*/ ctx[17].estimation;
+    			if (dirty & /*allUsers*/ 8) userdetails_changes.name = /*user*/ ctx[20].username;
+    			if (dirty & /*allUsers*/ 8) userdetails_changes.id = /*user*/ ctx[20].id;
+    			if (dirty & /*allUsers*/ 8) userdetails_changes.estimation = /*user*/ ctx[20].estimation;
     			userdetails.$set(userdetails_changes);
     		},
     		i: function intro(local) {
@@ -2167,20 +2167,20 @@ var app = (function (exports) {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(96:16) {#each allUsers as user}",
+    		source: "(142:16) {#each allUsers as user}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (113:4) {#each firstRowValues as currentValue}
+    // (163:4) {#each firstRowValues as currentValue}
     function create_each_block_1(ctx) {
     	let button_estimation;
     	let current;
 
     	button_estimation = new Button_Estimation({
-    			props: { value: /*currentValue*/ ctx[12] },
+    			props: { value: /*currentValue*/ ctx[15] },
     			$$inline: true
     		});
 
@@ -2211,20 +2211,20 @@ var app = (function (exports) {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(113:4) {#each firstRowValues as currentValue}",
+    		source: "(163:4) {#each firstRowValues as currentValue}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (118:4) {#each secondRowValues as currentValue}
+    // (168:4) {#each secondRowValues as currentValue}
     function create_each_block(ctx) {
     	let button_estimation;
     	let current;
 
     	button_estimation = new Button_Estimation({
-    			props: { value: /*currentValue*/ ctx[12] },
+    			props: { value: /*currentValue*/ ctx[15] },
     			$$inline: true
     		});
 
@@ -2255,7 +2255,7 @@ var app = (function (exports) {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(118:4) {#each secondRowValues as currentValue}",
+    		source: "(168:4) {#each secondRowValues as currentValue}",
     		ctx
     	});
 
@@ -2289,21 +2289,27 @@ var app = (function (exports) {
     	let div6;
     	let table;
     	let thead;
-    	let tr;
+    	let tr0;
     	let th0;
     	let t9;
     	let th1;
     	let t11;
     	let tbody;
     	let t12;
+    	let tr1;
+    	let td0;
+    	let t14;
+    	let td1;
+    	let t15;
+    	let t16;
     	let div7;
     	let h41;
-    	let t13;
+    	let t17;
     	let div8;
     	let h42;
-    	let t14;
+    	let t18;
     	let div10;
-    	let t15;
+    	let t19;
     	let div11;
     	let current;
     	let mounted;
@@ -2330,7 +2336,7 @@ var app = (function (exports) {
     		each_blocks_2[i] = null;
     	});
 
-    	let each_value_1 = /*firstRowValues*/ ctx[4];
+    	let each_value_1 = /*firstRowValues*/ ctx[5];
     	validate_each_argument(each_value_1);
     	let each_blocks_1 = [];
 
@@ -2342,7 +2348,7 @@ var app = (function (exports) {
     		each_blocks_1[i] = null;
     	});
 
-    	let each_value = /*secondRowValues*/ ctx[5];
+    	let each_value = /*secondRowValues*/ ctx[6];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -2381,7 +2387,7 @@ var app = (function (exports) {
     			div6 = element("div");
     			table = element("table");
     			thead = element("thead");
-    			tr = element("tr");
+    			tr0 = element("tr");
     			th0 = element("th");
     			th0.textContent = "Members";
     			t9 = space();
@@ -2395,19 +2401,26 @@ var app = (function (exports) {
     			}
 
     			t12 = space();
+    			tr1 = element("tr");
+    			td0 = element("td");
+    			td0.textContent = "Average";
+    			t14 = space();
+    			td1 = element("td");
+    			t15 = text(/*average*/ ctx[4]);
+    			t16 = space();
     			div7 = element("div");
     			h41 = element("h4");
-    			t13 = space();
+    			t17 = space();
     			div8 = element("div");
     			h42 = element("h4");
-    			t14 = space();
+    			t18 = space();
     			div10 = element("div");
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].c();
     			}
 
-    			t15 = space();
+    			t19 = space();
     			div11 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -2416,60 +2429,65 @@ var app = (function (exports) {
 
     			attr_dev(span, "id", "roomID");
     			attr_dev(span, "class", "readycolor");
-    			add_location(span, file$1, 62, 12, 1506);
+    			add_location(span, file$1, 108, 12, 3101);
     			attr_dev(h40, "class", "u-pull-left");
-    			add_location(h40, file$1, 61, 8, 1459);
+    			add_location(h40, file$1, 107, 8, 3054);
     			if (img0.src !== (img0_src_value = "/img/copy.svg")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "copy");
-    			add_location(img0, file$1, 65, 12, 1671);
+    			add_location(img0, file$1, 111, 12, 3266);
     			attr_dev(div0, "class", "copyicon u-pull-left");
-    			add_location(div0, file$1, 64, 8, 1623);
+    			add_location(div0, file$1, 110, 8, 3218);
     			attr_dev(div1, "class", "four columns");
-    			add_location(div1, file$1, 60, 4, 1423);
+    			add_location(div1, file$1, 106, 4, 3018);
     			attr_dev(div2, "class", "four columns");
     			attr_dev(div2, "id", "bannerfield");
-    			add_location(div2, file$1, 68, 4, 1763);
+    			add_location(div2, file$1, 114, 4, 3358);
     			attr_dev(img1, "class", "reloadicon");
     			if (img1.src !== (img1_src_value = "/img/reload.svg")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "reload");
-    			add_location(img1, file$1, 77, 12, 2157);
+    			add_location(img1, file$1, 123, 12, 3752);
     			attr_dev(button0, "class", "button-primary-join u-full-width");
     			set_style(button0, "display", "grid");
     			set_style(button0, "place-items", "center");
-    			add_location(button0, file$1, 76, 8, 2027);
+    			add_location(button0, file$1, 122, 8, 3622);
     			attr_dev(div3, "class", "two columns");
-    			add_location(div3, file$1, 75, 4, 1992);
+    			add_location(div3, file$1, 121, 4, 3587);
     			attr_dev(button1, "class", "button-primary-negative u-full-width");
-    			add_location(button1, file$1, 81, 8, 2288);
+    			add_location(button1, file$1, 127, 8, 3883);
     			attr_dev(div4, "class", "two columns");
-    			add_location(div4, file$1, 80, 4, 2253);
+    			add_location(div4, file$1, 126, 4, 3848);
     			attr_dev(div5, "class", "row");
     			set_style(div5, "margin-top", "15%");
-    			add_location(div5, file$1, 59, 0, 1375);
-    			add_location(th0, file$1, 90, 20, 2577);
-    			add_location(th1, file$1, 91, 20, 2615);
-    			add_location(tr, file$1, 89, 16, 2551);
-    			add_location(thead, file$1, 88, 12, 2526);
+    			add_location(div5, file$1, 105, 0, 2970);
+    			add_location(th0, file$1, 136, 20, 4172);
+    			add_location(th1, file$1, 137, 20, 4210);
+    			add_location(tr0, file$1, 135, 16, 4146);
+    			add_location(thead, file$1, 134, 12, 4121);
+    			add_location(td0, file$1, 147, 20, 4579);
+    			attr_dev(td1, "id", "AuMgIVUHfSHpDpgMAAAB");
+    			set_style(td1, "color", "#FCA311");
+    			add_location(td1, file$1, 148, 20, 4617);
+    			add_location(tr1, file$1, 146, 16, 4553);
     			attr_dev(tbody, "id", "playerlist");
-    			add_location(tbody, file$1, 94, 12, 2693);
+    			add_location(tbody, file$1, 140, 12, 4288);
     			attr_dev(table, "class", "u-full-width");
-    			add_location(table, file$1, 87, 8, 2484);
+    			add_location(table, file$1, 133, 8, 4079);
     			attr_dev(div6, "class", "four columns");
-    			add_location(div6, file$1, 86, 4, 2448);
-    			add_location(h41, file$1, 104, 8, 3034);
+    			add_location(div6, file$1, 132, 4, 4043);
+    			add_location(h41, file$1, 154, 8, 4801);
     			attr_dev(div7, "class", "four columns");
-    			add_location(div7, file$1, 103, 4, 2998);
-    			add_location(h42, file$1, 107, 8, 3099);
+    			add_location(div7, file$1, 153, 4, 4765);
+    			add_location(h42, file$1, 157, 8, 4866);
     			attr_dev(div8, "class", "three columns");
-    			add_location(div8, file$1, 106, 4, 3062);
+    			add_location(div8, file$1, 156, 4, 4829);
     			attr_dev(div9, "class", "row");
     			set_style(div9, "margin-top", "5%");
-    			add_location(div9, file$1, 85, 0, 2401);
+    			add_location(div9, file$1, 131, 0, 3996);
     			attr_dev(div10, "class", "row");
     			set_style(div10, "margin-top", "5%");
-    			add_location(div10, file$1, 111, 0, 3133);
+    			add_location(div10, file$1, 161, 0, 4900);
     			attr_dev(div11, "class", "row lowerrow");
-    			add_location(div11, file$1, 116, 0, 3288);
+    			add_location(div11, file$1, 166, 0, 5055);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2480,7 +2498,7 @@ var app = (function (exports) {
     			append_dev(div1, h40);
     			append_dev(h40, t0);
     			append_dev(h40, span);
-    			/*span_binding*/ ctx[9](span);
+    			/*span_binding*/ ctx[10](span);
     			append_dev(div1, t2);
     			append_dev(div1, div0);
     			append_dev(div0, img0);
@@ -2499,10 +2517,10 @@ var app = (function (exports) {
     			append_dev(div9, div6);
     			append_dev(div6, table);
     			append_dev(table, thead);
-    			append_dev(thead, tr);
-    			append_dev(tr, th0);
-    			append_dev(tr, t9);
-    			append_dev(tr, th1);
+    			append_dev(thead, tr0);
+    			append_dev(tr0, th0);
+    			append_dev(tr0, t9);
+    			append_dev(tr0, th1);
     			append_dev(table, t11);
     			append_dev(table, tbody);
 
@@ -2510,20 +2528,26 @@ var app = (function (exports) {
     				each_blocks_2[i].m(tbody, null);
     			}
 
-    			append_dev(div9, t12);
+    			append_dev(tbody, t12);
+    			append_dev(tbody, tr1);
+    			append_dev(tr1, td0);
+    			append_dev(tr1, t14);
+    			append_dev(tr1, td1);
+    			append_dev(td1, t15);
+    			append_dev(div9, t16);
     			append_dev(div9, div7);
     			append_dev(div7, h41);
-    			append_dev(div9, t13);
+    			append_dev(div9, t17);
     			append_dev(div9, div8);
     			append_dev(div8, h42);
-    			insert_dev(target, t14, anchor);
+    			insert_dev(target, t18, anchor);
     			insert_dev(target, div10, anchor);
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].m(div10, null);
     			}
 
-    			insert_dev(target, t15, anchor);
+    			insert_dev(target, t19, anchor);
     			insert_dev(target, div11, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -2534,9 +2558,9 @@ var app = (function (exports) {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(img0, "click", /*copyRoomID*/ ctx[8], false, false, false),
-    					listen_dev(button0, "click", /*resetValues*/ ctx[7], false, false, false),
-    					listen_dev(button1, "click", /*leaveLobby*/ ctx[6], false, false, false)
+    					listen_dev(img0, "click", /*copyRoomID*/ ctx[9], false, false, false),
+    					listen_dev(button0, "click", /*resetValues*/ ctx[8], false, false, false),
+    					listen_dev(button1, "click", /*leaveLobby*/ ctx[7], false, false, false)
     				];
 
     				mounted = true;
@@ -2584,7 +2608,7 @@ var app = (function (exports) {
     						each_blocks_2[i] = create_each_block_2(child_ctx);
     						each_blocks_2[i].c();
     						transition_in(each_blocks_2[i], 1);
-    						each_blocks_2[i].m(tbody, null);
+    						each_blocks_2[i].m(tbody, t12);
     					}
     				}
 
@@ -2597,8 +2621,10 @@ var app = (function (exports) {
     				check_outros();
     			}
 
-    			if (dirty & /*firstRowValues*/ 16) {
-    				each_value_1 = /*firstRowValues*/ ctx[4];
+    			if (!current || dirty & /*average*/ 16) set_data_dev(t15, /*average*/ ctx[4]);
+
+    			if (dirty & /*firstRowValues*/ 32) {
+    				each_value_1 = /*firstRowValues*/ ctx[5];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -2625,8 +2651,8 @@ var app = (function (exports) {
     				check_outros();
     			}
 
-    			if (dirty & /*secondRowValues*/ 32) {
-    				each_value = /*secondRowValues*/ ctx[5];
+    			if (dirty & /*secondRowValues*/ 64) {
+    				each_value = /*secondRowValues*/ ctx[6];
     				validate_each_argument(each_value);
     				let i;
 
@@ -2695,15 +2721,15 @@ var app = (function (exports) {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div5);
-    			/*span_binding*/ ctx[9](null);
+    			/*span_binding*/ ctx[10](null);
     			if_blocks[current_block_type_index].d();
     			if (detaching) detach_dev(t7);
     			if (detaching) detach_dev(div9);
     			destroy_each(each_blocks_2, detaching);
-    			if (detaching) detach_dev(t14);
+    			if (detaching) detach_dev(t18);
     			if (detaching) detach_dev(div10);
     			destroy_each(each_blocks_1, detaching);
-    			if (detaching) detach_dev(t15);
+    			if (detaching) detach_dev(t19);
     			if (detaching) detach_dev(div11);
     			destroy_each(each_blocks, detaching);
     			mounted = false;
@@ -2722,6 +2748,14 @@ var app = (function (exports) {
     	return block;
     }
 
+    function revealEstimations() {
+    	let est = document.getElementsByClassName("estimation");
+
+    	for (let i = 0; i < est.length; i++) {
+    		est[i].style.opacity = 1;
+    	}
+    }
+
     function instance$1($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Lobby", slots, []);
@@ -2732,6 +2766,7 @@ var app = (function (exports) {
     	let bannermessage = "";
     	let bannerIsVisible = false;
     	let allUsers = [];
+    	let average = "";
 
     	const leaveLobby = () => {
     		leaveRoom();
@@ -2740,7 +2775,6 @@ var app = (function (exports) {
 
     	const resetValues = () => {
     		socket.emit("reset", "");
-    		newMessage("Values reseted.");
     	};
 
     	const copyRoomID = () => {
@@ -2753,7 +2787,8 @@ var app = (function (exports) {
     	});
 
     	// Get room and users
-    	socket.on("roomUsers", ({ /*room,*/ users }) => {
+    	socket.on("roomUsers", ({ /*room,*/
+    		users }) => {
     		$$invalidate(3, allUsers = users);
     	});
 
@@ -2767,6 +2802,59 @@ var app = (function (exports) {
     			},
     			3000
     		);
+    	}
+
+    	// Recieve Validation from another User
+    	socket.on("newEstimation", user => {
+    		document.getElementById(user.id).innerHTML = user.estimation;
+    	});
+
+    	socket.on("reveal", foo => {
+    		averageCalc();
+    		revealEstimations();
+    	});
+
+    	function averageCalc() {
+    		let sum = 0;
+    		let count = 0;
+    		let el = document.getElementsByClassName("estimation");
+    		$$invalidate(4, average = "");
+
+    		for (let i = 0; i < el.length; i++) {
+    			let estimation = el[i].innerHTML;
+
+    			if (estimation !== "" && estimation !== "?" && estimation !== "coffee") {
+    				sum = sum + parseInt(el[i].innerHTML);
+    				count++;
+    			}
+    		}
+
+    		if (count !== 0) {
+    			sum = sum / count;
+    			$$invalidate(4, average = sum.toString());
+    		}
+    	}
+
+    	socket.on("emptyList", foo => {
+    		clearList();
+    	});
+
+    	function clearList() {
+    		let est = document.getElementsByClassName("estimation");
+
+    		for (let i = 0; i < est.length; i++) {
+    			est[i].style.opacity = 0;
+    			est[i].innerHTML = "";
+    		}
+
+    		let button = document.getElementsByClassName("button-primary-positive");
+
+    		if (button[0] !== undefined) {
+    			button[0].classList.remove("button-primary-positive");
+    		}
+
+    		$$invalidate(4, average = "");
+    		newMessage("Values reseted.");
     	}
 
     	const writable_props = [];
@@ -2797,19 +2885,24 @@ var app = (function (exports) {
     		bannermessage,
     		bannerIsVisible,
     		allUsers,
+    		average,
     		leaveLobby,
     		resetValues,
     		copyRoomID,
-    		newMessage
+    		newMessage,
+    		revealEstimations,
+    		averageCalc,
+    		clearList
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("roomID" in $$props) $$invalidate(0, roomID = $$props.roomID);
-    		if ("firstRowValues" in $$props) $$invalidate(4, firstRowValues = $$props.firstRowValues);
-    		if ("secondRowValues" in $$props) $$invalidate(5, secondRowValues = $$props.secondRowValues);
+    		if ("firstRowValues" in $$props) $$invalidate(5, firstRowValues = $$props.firstRowValues);
+    		if ("secondRowValues" in $$props) $$invalidate(6, secondRowValues = $$props.secondRowValues);
     		if ("bannermessage" in $$props) $$invalidate(1, bannermessage = $$props.bannermessage);
     		if ("bannerIsVisible" in $$props) $$invalidate(2, bannerIsVisible = $$props.bannerIsVisible);
     		if ("allUsers" in $$props) $$invalidate(3, allUsers = $$props.allUsers);
+    		if ("average" in $$props) $$invalidate(4, average = $$props.average);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2821,6 +2914,7 @@ var app = (function (exports) {
     		bannermessage,
     		bannerIsVisible,
     		allUsers,
+    		average,
     		firstRowValues,
     		secondRowValues,
     		leaveLobby,
@@ -9286,27 +9380,6 @@ var app = (function (exports) {
         socket.emit('checkRoom', roomID);
     }
 
-    function revealEstimations() {
-        let est = document.getElementsByClassName('estimation');
-        for(let i = 0; i < est.length; i++) {
-            est[i].style.opacity = 1;
-        }
-    }
-
-    function clearList() {
-        let est = document.getElementsByClassName('estimation');
-        for(let i = 0; i < est.length; i++) {
-            est[i].style.opacity = 0;
-            est[i].innerHTML = '';
-        }
-
-        let button = document.getElementsByClassName('button-primary-positive');
-        if(button[0] !== undefined) {
-            button[0].classList.remove('button-primary-positive');
-        }
-        //showBannermessage('Values reseted.');
-    }
-
     function changeThemeStyle(darktheme) {
         let themeStyle = document.getElementById('themeStyle');
         if( localStorage.getItem('theme') === undefined ) {
@@ -9344,19 +9417,6 @@ var app = (function (exports) {
             //el.value = "";
             alert('This room-id does not exist.');
         }
-    });
-
-    // Recieve Validation from another User
-    socket.on('newEstimation', (user) => {
-        document.getElementById(user.id).innerHTML = user.estimation;
-    });
-
-    socket.on('reveal', (foo) => {
-        revealEstimations();
-    });
-
-    socket.on('emptyList', (foo) => {
-        clearList();
     });
 
     exports.app = app;

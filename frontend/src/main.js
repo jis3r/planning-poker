@@ -48,27 +48,6 @@ function checkRooms(roomID) {
     socket.emit('checkRoom', roomID);
 }
 
-function revealEstimations() {
-    let est = document.getElementsByClassName('estimation');
-    for(let i = 0; i < est.length; i++) {
-        est[i].style.opacity = 1;
-    }
-}
-
-function clearList() {
-    let est = document.getElementsByClassName('estimation');
-    for(let i = 0; i < est.length; i++) {
-        est[i].style.opacity = 0;
-        est[i].innerHTML = '';
-    }
-
-    let button = document.getElementsByClassName('button-primary-positive');
-    if(button[0] !== undefined) {
-        button[0].classList.remove('button-primary-positive');
-    }
-    //showBannermessage('Values reseted.');
-}
-
 function changeThemeStyle(darktheme) {
     let themeStyle = document.getElementById('themeStyle');
     if( localStorage.getItem('theme') === undefined ) {
@@ -106,19 +85,6 @@ socket.on('validation', (validation) => {
         //el.value = "";
         alert('This room-id does not exist.');
     }
-});
-
-// Recieve Validation from another User
-socket.on('newEstimation', (user) => {
-    document.getElementById(user.id).innerHTML = user.estimation;
-});
-
-socket.on('reveal', (foo) => {
-    revealEstimations();
-});
-
-socket.on('emptyList', (foo) => {
-    clearList();
 });
 
 export {
