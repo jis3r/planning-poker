@@ -66,6 +66,22 @@ function leaveRoom() {
     socket.disconnect();
 }
 
+function validateInput(usernameInput, roomidInput) {
+    if( usernameInput !== "" && usernameInput.length > 2 && usernameInput.length < 21 && roomidInput !== "" && roomidInput.length === 5 && roomidInput.match(/^[0-9]+$/) !== null ) {
+            return true;
+    }
+    else {
+        buttonPulse();
+    }
+}
+
+function buttonPulse() {
+    let btn = document.getElementById("submitButton")
+    btn.classList.add("button-primary-negative");
+    setTimeout(function(){
+        btn.classList.remove("button-primary-negative");
+    }, 300);
+}
 
 //////////////////////////////////////////////////////////////////////
 //socket communication////////////////////////////////////////////////
@@ -76,7 +92,7 @@ socket.on('newRoom', (newRoom) => {
 });
 
 socket.on('validation', (validation) => {
-    if ( validation === true ) {
+    if( validation === true ) {
         setLobby();
     }
     else {
@@ -96,5 +112,6 @@ export {
     copyToClipboard,
     toggleButton,
     setEstimation,
-    changeThemeStyle
+    changeThemeStyle,
+    validateInput
 }

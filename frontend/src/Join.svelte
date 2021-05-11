@@ -1,6 +1,6 @@
 <script>
     import { createEventDispatcher } from "svelte";
-    import { setUserdata, checkRooms } from "./main.js";
+    import { setUserdata, validateInput, checkRooms } from "./main.js";
 
     const dispatch = createEventDispatcher();
 
@@ -10,11 +10,13 @@
     }
 
     const validate = () => {
-        //checkRooms(userdata.roomID);
-        setUserdata(userdata.username, userdata.roomID);
-        dispatch("changepage", 3);
-        userdata.username = "";
-        userdata.roomID = "";
+        if( validateInput(userdata.username, userdata.roomID) ) {
+            //checkRooms(userdata.roomID);
+            setUserdata(userdata.username, userdata.roomID);
+            dispatch("changepage", 3);
+            userdata.username = "";
+            userdata.roomID = "";
+        }
     }
 </script>
 
@@ -28,6 +30,6 @@
         <label for="roomIdInput">Please enter the room-id.</label>
     </div>
     <div class="three columns">
-        <button class="button-primary button-submit u-full-width" type="submit" on:click={validate}>submit input</button>
+        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={validate}>submit input</button>
     </div>
 </div>

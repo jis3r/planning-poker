@@ -1151,23 +1151,26 @@ var app = (function (exports) {
     			attr_dev(input0, "maxlength", "20");
     			attr_dev(input0, "autocomplete", "off");
     			input0.required = true;
-    			add_location(input0, file$6, 23, 8, 531);
+    			add_location(input0, file$6, 24, 8, 630);
+    			attr_dev(label, "id", "usernameLabel");
     			attr_dev(label, "for", "usernameInput");
-    			add_location(label, file$6, 24, 8, 727);
+    			add_location(label, file$6, 25, 8, 826);
     			attr_dev(input1, "type", "hidden");
     			attr_dev(input1, "name", "room");
     			attr_dev(input1, "id", "roomIDInput");
-    			add_location(input1, file$6, 25, 8, 799);
+    			add_location(input1, file$6, 26, 8, 917);
     			attr_dev(div0, "class", "nine columns");
-    			add_location(div0, file$6, 22, 4, 495);
+    			add_location(div0, file$6, 23, 4, 594);
     			attr_dev(button, "class", "button-primary button-submit u-full-width");
     			attr_dev(button, "type", "submit");
-    			add_location(button, file$6, 28, 8, 933);
+    			attr_dev(button, "id", "submitButton");
+    			set_style(button, "transition", "500ms");
+    			add_location(button, file$6, 29, 8, 1051);
     			attr_dev(div1, "class", "three columns");
-    			add_location(div1, file$6, 27, 4, 896);
+    			add_location(div1, file$6, 28, 4, 1014);
     			attr_dev(div2, "class", "row");
     			set_style(div2, "margin-top", "15%");
-    			add_location(div2, file$6, 21, 0, 447);
+    			add_location(div2, file$6, 22, 0, 546);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1232,10 +1235,12 @@ var app = (function (exports) {
     	let userdata = { username: "", roomID: "" };
 
     	const setLobby = e => {
-    		setUserdata(userdata.username, userdata.roomID);
-    		dispatch("changepage", 3);
-    		$$invalidate(0, userdata.username = "", userdata);
-    		$$invalidate(0, userdata.roomID = "", userdata);
+    		if (validateInput(userdata.username, "00000")) {
+    			setUserdata(userdata.username, userdata.roomID);
+    			dispatch("changepage", 3);
+    			$$invalidate(0, userdata.username = "", userdata);
+    			$$invalidate(0, userdata.roomID = "", userdata);
+    		}
     	};
 
     	const writable_props = [];
@@ -1257,6 +1262,7 @@ var app = (function (exports) {
     	$$self.$capture_state = () => ({
     		createEventDispatcher,
     		setUserdata,
+    		validateInput,
     		dispatch,
     		userdata,
     		setLobby
@@ -1334,11 +1340,11 @@ var app = (function (exports) {
     			attr_dev(input0, "maxlength", "20");
     			attr_dev(input0, "autocomplete", "off");
     			input0.required = true;
-    			add_location(input0, file$5, 22, 8, 578);
+    			add_location(input0, file$5, 24, 8, 691);
     			attr_dev(label0, "for", "usernameInput");
-    			add_location(label0, file$5, 23, 8, 774);
+    			add_location(label0, file$5, 25, 8, 887);
     			attr_dev(div0, "class", "five columns");
-    			add_location(div0, file$5, 21, 4, 542);
+    			add_location(div0, file$5, 23, 4, 655);
     			attr_dev(input1, "class", "u-full-width");
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "12345");
@@ -1348,19 +1354,21 @@ var app = (function (exports) {
     			attr_dev(input1, "maxlength", "5");
     			attr_dev(input1, "autocomplete", "off");
     			input1.required = true;
-    			add_location(input1, file$5, 26, 8, 890);
+    			add_location(input1, file$5, 28, 8, 1003);
     			attr_dev(label1, "for", "roomIdInput");
-    			add_location(label1, file$5, 27, 8, 1074);
+    			add_location(label1, file$5, 29, 8, 1187);
     			attr_dev(div1, "class", "four columns");
-    			add_location(div1, file$5, 25, 4, 854);
+    			add_location(div1, file$5, 27, 4, 967);
     			attr_dev(button, "class", "button-primary button-submit u-full-width");
     			attr_dev(button, "type", "submit");
-    			add_location(button, file$5, 30, 8, 1187);
+    			attr_dev(button, "id", "submitButton");
+    			set_style(button, "transition", "500ms");
+    			add_location(button, file$5, 32, 8, 1300);
     			attr_dev(div2, "class", "three columns");
-    			add_location(div2, file$5, 29, 4, 1150);
+    			add_location(div2, file$5, 31, 4, 1263);
     			attr_dev(div3, "class", "row");
     			set_style(div3, "margin-top", "15%");
-    			add_location(div3, file$5, 20, 0, 494);
+    			add_location(div3, file$5, 22, 0, 607);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1428,12 +1436,14 @@ var app = (function (exports) {
     	let userdata = { username: "", roomID: "" };
 
     	const validate = () => {
-    		//checkRooms(userdata.roomID);
-    		setUserdata(userdata.username, userdata.roomID);
+    		if (validateInput(userdata.username, userdata.roomID)) {
+    			//checkRooms(userdata.roomID);
+    			setUserdata(userdata.username, userdata.roomID);
 
-    		dispatch("changepage", 3);
-    		$$invalidate(0, userdata.username = "", userdata);
-    		$$invalidate(0, userdata.roomID = "", userdata);
+    			dispatch("changepage", 3);
+    			$$invalidate(0, userdata.username = "", userdata);
+    			$$invalidate(0, userdata.roomID = "", userdata);
+    		}
     	};
 
     	const writable_props = [];
@@ -1455,6 +1465,7 @@ var app = (function (exports) {
     	$$self.$capture_state = () => ({
     		createEventDispatcher,
     		setUserdata,
+    		validateInput,
     		checkRooms,
     		dispatch,
     		userdata,
@@ -9398,6 +9409,22 @@ var app = (function (exports) {
         socket.disconnect();
     }
 
+    function validateInput(usernameInput, roomidInput) {
+        if( usernameInput !== "" && usernameInput.length > 2 && usernameInput.length < 21 && roomidInput !== "" && roomidInput.length === 5 && roomidInput.match(/^[0-9]+$/) !== null ) {
+                return true;
+        }
+        else {
+            buttonPulse();
+        }
+    }
+
+    function buttonPulse() {
+        let btn = document.getElementById("submitButton");
+        btn.classList.add("button-primary-negative");
+        setTimeout(function(){
+            btn.classList.remove("button-primary-negative");
+        }, 300);
+    }
 
     //////////////////////////////////////////////////////////////////////
     //socket communication////////////////////////////////////////////////
@@ -9408,7 +9435,7 @@ var app = (function (exports) {
     });
 
     socket.on('validation', (validation) => {
-        if ( validation === true ) {
+        if( validation === true ) {
             setLobby();
         }
         else {
@@ -9428,6 +9455,7 @@ var app = (function (exports) {
     exports.setUserdata = setUserdata;
     exports.socket = socket;
     exports.toggleButton = toggleButton;
+    exports.validateInput = validateInput;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
