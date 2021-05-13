@@ -440,6 +440,12 @@ var app = (function (exports) {
             }
         };
     }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
     function create_component(block) {
         block && block.c();
     }
@@ -678,7 +684,7 @@ var app = (function (exports) {
     const file$8 = "src\\Navbar.svelte";
 
     // (43:20) {:else}
-    function create_else_block$3(ctx) {
+    function create_else_block$4(ctx) {
     	let img;
     	let img_src_value;
     	let img_intro;
@@ -711,7 +717,7 @@ var app = (function (exports) {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$3.name,
+    		id: create_else_block$4.name,
     		type: "else",
     		source: "(43:20) {:else}",
     		ctx
@@ -721,7 +727,7 @@ var app = (function (exports) {
     }
 
     // (41:20) {#if darktheme}
-    function create_if_block$3(ctx) {
+    function create_if_block$4(ctx) {
     	let img;
     	let img_src_value;
     	let img_intro;
@@ -754,7 +760,7 @@ var app = (function (exports) {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$3.name,
+    		id: create_if_block$4.name,
     		type: "if",
     		source: "(41:20) {#if darktheme}",
     		ctx
@@ -780,8 +786,8 @@ var app = (function (exports) {
     	let dispose;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*darktheme*/ ctx[0]) return create_if_block$3;
-    		return create_else_block$3;
+    		if (/*darktheme*/ ctx[0]) return create_if_block$4;
+    		return create_else_block$4;
     	}
 
     	let current_block_type = select_block_type(ctx);
@@ -1514,9 +1520,9 @@ var app = (function (exports) {
     			t = text(/*value*/ ctx[0]);
     			attr_dev(button, "id", /*value*/ ctx[0]);
     			attr_dev(button, "class", "u-full-width");
-    			add_location(button, file$4, 12, 4, 266);
+    			add_location(button, file$4, 22, 4, 617);
     			attr_dev(div, "class", "two columns");
-    			add_location(div, file$4, 11, 0, 235);
+    			add_location(div, file$4, 21, 0, 586);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1558,14 +1564,26 @@ var app = (function (exports) {
     	return block;
     }
 
+    function toggleButton(id) {
+    	let el = document.getElementsByClassName("button-primary-positive");
+
+    	if (el.length !== 0) {
+    		el[0].classList.toggle("button-primary-positive");
+    	}
+
+    	el = document.getElementById(id);
+    	el.classList.toggle("button-primary-positive");
+    }
+
     function instance$4($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Button_Estimation", slots, []);
     	let { value } = $$props;
+    	const dispatch = createEventDispatcher();
 
     	const estimate = () => {
     		toggleButton(value);
-    		setEstimation(value);
+    		dispatch("setEstimation", value);
     	};
 
     	const writable_props = ["value"];
@@ -1579,10 +1597,11 @@ var app = (function (exports) {
     	};
 
     	$$self.$capture_state = () => ({
-    		toggleButton,
-    		setEstimation,
+    		createEventDispatcher,
     		value,
-    		estimate
+    		dispatch,
+    		estimate,
+    		toggleButton
     	});
 
     	$$self.$inject_state = $$props => {
@@ -1629,7 +1648,7 @@ var app = (function (exports) {
     const file$3 = "src\\Banner.svelte";
 
     // (10:0) {:else}
-    function create_else_block$2(ctx) {
+    function create_else_block$3(ctx) {
     	let h4;
     	let t;
 
@@ -1656,7 +1675,7 @@ var app = (function (exports) {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$2.name,
+    		id: create_else_block$3.name,
     		type: "else",
     		source: "(10:0) {:else}",
     		ctx
@@ -1666,7 +1685,7 @@ var app = (function (exports) {
     }
 
     // (8:0) {#if transition}
-    function create_if_block$2(ctx) {
+    function create_if_block$3(ctx) {
     	let h4;
     	let t;
     	let h4_outro;
@@ -1704,7 +1723,7 @@ var app = (function (exports) {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$2.name,
+    		id: create_if_block$3.name,
     		type: "if",
     		source: "(8:0) {#if transition}",
     		ctx
@@ -1718,7 +1737,7 @@ var app = (function (exports) {
     	let if_block;
     	let if_block_anchor;
     	let current;
-    	const if_block_creators = [create_if_block$2, create_else_block$2];
+    	const if_block_creators = [create_if_block$3, create_else_block$3];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
@@ -1870,51 +1889,131 @@ var app = (function (exports) {
 
     const file$2 = "src\\Userdetails.svelte";
 
+    // (13:4) {:else}
+    function create_else_block$2(ctx) {
+    	let td;
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			t = text(/*estimation*/ ctx[2]);
+    			attr_dev(td, "class", "estimation");
+    			attr_dev(td, "id", /*id*/ ctx[1]);
+    			add_location(td, file$2, 13, 8, 230);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    			append_dev(td, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*estimation*/ 4) set_data_dev(t, /*estimation*/ ctx[2]);
+
+    			if (dirty & /*id*/ 2) {
+    				attr_dev(td, "id", /*id*/ ctx[1]);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$2.name,
+    		type: "else",
+    		source: "(13:4) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (11:4) {#if isReady}
+    function create_if_block$2(ctx) {
+    	let td;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			td.textContent = "ready";
+    			attr_dev(td, "class", "estimation");
+    			add_location(td, file$2, 11, 8, 174);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(11:4) {#if isReady}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$2(ctx) {
     	let tr;
-    	let td0;
+    	let td;
     	let t0;
     	let t1;
-    	let td1;
-    	let t2;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*isReady*/ ctx[3]) return create_if_block$2;
+    		return create_else_block$2;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
 
     	const block = {
     		c: function create() {
     			tr = element("tr");
-    			td0 = element("td");
+    			td = element("td");
     			t0 = text(/*name*/ ctx[0]);
     			t1 = space();
-    			td1 = element("td");
-    			t2 = text(/*estimation*/ ctx[2]);
-    			add_location(td0, file$2, 8, 4, 105);
-    			attr_dev(td1, "class", "estimation");
-    			attr_dev(td1, "id", /*id*/ ctx[1]);
-    			add_location(td1, file$2, 9, 4, 126);
-    			add_location(tr, file$2, 7, 0, 95);
+    			if_block.c();
+    			add_location(td, file$2, 9, 4, 130);
+    			add_location(tr, file$2, 8, 0, 120);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
-    			append_dev(tr, td0);
-    			append_dev(td0, t0);
+    			append_dev(tr, td);
+    			append_dev(td, t0);
     			append_dev(tr, t1);
-    			append_dev(tr, td1);
-    			append_dev(td1, t2);
+    			if_block.m(tr, null);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*name*/ 1) set_data_dev(t0, /*name*/ ctx[0]);
-    			if (dirty & /*estimation*/ 4) set_data_dev(t2, /*estimation*/ ctx[2]);
 
-    			if (dirty & /*id*/ 2) {
-    				attr_dev(td1, "id", /*id*/ ctx[1]);
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(tr, null);
+    				}
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(tr);
+    			if_block.d();
     		}
     	};
 
@@ -1935,7 +2034,8 @@ var app = (function (exports) {
     	let { name } = $$props;
     	let { id } = $$props;
     	let { estimation } = $$props;
-    	const writable_props = ["name", "id", "estimation"];
+    	let { isReady } = $$props;
+    	const writable_props = ["name", "id", "estimation", "isReady"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Userdetails> was created with unknown prop '${key}'`);
@@ -1945,27 +2045,35 @@ var app = (function (exports) {
     		if ("name" in $$props) $$invalidate(0, name = $$props.name);
     		if ("id" in $$props) $$invalidate(1, id = $$props.id);
     		if ("estimation" in $$props) $$invalidate(2, estimation = $$props.estimation);
+    		if ("isReady" in $$props) $$invalidate(3, isReady = $$props.isReady);
     	};
 
-    	$$self.$capture_state = () => ({ name, id, estimation });
+    	$$self.$capture_state = () => ({ name, id, estimation, isReady });
 
     	$$self.$inject_state = $$props => {
     		if ("name" in $$props) $$invalidate(0, name = $$props.name);
     		if ("id" in $$props) $$invalidate(1, id = $$props.id);
     		if ("estimation" in $$props) $$invalidate(2, estimation = $$props.estimation);
+    		if ("isReady" in $$props) $$invalidate(3, isReady = $$props.isReady);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [name, id, estimation];
+    	return [name, id, estimation, isReady];
     }
 
     class Userdetails extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { name: 0, id: 1, estimation: 2 });
+
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
+    			name: 0,
+    			id: 1,
+    			estimation: 2,
+    			isReady: 3
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -1987,6 +2095,10 @@ var app = (function (exports) {
 
     		if (/*estimation*/ ctx[2] === undefined && !("estimation" in props)) {
     			console.warn("<Userdetails> was created without expected prop 'estimation'");
+    		}
+
+    		if (/*isReady*/ ctx[3] === undefined && !("isReady" in props)) {
+    			console.warn("<Userdetails> was created without expected prop 'isReady'");
     		}
     	}
 
@@ -2013,30 +2125,40 @@ var app = (function (exports) {
     	set estimation(value) {
     		throw new Error("<Userdetails>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get isReady() {
+    		throw new Error("<Userdetails>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isReady(value) {
+    		throw new Error("<Userdetails>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src\Lobby.svelte generated by Svelte v3.35.0 */
+
+    const { Object: Object_1, console: console_1 } = globals;
     const file$1 = "src\\Lobby.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[15] = list[i];
+    	child_ctx[18] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[15] = list[i];
+    	child_ctx[18] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[20] = list[i];
+    	child_ctx[23] = list[i];
     	return child_ctx;
     }
 
-    // (118:8) {:else}
+    // (130:8) {:else}
     function create_else_block$1(ctx) {
     	let banner;
     	let current;
@@ -2073,14 +2195,14 @@ var app = (function (exports) {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(118:8) {:else}",
+    		source: "(130:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (116:8) {#if bannerIsVisible}
+    // (128:8) {#if bannerIsVisible}
     function create_if_block$1(ctx) {
     	let banner;
     	let current;
@@ -2124,23 +2246,24 @@ var app = (function (exports) {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(116:8) {#if bannerIsVisible}",
+    		source: "(128:8) {#if bannerIsVisible}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (142:16) {#each allUsers as user}
+    // (154:16) {#each allUsers as user}
     function create_each_block_2(ctx) {
     	let userdetails;
     	let current;
 
     	userdetails = new Userdetails({
     			props: {
-    				name: /*user*/ ctx[20].username,
-    				id: /*user*/ ctx[20].id,
-    				estimation: /*user*/ ctx[20].estimation
+    				name: /*user*/ ctx[23].username,
+    				id: /*user*/ ctx[23].id,
+    				estimation: /*user*/ ctx[23].estimation,
+    				isReady: /*user*/ ctx[23].isReady
     			},
     			$$inline: true
     		});
@@ -2155,9 +2278,10 @@ var app = (function (exports) {
     		},
     		p: function update(ctx, dirty) {
     			const userdetails_changes = {};
-    			if (dirty & /*allUsers*/ 8) userdetails_changes.name = /*user*/ ctx[20].username;
-    			if (dirty & /*allUsers*/ 8) userdetails_changes.id = /*user*/ ctx[20].id;
-    			if (dirty & /*allUsers*/ 8) userdetails_changes.estimation = /*user*/ ctx[20].estimation;
+    			if (dirty & /*allUsers*/ 8) userdetails_changes.name = /*user*/ ctx[23].username;
+    			if (dirty & /*allUsers*/ 8) userdetails_changes.id = /*user*/ ctx[23].id;
+    			if (dirty & /*allUsers*/ 8) userdetails_changes.estimation = /*user*/ ctx[23].estimation;
+    			if (dirty & /*allUsers*/ 8) userdetails_changes.isReady = /*user*/ ctx[23].isReady;
     			userdetails.$set(userdetails_changes);
     		},
     		i: function intro(local) {
@@ -2178,22 +2302,24 @@ var app = (function (exports) {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(142:16) {#each allUsers as user}",
+    		source: "(154:16) {#each allUsers as user}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (163:4) {#each firstRowValues as currentValue}
+    // (176:4) {#each firstRowValues as currentValue}
     function create_each_block_1(ctx) {
     	let button_estimation;
     	let current;
 
     	button_estimation = new Button_Estimation({
-    			props: { value: /*currentValue*/ ctx[15] },
+    			props: { value: /*currentValue*/ ctx[18] },
     			$$inline: true
     		});
+
+    	button_estimation.$on("setEstimation", /*setEstimation*/ ctx[10]);
 
     	const block = {
     		c: function create() {
@@ -2222,22 +2348,24 @@ var app = (function (exports) {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(163:4) {#each firstRowValues as currentValue}",
+    		source: "(176:4) {#each firstRowValues as currentValue}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (168:4) {#each secondRowValues as currentValue}
+    // (181:4) {#each secondRowValues as currentValue}
     function create_each_block(ctx) {
     	let button_estimation;
     	let current;
 
     	button_estimation = new Button_Estimation({
-    			props: { value: /*currentValue*/ ctx[15] },
+    			props: { value: /*currentValue*/ ctx[18] },
     			$$inline: true
     		});
+
+    	button_estimation.$on("setEstimation", /*setEstimation*/ ctx[10]);
 
     	const block = {
     		c: function create() {
@@ -2266,7 +2394,7 @@ var app = (function (exports) {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(168:4) {#each secondRowValues as currentValue}",
+    		source: "(181:4) {#each secondRowValues as currentValue}",
     		ctx
     	});
 
@@ -2440,65 +2568,65 @@ var app = (function (exports) {
 
     			attr_dev(span, "id", "roomID");
     			attr_dev(span, "class", "readycolor");
-    			add_location(span, file$1, 108, 12, 3101);
+    			add_location(span, file$1, 120, 12, 3445);
     			attr_dev(h40, "class", "u-pull-left");
-    			add_location(h40, file$1, 107, 8, 3054);
+    			add_location(h40, file$1, 119, 8, 3398);
     			if (img0.src !== (img0_src_value = "/img/copy.svg")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "copy");
-    			add_location(img0, file$1, 111, 12, 3266);
+    			add_location(img0, file$1, 123, 12, 3610);
     			attr_dev(div0, "class", "copyicon u-pull-left");
-    			add_location(div0, file$1, 110, 8, 3218);
+    			add_location(div0, file$1, 122, 8, 3562);
     			attr_dev(div1, "class", "four columns");
-    			add_location(div1, file$1, 106, 4, 3018);
+    			add_location(div1, file$1, 118, 4, 3362);
     			attr_dev(div2, "class", "four columns");
     			attr_dev(div2, "id", "bannerfield");
-    			add_location(div2, file$1, 114, 4, 3358);
+    			add_location(div2, file$1, 126, 4, 3702);
     			attr_dev(img1, "class", "reloadicon");
     			if (img1.src !== (img1_src_value = "/img/reload.svg")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "reload");
-    			add_location(img1, file$1, 123, 12, 3752);
+    			add_location(img1, file$1, 135, 12, 4096);
     			attr_dev(button0, "class", "button-primary-join u-full-width");
     			set_style(button0, "display", "grid");
     			set_style(button0, "place-items", "center");
-    			add_location(button0, file$1, 122, 8, 3622);
+    			add_location(button0, file$1, 134, 8, 3966);
     			attr_dev(div3, "class", "two columns");
-    			add_location(div3, file$1, 121, 4, 3587);
+    			add_location(div3, file$1, 133, 4, 3931);
     			attr_dev(button1, "class", "button-primary-negative u-full-width");
-    			add_location(button1, file$1, 127, 8, 3883);
+    			add_location(button1, file$1, 139, 8, 4227);
     			attr_dev(div4, "class", "two columns");
-    			add_location(div4, file$1, 126, 4, 3848);
+    			add_location(div4, file$1, 138, 4, 4192);
     			attr_dev(div5, "class", "row");
     			set_style(div5, "margin-top", "15%");
-    			add_location(div5, file$1, 105, 0, 2970);
-    			add_location(th0, file$1, 136, 20, 4172);
-    			add_location(th1, file$1, 137, 20, 4210);
-    			add_location(tr0, file$1, 135, 16, 4146);
-    			add_location(thead, file$1, 134, 12, 4121);
-    			add_location(td0, file$1, 147, 20, 4579);
+    			add_location(div5, file$1, 117, 0, 3314);
+    			add_location(th0, file$1, 148, 20, 4516);
+    			add_location(th1, file$1, 149, 20, 4554);
+    			add_location(tr0, file$1, 147, 16, 4490);
+    			add_location(thead, file$1, 146, 12, 4465);
+    			add_location(td0, file$1, 160, 20, 4975);
     			attr_dev(td1, "id", "AuMgIVUHfSHpDpgMAAAB");
     			set_style(td1, "color", "#FCA311");
-    			add_location(td1, file$1, 148, 20, 4617);
-    			add_location(tr1, file$1, 146, 16, 4553);
+    			add_location(td1, file$1, 161, 20, 5013);
+    			add_location(tr1, file$1, 159, 16, 4949);
     			attr_dev(tbody, "id", "playerlist");
-    			add_location(tbody, file$1, 140, 12, 4288);
+    			add_location(tbody, file$1, 152, 12, 4632);
     			attr_dev(table, "class", "u-full-width");
-    			add_location(table, file$1, 133, 8, 4079);
+    			add_location(table, file$1, 145, 8, 4423);
     			attr_dev(div6, "class", "four columns");
-    			add_location(div6, file$1, 132, 4, 4043);
-    			add_location(h41, file$1, 154, 8, 4801);
+    			add_location(div6, file$1, 144, 4, 4387);
+    			add_location(h41, file$1, 167, 8, 5197);
     			attr_dev(div7, "class", "four columns");
-    			add_location(div7, file$1, 153, 4, 4765);
-    			add_location(h42, file$1, 157, 8, 4866);
+    			add_location(div7, file$1, 166, 4, 5161);
+    			add_location(h42, file$1, 170, 8, 5262);
     			attr_dev(div8, "class", "three columns");
-    			add_location(div8, file$1, 156, 4, 4829);
+    			add_location(div8, file$1, 169, 4, 5225);
     			attr_dev(div9, "class", "row");
     			set_style(div9, "margin-top", "5%");
-    			add_location(div9, file$1, 131, 0, 3996);
+    			add_location(div9, file$1, 143, 0, 4340);
     			attr_dev(div10, "class", "row");
     			set_style(div10, "margin-top", "5%");
-    			add_location(div10, file$1, 161, 0, 4900);
+    			add_location(div10, file$1, 174, 0, 5296);
     			attr_dev(div11, "class", "row lowerrow");
-    			add_location(div11, file$1, 166, 0, 5055);
+    			add_location(div11, file$1, 179, 0, 5484);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2509,7 +2637,7 @@ var app = (function (exports) {
     			append_dev(div1, h40);
     			append_dev(h40, t0);
     			append_dev(h40, span);
-    			/*span_binding*/ ctx[10](span);
+    			/*span_binding*/ ctx[11](span);
     			append_dev(div1, t2);
     			append_dev(div1, div0);
     			append_dev(div0, img0);
@@ -2634,7 +2762,7 @@ var app = (function (exports) {
 
     			if (!current || dirty & /*average*/ 16) set_data_dev(t15, /*average*/ ctx[4]);
 
-    			if (dirty & /*firstRowValues*/ 32) {
+    			if (dirty & /*firstRowValues, setEstimation*/ 1056) {
     				each_value_1 = /*firstRowValues*/ ctx[5];
     				validate_each_argument(each_value_1);
     				let i;
@@ -2662,7 +2790,7 @@ var app = (function (exports) {
     				check_outros();
     			}
 
-    			if (dirty & /*secondRowValues*/ 64) {
+    			if (dirty & /*secondRowValues, setEstimation*/ 1088) {
     				each_value = /*secondRowValues*/ ctx[6];
     				validate_each_argument(each_value);
     				let i;
@@ -2732,7 +2860,7 @@ var app = (function (exports) {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div5);
-    			/*span_binding*/ ctx[10](null);
+    			/*span_binding*/ ctx[11](null);
     			if_blocks[current_block_type_index].d();
     			if (detaching) detach_dev(t7);
     			if (detaching) detach_dev(div9);
@@ -2757,14 +2885,6 @@ var app = (function (exports) {
     	});
 
     	return block;
-    }
-
-    function revealEstimations() {
-    	let est = document.getElementsByClassName("estimation");
-
-    	for (let i = 0; i < est.length; i++) {
-    		est[i].style.opacity = 1;
-    	}
     }
 
     function instance$1($$self, $$props, $$invalidate) {
@@ -2815,27 +2935,48 @@ var app = (function (exports) {
     		);
     	}
 
-    	// Recieve Validation from another User
+    	const setEstimation = e => {
+    		//var el = document.getElementById(socket.id);
+    		//el.innerHTML = e.detail;
+    		let tempUser = allUsers.find(user => user.id === socket.id);
+
+    		Object.assign(tempUser, { estimation: e.detail, isReady: true });
+    		replaceUser(tempUser);
+    		socket.emit("estimated", e.detail);
+    	};
+
+    	// Recieve Estimation from another User
     	socket.on("newEstimation", user => {
-    		document.getElementById(user.id).innerHTML = user.estimation;
+    		replaceUser(user);
+    		console.log(allUsers);
     	});
+
+    	function replaceUser(user) {
+    		let index = allUsers.findIndex(u => u.id == user.id);
+    		$$invalidate(3, allUsers[index] = user, allUsers);
+    	}
 
     	socket.on("reveal", foo => {
     		averageCalc();
     		revealEstimations();
     	});
 
+    	function revealEstimations() {
+    		for (let i = 0; i < allUsers.length; i++) {
+    			$$invalidate(3, allUsers[i].isReady = false, allUsers);
+    		}
+    	}
+
     	function averageCalc() {
     		let sum = 0;
     		let count = 0;
-    		let el = document.getElementsByClassName("estimation");
     		$$invalidate(4, average = "");
 
-    		for (let i = 0; i < el.length; i++) {
-    			let estimation = el[i].innerHTML;
+    		for (let i = 0; i < allUsers.length; i++) {
+    			let estimation = allUsers[i].estimation;
 
     			if (estimation !== "" && estimation !== "?" && estimation !== "coffee") {
-    				sum = sum + parseInt(el[i].innerHTML);
+    				sum = sum + parseInt(allUsers[i].estimation);
     				count++;
     			}
     		}
@@ -2854,7 +2995,6 @@ var app = (function (exports) {
     		let est = document.getElementsByClassName("estimation");
 
     		for (let i = 0; i < est.length; i++) {
-    			est[i].style.opacity = 0;
     			est[i].innerHTML = "";
     		}
 
@@ -2870,8 +3010,8 @@ var app = (function (exports) {
 
     	const writable_props = [];
 
-    	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Lobby> was created with unknown prop '${key}'`);
+    	Object_1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Lobby> was created with unknown prop '${key}'`);
     	});
 
     	function span_binding($$value) {
@@ -2901,6 +3041,8 @@ var app = (function (exports) {
     		resetValues,
     		copyRoomID,
     		newMessage,
+    		setEstimation,
+    		replaceUser,
     		revealEstimations,
     		averageCalc,
     		clearList
@@ -2931,6 +3073,7 @@ var app = (function (exports) {
     		leaveLobby,
     		resetValues,
     		copyRoomID,
+    		setEstimation,
     		span_binding
     	];
     }
@@ -9357,21 +9500,6 @@ var app = (function (exports) {
         roomID : ''
     };
 
-    function toggleButton(id) {
-        let el = document.getElementsByClassName('button-primary-positive');
-        if(el.length !== 0) {
-            el[0].classList.toggle('button-primary-positive');
-        }
-        el = document.getElementById(id);
-        el.classList.toggle('button-primary-positive');
-    }
-
-    function setEstimation(estimation) {
-        var el = document.getElementById(socket.id);
-        el.innerHTML = estimation;
-        socket.emit('estimated', estimation);
-    }
-
     function setUserdata(username, roomID) {
         userdata.username = username;
         userdata.roomID = roomID;
@@ -9451,10 +9579,8 @@ var app = (function (exports) {
     exports.checkRooms = checkRooms;
     exports.copyToClipboard = copyToClipboard;
     exports.leaveRoom = leaveRoom;
-    exports.setEstimation = setEstimation;
     exports.setUserdata = setUserdata;
     exports.socket = socket;
-    exports.toggleButton = toggleButton;
     exports.validateInput = validateInput;
 
     Object.defineProperty(exports, '__esModule', { value: true });

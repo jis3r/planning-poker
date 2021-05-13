@@ -49,10 +49,25 @@
         }, 3000);
     }
 
-    // Recieve Validation from another User
+    const setEstimation = (e) => {
+        //var el = document.getElementById(socket.id);
+        //el.innerHTML = e.detail;
+        let tempUser = allUsers.find(user => user.id === socket.id);
+        Object.assign(tempUser, {estimation: e.detail, isReady: true});
+        replaceUser(tempUser);
+        socket.emit('estimated', e.detail);
+    }
+
+    // Recieve Estimation from another User
     socket.on('newEstimation', (user) => {
-        document.getElementById(user.id).innerHTML = user.estimation;
+        replaceUser(user);
+        console.log(allUsers);
     });
+
+    function replaceUser(user) {
+        let index = allUsers.findIndex( u => u.id == user.id);
+        allUsers[index] = user;
+    }
 
     socket.on('reveal', (foo) => {
         averageCalc();
@@ -60,21 +75,19 @@
     });
 
     function revealEstimations() {
-        let est = document.getElementsByClassName('estimation');
-        for(let i = 0; i < est.length; i++) {
-            est[i].style.opacity = 1;
+        for(let i = 0; i < allUsers.length; i++) {
+            allUsers[i].isReady = false;
         }
     }
 
     function averageCalc() {
         let sum = 0;
         let count = 0;
-        let el = document.getElementsByClassName('estimation');
         average = '';
-        for(let i = 0; i < el.length; i++) {
-            let estimation = el[i].innerHTML;
+        for(let i = 0; i < allUsers.length; i++) {
+            let estimation = allUsers[i].estimation;
             if( estimation !== '' && estimation !== '?' && estimation !== 'coffee' ) {
-                sum = sum + parseInt(el[i].innerHTML);
+                sum = sum + parseInt(allUsers[i].estimation);
                 count++;
             }
         }
@@ -91,7 +104,6 @@
     function clearList() {
         let est = document.getElementsByClassName('estimation');
         for(let i = 0; i < est.length; i++) {
-            est[i].style.opacity = 0;
             est[i].innerHTML = '';
         }
         let button = document.getElementsByClassName('button-primary-positive');
@@ -142,7 +154,8 @@
                 {#each allUsers as user}
                     <Userdetails name={user.username}
                             id={user.id}
-                            estimation={user.estimation}/>
+                            estimation={user.estimation}
+                            isReady={user.isReady}/>
                 {/each}
                 <tr>
                     <td>Average</td>
@@ -161,11 +174,11 @@
 
 <div class="row" style="margin-top: 5%;">
     {#each firstRowValues as currentValue}
-    <Button_Estimation value={currentValue}/>
+    <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
     {/each}
 </div>
 <div class="row lowerrow">
     {#each secondRowValues as currentValue}
-        <Button_Estimation value={currentValue}/>
+        <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
     {/each}
 </div>

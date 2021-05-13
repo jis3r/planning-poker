@@ -14,21 +14,6 @@ var userdata = {
     roomID : ''
 }
 
-function toggleButton(id) {
-    let el = document.getElementsByClassName('button-primary-positive');
-    if(el.length !== 0) {
-        el[0].classList.toggle('button-primary-positive');
-    }
-    el = document.getElementById(id);
-    el.classList.toggle('button-primary-positive');
-}
-
-function setEstimation(estimation) {
-    var el = document.getElementById(socket.id);
-    el.innerHTML = estimation;
-    socket.emit('estimated', estimation);
-}
-
 function setUserdata(username, roomID) {
     userdata.username = username;
     userdata.roomID = roomID;
@@ -110,8 +95,6 @@ export {
     checkRooms,
     leaveRoom,
     copyToClipboard,
-    toggleButton,
-    setEstimation,
     changeThemeStyle,
     validateInput
 }

@@ -1,11 +1,21 @@
 <script>
-    import {    toggleButton, 
-                setEstimation       } from "./main.js";
+    import { createEventDispatcher } from "svelte";
     export let value;
+
+    const dispatch = createEventDispatcher();
 
     const estimate = () => {
         toggleButton(value);
-        setEstimation(value);
+        dispatch("setEstimation", value);
+    }
+
+    function toggleButton(id) {
+        let el = document.getElementsByClassName('button-primary-positive');
+        if(el.length !== 0) {
+            el[0].classList.toggle('button-primary-positive');
+        }
+        el = document.getElementById(id);
+        el.classList.toggle('button-primary-positive');
     }
 </script>
 
