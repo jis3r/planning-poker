@@ -38,7 +38,9 @@
     // Get room and users
     socket.on('roomUsers', ({ /*room,*/ users }) => {
         average = '';
+        allUsers = [];
         allUsers = users;
+        console.log(allUsers);
     });
 
     function newMessage(msg) {
@@ -51,8 +53,6 @@
     }
 
     const setEstimation = (e) => {
-        //var el = document.getElementById(socket.id);
-        //el.innerHTML = e.detail;
         let tempUser = allUsers.find(user => user.id === socket.id);
         Object.assign(tempUser, {estimation: e.detail, isReady: true});
         replaceUser(tempUser);
@@ -103,9 +103,8 @@
     });
 
     function clearList() {
-        let est = document.getElementsByClassName('estimation');
-        for(let i = 0; i < est.length; i++) {
-            est[i].innerHTML = '';
+        for(let i = 0; i < allUsers.length; i++) {
+            allUsers[i].estimation = '';
         }
         let button = document.getElementsByClassName('button-primary-positive');
         if(button[0] !== undefined) {

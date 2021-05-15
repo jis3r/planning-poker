@@ -75,6 +75,7 @@ function resetEstimations(room){
     for(let i = 0; i < test.length; i++) {
         console.log(test[i]);
         test[i].estimation = '';
+        test[i].isReady = false;
     }
     console.log('all estimations were sucessfully reseted.', users);
 }

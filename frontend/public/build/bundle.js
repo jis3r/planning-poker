@@ -2158,7 +2158,7 @@ var app = (function (exports) {
     	return child_ctx;
     }
 
-    // (131:8) {:else}
+    // (130:8) {:else}
     function create_else_block$1(ctx) {
     	let banner;
     	let current;
@@ -2195,14 +2195,14 @@ var app = (function (exports) {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(131:8) {:else}",
+    		source: "(130:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (129:8) {#if bannerIsVisible}
+    // (128:8) {#if bannerIsVisible}
     function create_if_block$1(ctx) {
     	let banner;
     	let current;
@@ -2246,14 +2246,14 @@ var app = (function (exports) {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(129:8) {#if bannerIsVisible}",
+    		source: "(128:8) {#if bannerIsVisible}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (155:16) {#each allUsers as user}
+    // (154:16) {#each allUsers as user}
     function create_each_block_2(ctx) {
     	let userdetails;
     	let current;
@@ -2302,14 +2302,14 @@ var app = (function (exports) {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(155:16) {#each allUsers as user}",
+    		source: "(154:16) {#each allUsers as user}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (177:4) {#each firstRowValues as currentValue}
+    // (176:4) {#each firstRowValues as currentValue}
     function create_each_block_1(ctx) {
     	let button_estimation;
     	let current;
@@ -2348,14 +2348,14 @@ var app = (function (exports) {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(177:4) {#each firstRowValues as currentValue}",
+    		source: "(176:4) {#each firstRowValues as currentValue}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (182:4) {#each secondRowValues as currentValue}
+    // (181:4) {#each secondRowValues as currentValue}
     function create_each_block(ctx) {
     	let button_estimation;
     	let current;
@@ -2394,7 +2394,7 @@ var app = (function (exports) {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(182:4) {#each secondRowValues as currentValue}",
+    		source: "(181:4) {#each secondRowValues as currentValue}",
     		ctx
     	});
 
@@ -2568,65 +2568,65 @@ var app = (function (exports) {
 
     			attr_dev(span, "id", "roomID");
     			attr_dev(span, "class", "readycolor");
-    			add_location(span, file$1, 121, 12, 3468);
+    			add_location(span, file$1, 120, 12, 3377);
     			attr_dev(h40, "class", "u-pull-left");
-    			add_location(h40, file$1, 120, 8, 3421);
+    			add_location(h40, file$1, 119, 8, 3330);
     			if (img0.src !== (img0_src_value = "/img/copy.svg")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "copy");
-    			add_location(img0, file$1, 124, 12, 3633);
+    			add_location(img0, file$1, 123, 12, 3542);
     			attr_dev(div0, "class", "copyicon u-pull-left");
-    			add_location(div0, file$1, 123, 8, 3585);
+    			add_location(div0, file$1, 122, 8, 3494);
     			attr_dev(div1, "class", "four columns");
-    			add_location(div1, file$1, 119, 4, 3385);
+    			add_location(div1, file$1, 118, 4, 3294);
     			attr_dev(div2, "class", "four columns");
     			attr_dev(div2, "id", "bannerfield");
-    			add_location(div2, file$1, 127, 4, 3725);
+    			add_location(div2, file$1, 126, 4, 3634);
     			attr_dev(img1, "class", "reloadicon");
     			if (img1.src !== (img1_src_value = "/img/reload.svg")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "reload");
-    			add_location(img1, file$1, 136, 12, 4119);
+    			add_location(img1, file$1, 135, 12, 4028);
     			attr_dev(button0, "class", "button-primary-join u-full-width");
     			set_style(button0, "display", "grid");
     			set_style(button0, "place-items", "center");
-    			add_location(button0, file$1, 135, 8, 3989);
+    			add_location(button0, file$1, 134, 8, 3898);
     			attr_dev(div3, "class", "two columns");
-    			add_location(div3, file$1, 134, 4, 3954);
+    			add_location(div3, file$1, 133, 4, 3863);
     			attr_dev(button1, "class", "button-primary-negative u-full-width");
-    			add_location(button1, file$1, 140, 8, 4250);
+    			add_location(button1, file$1, 139, 8, 4159);
     			attr_dev(div4, "class", "two columns");
-    			add_location(div4, file$1, 139, 4, 4215);
+    			add_location(div4, file$1, 138, 4, 4124);
     			attr_dev(div5, "class", "row");
     			set_style(div5, "margin-top", "15%");
-    			add_location(div5, file$1, 118, 0, 3337);
-    			add_location(th0, file$1, 149, 20, 4539);
-    			add_location(th1, file$1, 150, 20, 4577);
-    			add_location(tr0, file$1, 148, 16, 4513);
-    			add_location(thead, file$1, 147, 12, 4488);
-    			add_location(td0, file$1, 161, 20, 4998);
+    			add_location(div5, file$1, 117, 0, 3246);
+    			add_location(th0, file$1, 148, 20, 4448);
+    			add_location(th1, file$1, 149, 20, 4486);
+    			add_location(tr0, file$1, 147, 16, 4422);
+    			add_location(thead, file$1, 146, 12, 4397);
+    			add_location(td0, file$1, 160, 20, 4907);
     			attr_dev(td1, "id", "AuMgIVUHfSHpDpgMAAAB");
     			set_style(td1, "color", "#FCA311");
-    			add_location(td1, file$1, 162, 20, 5036);
-    			add_location(tr1, file$1, 160, 16, 4972);
+    			add_location(td1, file$1, 161, 20, 4945);
+    			add_location(tr1, file$1, 159, 16, 4881);
     			attr_dev(tbody, "id", "playerlist");
-    			add_location(tbody, file$1, 153, 12, 4655);
+    			add_location(tbody, file$1, 152, 12, 4564);
     			attr_dev(table, "class", "u-full-width");
-    			add_location(table, file$1, 146, 8, 4446);
+    			add_location(table, file$1, 145, 8, 4355);
     			attr_dev(div6, "class", "four columns");
-    			add_location(div6, file$1, 145, 4, 4410);
-    			add_location(h41, file$1, 168, 8, 5220);
+    			add_location(div6, file$1, 144, 4, 4319);
+    			add_location(h41, file$1, 167, 8, 5129);
     			attr_dev(div7, "class", "four columns");
-    			add_location(div7, file$1, 167, 4, 5184);
-    			add_location(h42, file$1, 171, 8, 5285);
+    			add_location(div7, file$1, 166, 4, 5093);
+    			add_location(h42, file$1, 170, 8, 5194);
     			attr_dev(div8, "class", "three columns");
-    			add_location(div8, file$1, 170, 4, 5248);
+    			add_location(div8, file$1, 169, 4, 5157);
     			attr_dev(div9, "class", "row");
     			set_style(div9, "margin-top", "5%");
-    			add_location(div9, file$1, 144, 0, 4363);
+    			add_location(div9, file$1, 143, 0, 4272);
     			attr_dev(div10, "class", "row");
     			set_style(div10, "margin-top", "5%");
-    			add_location(div10, file$1, 175, 0, 5319);
+    			add_location(div10, file$1, 174, 0, 5228);
     			attr_dev(div11, "class", "row lowerrow");
-    			add_location(div11, file$1, 180, 0, 5507);
+    			add_location(div11, file$1, 179, 0, 5416);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2921,7 +2921,9 @@ var app = (function (exports) {
     	socket.on("roomUsers", ({ /*room,*/
     		users }) => {
     		$$invalidate(4, average = "");
+    		$$invalidate(3, allUsers = []);
     		$$invalidate(3, allUsers = users);
+    		console.log(allUsers);
     	});
 
     	function newMessage(msg) {
@@ -2937,10 +2939,7 @@ var app = (function (exports) {
     	}
 
     	const setEstimation = e => {
-    		//var el = document.getElementById(socket.id);
-    		//el.innerHTML = e.detail;
     		let tempUser = allUsers.find(user => user.id === socket.id);
-
     		Object.assign(tempUser, { estimation: e.detail, isReady: true });
     		replaceUser(tempUser);
     		socket.emit("estimated", e.detail);
@@ -2993,10 +2992,8 @@ var app = (function (exports) {
     	});
 
     	function clearList() {
-    		let est = document.getElementsByClassName("estimation");
-
-    		for (let i = 0; i < est.length; i++) {
-    			est[i].innerHTML = "";
+    		for (let i = 0; i < allUsers.length; i++) {
+    			$$invalidate(3, allUsers[i].estimation = "", allUsers);
     		}
 
     		let button = document.getElementsByClassName("button-primary-positive");
