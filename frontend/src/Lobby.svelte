@@ -37,6 +37,7 @@
 
     // Get room and users
     socket.on('roomUsers', ({ /*room,*/ users }) => {
+        average = '';
         allUsers = users;
     });
 
