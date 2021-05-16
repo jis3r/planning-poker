@@ -40,7 +40,6 @@
         average = '';
         allUsers = [];
         allUsers = users;
-        console.log(allUsers);
     });
 
     function newMessage(msg) {
@@ -62,7 +61,6 @@
     // Recieve Estimation from another User
     socket.on('newEstimation', (user) => {
         replaceUser(user);
-        console.log(allUsers);
     });
 
     function replaceUser(user) {
@@ -105,6 +103,7 @@
     function clearList() {
         for(let i = 0; i < allUsers.length; i++) {
             allUsers[i].estimation = '';
+            allUsers[i].isReady = false;
         }
         let button = document.getElementsByClassName('button-primary-positive');
         if(button[0] !== undefined) {
