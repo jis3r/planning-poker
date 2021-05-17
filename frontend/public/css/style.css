@@ -116,7 +116,13 @@ input[type=number] {
   transform: translate(-50%, -40%);
   overflow: auto; /* Enable scroll if needed */
   border-radius: 4px;
-  width: 27%
+  width: 96%
+}
+
+@media (min-width: 400px) {
+  .modal {
+    width: 27%
+  }
 }
 
 .is-visible {
