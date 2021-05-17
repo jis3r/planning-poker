@@ -1,7 +1,6 @@
 <script>
     import { createEventDispatcher, beforeUpdate } from "svelte";
-    import { changeThemeStyle } from "./main.js";
-
+    import { fade } from "svelte/transition";
     
     export const onload = null;
 
@@ -13,16 +12,10 @@
     const setJoin = (e) => {
         dispatch("changepage", 2);
     }
-
-    beforeUpdate(() => {
-        changeThemeStyle( true );
-    });
-
-
 </script>
 
 
-<div class="row" style="margin-top: 15%; margin-bottom: 5%;">
+<div class="row" style="margin-top: 15%; margin-bottom: 5%;" in:fade>
     <div class="nine columns" style="margin-bottom: 10%;">
         <h3>A simple, online planning poker tool.</h3>
         <span style="font-size: 15px">Just host a session or join an existing one to start estimating your user stories.</span>        

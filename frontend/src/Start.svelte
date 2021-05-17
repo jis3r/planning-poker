@@ -1,5 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
+    import { fade } from "svelte/transition";
+
     import { setUserdata, validateInput } from "./main.js";
 
     const dispatch = createEventDispatcher();
@@ -20,7 +22,7 @@
 </script>
 
 
-<div class="row" style="margin-top: 15%;">
+<div class="row" style="margin-top: 15%;" in:fade>
     <div class="nine columns">
         <input class="u-full-width" type="text" placeholder="Username" name="username" id="usernameInput" minlength="3" maxlength="20" autocomplete="off" required bind:value={userdata.username}>
         <label id="usernameLabel" for="usernameInput">Please enter your username.</label>
