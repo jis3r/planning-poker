@@ -146,3 +146,8 @@ select:focus {
 .reloadicon {
     filter: invert(96%) sepia(2%) saturate(1760%) hue-rotate(179deg) brightness(85%) contrast(100%);
 }
+
+.modal {
+    background-color: #161a1d;
+    box-shadow: none;
+}

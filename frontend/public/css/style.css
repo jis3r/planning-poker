@@ -106,3 +106,29 @@ input[type=number] {
   color: #ff0000;
   text-align: center;
 }
+
+.modal {
+  /*display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  overflow: auto; /* Enable scroll if needed */
+  border-radius: 4px;
+  width: 27%
+}
+
+.is-visible {
+  display: block;
+}
+
+.is-blurred {
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+}
+
+.content {
+  transition: filter .75s;
+  transition-timing-function: ease;
+}

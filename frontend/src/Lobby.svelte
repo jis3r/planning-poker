@@ -1,5 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
+    import { fade } from "svelte/transition";
+
     import {    leaveRoom, 
                 socket, 
                 copyToClipboard   } from "./main.js";
@@ -7,6 +9,7 @@
     import Button_Estimation from './Button_Estimation.svelte';
     import Banner from './Banner.svelte';
     import Userdetails from './Userdetails.svelte';
+    import Modal_Leave from './Modal_Leave.svelte';
 
     const dispatch = createEventDispatcher();
     let roomID;
@@ -16,10 +19,28 @@
     let bannerIsVisible = false;
     let allUsers = [];
     let average = '';
+    let modal = false
 
-    const leaveLobby = () => {
-        leaveRoom();
-        dispatch("changepage", 0);
+    const openModal = () => {
+        toggleModal();
+    }
+
+    const toggleModal = () => {
+        let blurr = document.getElementsByClassName("content");
+        for(let i = 0; i < blurr.length; i++) {
+            blurr[i].classList.toggle("is-blurred");
+        }
+        modal = !modal;
+    }
+
+    const leaveLobby = (e) => {
+        toggleModal();
+        if(e.detail) {
+            setTimeout(function(){
+                leaveRoom();
+                dispatch("changepage", 0);
+            }, 10);
+        }
     }
 
     const resetValues = () => {
@@ -115,72 +136,83 @@
         average = '';
         newMessage('Values reseted.');
     }
-</script>
 
-<div class="row" style="margin-top: 15%;">
-    <div class="four columns">
-        <h4 class="u-pull-left">room-id: 
-            <span id="roomID" class="readycolor" bind:this={roomID}>00000</span>                        
-        </h4>
-        <div class="copyicon u-pull-left">
-            <img src="/img/copy.svg" alt="copy" on:click={copyRoomID}>
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("modal")) {
+            toggleModal();
+        }
+    }
+</script>
+<div class="content" in:fade>
+    <div class="row" style="margin-top: 15%;">
+        <div class="four columns">
+            <h4 class="u-pull-left">room-id: 
+                <span id="roomID" class="readycolor" bind:this={roomID}>00000</span>                        
+            </h4>
+            <div class="copyicon u-pull-left">
+                <img src="/img/copy.svg" alt="copy" on:click={copyRoomID}>
+            </div>
+        </div>
+        <div class="four columns" id="bannerfield">
+            {#if bannerIsVisible}
+            <Banner msg={bannermessage} transition={true}/>
+            {:else}
+            <Banner msg={" "} transition={false}/>
+            {/if}
+        </div>
+        <div class="two columns">
+            <button class="button-primary-join u-full-width" on:click={resetValues} style="display: grid; place-items: center;">
+                <img class="reloadicon" src="/img/reload.svg" alt="reload">
+            </button>
+        </div>
+        <div class="two columns">
+            <button class="button-primary-negative u-full-width" on:click={openModal}>leave</button>
         </div>
     </div>
-    <div class="four columns" id="bannerfield">
-        {#if bannerIsVisible}
-        <Banner msg={bannermessage} transition={true}/>
-        {:else}
-        <Banner msg={" "} transition={false}/>
-        {/if}
-    </div>
-    <div class="two columns">
-        <button class="button-primary-join u-full-width" on:click={resetValues} style="display: grid; place-items: center;">
-            <img class="reloadicon" src="/img/reload.svg" alt="reload">
-        </button>
-    </div>
-    <div class="two columns">
-        <button class="button-primary-negative u-full-width" on:click={leaveLobby}>leave</button>
-    </div>
-</div>
 
-<div class="row" style="margin-top: 5%;">
-    <div class="four columns">
-        <table class="u-full-width">
-            <thead>
-                <tr>
-                    <th>Members</th>
-                    <th>Estimation</th>
-                </tr>
-            </thead>
-            <tbody id="playerlist">
-                {#each allUsers as user}
-                    <Userdetails name={user.username}
-                            id={user.id}
-                            estimation={user.estimation}
-                            isReady={user.isReady}/>
-                {/each}
-                <tr>
-                    <td>Average</td>
-                    <td id="AuMgIVUHfSHpDpgMAAAB" style="color: #FCA311">{average}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row" style="margin-top: 5%;">
+        <div class="four columns">
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Members</th>
+                        <th>Estimation</th>
+                    </tr>
+                </thead>
+                <tbody id="playerlist">
+                    {#each allUsers as user}
+                        <Userdetails name={user.username}
+                                id={user.id}
+                                estimation={user.estimation}
+                                isReady={user.isReady}/>
+                    {/each}
+                    <tr>
+                        <td>Average</td>
+                        <td id="AuMgIVUHfSHpDpgMAAAB" style="color: #FCA311">{average}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="four columns">
+            <h4> </h4>
+        </div>
+        <div class="three columns">
+            <h4> </h4>
+        </div>
     </div>
-    <div class="four columns">
-        <h4> </h4>
-    </div>
-    <div class="three columns">
-        <h4> </h4>
-    </div>
-</div>
 
-<div class="row" style="margin-top: 5%;">
-    {#each firstRowValues as currentValue}
-    <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
-    {/each}
-</div>
-<div class="row lowerrow">
-    {#each secondRowValues as currentValue}
+    <div class="row" style="margin-top: 5%;">
+        {#each firstRowValues as currentValue}
         <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
-    {/each}
+        {/each}
+    </div>
+    <div class="row lowerrow">
+        {#each secondRowValues as currentValue}
+            <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
+        {/each}
+    </div>
 </div>
+
+{#if modal}
+    <Modal_Leave on:leave={leaveLobby}/>
+{/if}
