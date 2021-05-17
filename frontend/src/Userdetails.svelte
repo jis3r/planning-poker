@@ -7,12 +7,12 @@
 </script>
 
 <tr>
-    <td>{name}</td>
+    <td id="{id}">{name}</td>
     {#if isReady}
         <td class="estimation">
             <img src="/img/check.svg" alt="ready" style="vertical-align: middle;">
         </td>
     {:else}
-        <td class="estimation" id="{id}">{estimation}</td>
+        <td class="estimation">{estimation}</td>
     {/if}
 </tr>

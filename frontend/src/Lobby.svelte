@@ -40,6 +40,9 @@
         average = '';
         allUsers = [];
         allUsers = users;
+        setTimeout(function(){
+            document.getElementById(socket.id).style.color = "#33C3F0";
+        }, 10);
     });
 
     function newMessage(msg) {
