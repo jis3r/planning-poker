@@ -1,16 +1,24 @@
 <script>
+    import { onMount } from "svelte";
     import { fade } from 'svelte/transition';
 
-    import { setUserdata, buttonPulse } from '../main.js';
+    import { setUserdata } from '../main.js';
     import { validateUsername, validateRoomID } from '../utils/validate';
+    import { buttonPulse  } from '../utils/animations';
 
-    
+
+
     let userdata = {
         username: "",
         roomID: ""
     }
 
-    const setLobby = () => {
+    onMount(() => {
+        let name = localStorage.getItem('username');
+        if( name )  userdata.username = name; document.getElementById('submitButton').focus();
+	});
+
+    const submit = () => {
         if( validateUsername(userdata.username) && validateRoomID("00000") ) {
             setUserdata(userdata.username, userdata.roomID);
         }
@@ -27,6 +35,6 @@
         <input type="hidden" name="room" id="roomIDInput" bind:value={userdata.roomID}>
     </div>
     <div class="three columns">
-        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={setLobby}>submit</button>
+        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit}>submit</button>
     </div>
 </div>

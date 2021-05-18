@@ -1,10 +1,11 @@
 <script>
-    import { onMount, onDestroy } from "svelte";
+    import { onMount } from "svelte";
     import { fade } from "svelte/transition";
     import { replace } from 'svelte-spa-router';
 
     import {    leaveRoom, 
-                socket    } from "../main.js";
+                socket,
+                setUserdata    } from "../main.js";
     import { copyToClipboard } from '../utils/clipboard.js';
 
     import Button_Estimation from '../components/Button_Estimation.svelte';
@@ -15,6 +16,9 @@
 
     export let params = {}
 
+    //let url = 'http://localhost:3000'; 
+    let url = 'https://planning-poker-test.herokuapp.com'
+    let id;
     let firstRowValues = ['0', '1', '2', '3', '5', '8'];
     let secondRowValues = ['13', '20', '40', '100', '?', 'coffee'];
     let bannermessage = '';
@@ -24,11 +28,15 @@
     let modal = false
 
     onMount(() => {
+        console.log('connection to server:', socket.connected);
+        id = params.id;
+        console.log(id);
+        if(!socket.connected) {
+            let name = localStorage.getItem('username');
+            if( name ) setUserdata(name, id);
+            if( !name ) replace('/join/' + id);
+        }
         socket.emit('ready');
-	});
-
-    onDestroy(() => {
-        replace('/');
 	});
 
     const openModal = () => {
@@ -140,7 +148,7 @@
     }
 
     const copyRoomID = () => {
-        copyToClipboard('https://planning-poker-test.herokuapp.com/#/join/' + params.id);
+        copyToClipboard(url + '/#/join/' + id);
         newMessage('Copied.');
     }
 </script>
@@ -148,7 +156,7 @@
 <div class="content" in:fade>
     <div class="row" style="margin-top: 15%;">
         <div class="four columns">
-            <RoomID id={params.id || '00000'}/>
+            <RoomID id={id || '00000'}/>
             <div class="copyicon u-pull-left">
                 <img src="/img/copy.svg" alt="copy" on:click={copyRoomID}>
             </div>

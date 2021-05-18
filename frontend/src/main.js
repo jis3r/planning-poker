@@ -15,6 +15,7 @@ let userdata = {
 function setUserdata(name, id) {
     userdata.username = name;
     userdata.roomID = id;
+    localStorage.setItem('username', name);
     socket.connect();
     socket.emit('joinRoom', userdata);
 }
@@ -37,20 +38,9 @@ function leaveRoom() {
     socket.disconnect();
 }
 
-function buttonPulse() {
-    let btn = document.getElementById("submitButton")
-    btn.classList.add("button-primary-negative");
-    setTimeout(function(){
-        btn.classList.remove("button-primary-negative");
-    }, 300);
-}
-
 //////////////////////////////////////////////////////////////////////
 //socket communication////////////////////////////////////////////////
 
-/*socket.on('newRoom', (newRoom) => {
-    document.getElementById('roomID').innerHTML = newRoom;
-});*/
 
 export {
     app,
@@ -58,5 +48,4 @@ export {
     setUserdata,
     leaveRoom,
     changeThemeStyle,
-    buttonPulse
 }
