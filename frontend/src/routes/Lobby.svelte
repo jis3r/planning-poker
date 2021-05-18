@@ -38,6 +38,7 @@
 	});
 
     const openModal = () => {
+        bannerIsVisible = false;
         toggleModal();
     }
 
@@ -77,10 +78,9 @@
     function newMessage(msg) {
         bannermessage = msg;
         bannerIsVisible = true;
-
         setTimeout(function(){
             bannerIsVisible = false;
-        }, 3000);
+        }, 1);
     }
 
     const setEstimation = (e) => {
