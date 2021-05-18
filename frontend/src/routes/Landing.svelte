@@ -1,16 +1,15 @@
 <script>
-    import { createEventDispatcher, beforeUpdate } from "svelte";
-    import { fade } from "svelte/transition";
+    import { fade } from 'svelte/transition';
+    import { push } from 'svelte-spa-router';
     
     export const onload = null;
 
-    const dispatch = createEventDispatcher();
     
-    const setStart = (e) => {
-        dispatch("changepage", 1);
+    const setStart = () => {
+        push('/start');
     }    
-    const setJoin = (e) => {
-        dispatch("changepage", 2);
+    const setJoin = () => {
+        push('/join');
     }
 </script>
 

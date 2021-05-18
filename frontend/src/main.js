@@ -1,36 +1,23 @@
 import App from './App.svelte';
 import io from '../node_modules/socket.io/client-dist/socket.io';
 
+const socket = io( {autoConnect: false} );
 const app = new App({
 	target: document.body,
-	props: {
-	}
+	props: { socket }
 });
 
-const socket = io( {autoConnect: false} );
 
-var userdata = {
-    username : '',
-    roomID : ''
+let userdata = {
+    username: "",
+    roomID: ""
 }
-
-function setUserdata(username, roomID) {
-    userdata.username = username;
-    userdata.roomID = roomID;
+function setUserdata(name, id) {
+    userdata.username = name;
+    userdata.roomID = id;
+    console.log(userdata);
     socket.connect();
     socket.emit('joinRoom', userdata);
-}
-
-function copyToClipboard(content) {
-    navigator.clipboard.writeText(content).then(function() {
-        //console.log('Async: Copying to clipboard was successful!');
-    }, function(err) {
-    console.error('Async: Could not copy text: ', err);
-    });
-}
-
-function checkRooms(roomID) {
-    socket.emit('checkRoom', roomID);
 }
 
 function changeThemeStyle(darktheme) {
@@ -71,30 +58,15 @@ function buttonPulse() {
 //////////////////////////////////////////////////////////////////////
 //socket communication////////////////////////////////////////////////
 
-socket.on('newRoom', (newRoom) => {
-    userdata.roomID = newRoom;
-    document.getElementById('roomID').innerHTML = userdata.roomID;
-});
-
-socket.on('validation', (validation) => {
-    if( validation === true ) {
-        setLobby();
-    }
-    else {
-        //el = document.getElementById("roomIDInput");
-        //el.placeholder = "Please enter an existing room-id.";
-        //el.value = "";
-        alert('This room-id does not exist.');
-    }
-});
+/*socket.on('newRoom', (newRoom) => {
+    document.getElementById('roomID').innerHTML = newRoom;
+});*/
 
 export {
     app,
     socket,
     setUserdata,
-    checkRooms,
     leaveRoom,
-    copyToClipboard,
     changeThemeStyle,
     validateInput
 }

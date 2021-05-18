@@ -1,18 +1,20 @@
 <script>
-    import { createEventDispatcher } from "svelte";
+    import { onMount } from "svelte";
     import { fade } from "svelte/transition";
+    import { replace } from 'svelte-spa-router';
 
     import {    leaveRoom, 
-                socket, 
-                copyToClipboard   } from "./main.js";
+                socket    } from "../main.js";
+    import { copyToClipboard } from '../utils/clipboard.js';
 
-    import Button_Estimation from './Button_Estimation.svelte';
-    import Banner from './Banner.svelte';
-    import Userdetails from './Userdetails.svelte';
-    import Modal_Leave from './Modal_Leave.svelte';
+    import Button_Estimation from '../components/Button_Estimation.svelte';
+    import Banner from '../components/Banner.svelte';
+    import Userdetails from '../components/Userdetails.svelte';
+    import Modal_Leave from '../components/Modal_Leave.svelte';
+    import RoomID from '../components/RoomID.svelte';
 
-    const dispatch = createEventDispatcher();
-    let roomID;
+    export let params = {}
+
     let firstRowValues = ['0', '1', '2', '3', '5', '8'];
     let secondRowValues = ['13', '20', '40', '100', '?', 'coffee'];
     let bannermessage = '';
@@ -20,6 +22,10 @@
     let allUsers = [];
     let average = '';
     let modal = false
+
+    onMount(() => {
+        socket.emit('ready');
+	});
 
     const openModal = () => {
         toggleModal();
@@ -38,7 +44,7 @@
         if(e.detail) {
             setTimeout(function(){
                 leaveRoom();
-                dispatch("changepage", 0);
+                replace('/');
             }, 10);
         }
     }
@@ -47,17 +53,13 @@
         socket.emit('reset', '' );
     }
 
-    const copyRoomID = () => {
-        copyToClipboard(roomID.innerHTML);
-        newMessage('Copied.');
-    }
-
     socket.on('bannermessage', (message) => {
         newMessage(message)
     });
 
     // Get room and users
     socket.on('roomUsers', ({ /*room,*/ users }) => {
+        console.log(users);
         average = '';
         allUsers = [];
         allUsers = users;
@@ -137,18 +139,16 @@
         newMessage('Values reseted.');
     }
 
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("modal")) {
-            toggleModal();
-        }
+    const copyRoomID = () => {
+        copyToClipboard(roomID.innerHTML);
+        newMessage('Copied.');
     }
 </script>
+
 <div class="content" in:fade>
     <div class="row" style="margin-top: 15%;">
         <div class="four columns">
-            <h4 class="u-pull-left">room-id: 
-                <span id="roomID" class="readycolor" bind:this={roomID}>00000</span>                        
-            </h4>
+            <RoomID id={params.id || '00000'}/>
             <div class="copyicon u-pull-left">
                 <img src="/img/copy.svg" alt="copy" on:click={copyRoomID}>
             </div>

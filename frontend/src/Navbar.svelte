@@ -1,16 +1,16 @@
 <script>
-    import { createEventDispatcher, onMount } from "svelte";
-    import { fade, fly } from "svelte/transition";
+    import { onMount } from "svelte";
+    import { fly } from "svelte/transition";
+    import { replace } from 'svelte-spa-router';
     import { changeThemeStyle, leaveRoom } from "./main.js";
 
 
-    const dispatch = createEventDispatcher();
     let darktheme = true;
 
     const setLanding = (e) => {
         e.preventDefault();
         leaveRoom();
-        dispatch("changepage", 0);
+        replace('/');
     }
 
     function toggleTheme() {

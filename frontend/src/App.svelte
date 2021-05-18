@@ -1,32 +1,21 @@
 <script>
+	import Router from 'svelte-spa-router';
+	import { push } from 'svelte-spa-router';
+
 	import Navbar from './Navbar.svelte';
-	import Landing from './Landing.svelte';
-	import Start from './Start.svelte';
-	import Join from './Join.svelte';
-	import Lobby from './Lobby.svelte';
+	import routes from './routes.js';
 
-	var currentPage = 0;
+	export let socket;
 
-	const setPage = (e) => {
-		currentPage = e.detail;
-	}
-
+	socket.on('newRoom', (newRoom) => {
+        push('/room/' + newRoom);
+    });
 </script>
 
 <main>
-	<Navbar on:changepage={setPage}/>
+	<Navbar/>
 	<div class="container">
-		{#if currentPage === 0}
-		<Landing on:changepage={setPage}/>
-		{:else if currentPage === 1}
-		<Start on:changepage={setPage}/>
-		{:else if currentPage === 2}
-		<Join on:changepage={setPage}/>
-		{:else if currentPage === 3}
-		<Lobby on:changepage={setPage}/>
-		{:else}
-		<Landing on:changepage={setPage}/>
-		{/if}	
+		<Router {routes}/>
 	</div>
 </main>
 

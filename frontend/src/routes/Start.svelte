@@ -1,26 +1,22 @@
 <script>
-    import { createEventDispatcher } from "svelte";
-    import { fade } from "svelte/transition";
+    import { fade } from 'svelte/transition';
+    import { push } from 'svelte-spa-router';
 
-    import { setUserdata, validateInput } from "./main.js";
+    import { socket, setUserdata, validateInput } from '../main.js';
 
-    const dispatch = createEventDispatcher();
-
+    
     let userdata = {
         username: "",
         roomID: ""
     }
-    const setLobby = (e) => {
+    const setLobby = () => {
         if( validateInput(userdata.username, "00000") ) {
             setUserdata(userdata.username, userdata.roomID);
-            dispatch("changepage", 3);
             userdata.username = "";
             userdata.roomID = "";
         }
     }
-
 </script>
-
 
 <div class="row" style="margin-top: 15%;" in:fade>
     <div class="nine columns">

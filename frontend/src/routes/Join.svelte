@@ -1,10 +1,9 @@
 <script>
-    import { createEventDispatcher } from "svelte";
     import { fade } from "svelte/transition";
+    import { push } from 'svelte-spa-router';
 
-    import { setUserdata, validateInput, checkRooms } from "./main.js";
+    import { setUserdata, validateInput } from "../main.js";
 
-    const dispatch = createEventDispatcher();
 
     let userdata = {
         username: "",
@@ -13,9 +12,8 @@
 
     const validate = () => {
         if( validateInput(userdata.username, userdata.roomID) ) {
-            //checkRooms(userdata.roomID);
             setUserdata(userdata.username, userdata.roomID);
-            dispatch("changepage", 3);
+            push('/room/' + userdata.roomID);
             userdata.username = "";
             userdata.roomID = "";
         }
