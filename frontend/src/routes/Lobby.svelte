@@ -63,7 +63,7 @@
         allUsers = [];
         allUsers = users;
         setTimeout(function(){
-            document.getElementById(socket.id).style.color = "#33C3F0";
+            //document.getElementById(socket.id).style.color = "#";
         }, 10);
     });
 
@@ -183,7 +183,8 @@
                         <Userdetails name={user.username}
                                 id={user.id}
                                 estimation={user.estimation}
-                                isReady={user.isReady}/>
+                                isReady={user.isReady}
+                                socketid={socket.id}/>
                     {/each}
                     <tr>
                         <td>Average</td>

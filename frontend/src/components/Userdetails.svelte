@@ -1,13 +1,20 @@
 <script>
+import { socket } from "../main";
+
     export let name;
     export let id;
     export let estimation;
     export let isReady;
+    export let socketid;
 
 </script>
 
 <tr>
-    <td id="{id}">{name}</td>
+    {#if id === socketid}
+        <td id="{id}" style="color: #33C3F0">{name}</td>
+    {:else}
+        <td id="{id}">{name}</td>
+    {/if}
     {#if isReady}
         <td class="estimation">
             <img src="/img/check.svg" alt="ready" style="vertical-align: middle;">
