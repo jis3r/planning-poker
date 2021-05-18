@@ -28,9 +28,7 @@
     let modal = false
 
     onMount(() => {
-        console.log('connection to server:', socket.connected);
         id = params.id;
-        console.log(id);
         if(!socket.connected) {
             let name = localStorage.getItem('username');
             if( name ) setUserdata(name, id);
@@ -148,7 +146,7 @@
     }
 
     const copyRoomID = () => {
-        copyToClipboard(url + '/#/join/' + id);
+        copyToClipboard(url + '/#/room/' + id);
         newMessage('Copied.');
     }
 </script>

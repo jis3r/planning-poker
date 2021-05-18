@@ -27,7 +27,7 @@
     const submit = () => {
         if( validateUsername(userdata.username) && validateRoomID(userdata.roomID) ) {
             setUserdata(userdata.username, userdata.roomID);
-            push('/room/' + userdata.roomID);        }
+        }
         else {
             buttonPulse();
         }

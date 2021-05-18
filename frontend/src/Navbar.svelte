@@ -16,7 +16,7 @@
     function toggleTheme() {
         darktheme = !darktheme;
         changeThemeStyle( darktheme );
-        localStorage.removeItem('username');
+        //localStorage.removeItem('username');
     }
 
     onMount(() => {
