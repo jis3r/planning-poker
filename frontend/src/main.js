@@ -37,15 +37,6 @@ function leaveRoom() {
     socket.disconnect();
 }
 
-function validateInput(usernameInput, roomidInput) {
-    if( usernameInput !== "" && usernameInput.length > 2 && usernameInput.length < 21 && roomidInput !== "" && roomidInput.length === 5 && roomidInput.match(/^[0-9]+$/) !== null ) {
-            return true;
-    }
-    else {
-        buttonPulse();
-    }
-}
-
 function buttonPulse() {
     let btn = document.getElementById("submitButton")
     btn.classList.add("button-primary-negative");
@@ -67,5 +58,5 @@ export {
     setUserdata,
     leaveRoom,
     changeThemeStyle,
-    validateInput
+    buttonPulse
 }

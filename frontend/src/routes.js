@@ -7,7 +7,7 @@ import NotFound from './routes/NotFound.svelte';
 export default {
     '/': Landing,
     '/start': Start,
-    '/join': Join,
+    '/join/:id?': Join,
     '/room/:id': Lobby,
     '*': NotFound
 }

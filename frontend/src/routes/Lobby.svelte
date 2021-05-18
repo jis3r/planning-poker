@@ -1,5 +1,5 @@
 <script>
-    import { onMount } from "svelte";
+    import { onMount, onDestroy } from "svelte";
     import { fade } from "svelte/transition";
     import { replace } from 'svelte-spa-router';
 
@@ -25,6 +25,10 @@
 
     onMount(() => {
         socket.emit('ready');
+	});
+
+    onDestroy(() => {
+        replace('/');
 	});
 
     const openModal = () => {
@@ -62,9 +66,6 @@
         average = '';
         allUsers = [];
         allUsers = users;
-        setTimeout(function(){
-            //document.getElementById(socket.id).style.color = "#";
-        }, 10);
     });
 
     function newMessage(msg) {
@@ -139,7 +140,7 @@
     }
 
     const copyRoomID = () => {
-        copyToClipboard(roomID.innerHTML);
+        copyToClipboard('https://planning-poker-test.herokuapp.com/#/join/' + params.id);
         newMessage('Copied.');
     }
 </script>

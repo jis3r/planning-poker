@@ -1,18 +1,21 @@
 <script>
     import { fade } from 'svelte/transition';
 
-    import { setUserdata, validateInput } from '../main.js';
+    import { setUserdata, buttonPulse } from '../main.js';
+    import { validateUsername, validateRoomID } from '../utils/validate';
 
     
     let userdata = {
         username: "",
         roomID: ""
     }
+
     const setLobby = () => {
-        if( validateInput(userdata.username, "00000") ) {
+        if( validateUsername(userdata.username) && validateRoomID("00000") ) {
             setUserdata(userdata.username, userdata.roomID);
-            userdata.username = "";
-            userdata.roomID = "";
+        }
+        else {
+            buttonPulse();
         }
     }
 </script>
