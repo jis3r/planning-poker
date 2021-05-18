@@ -1,8 +1,7 @@
 <script>
     import { fade } from 'svelte/transition';
-    import { push } from 'svelte-spa-router';
 
-    import { socket, setUserdata, validateInput } from '../main.js';
+    import { setUserdata, validateInput } from '../main.js';
 
     
     let userdata = {

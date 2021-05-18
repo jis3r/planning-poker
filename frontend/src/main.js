@@ -15,7 +15,6 @@ let userdata = {
 function setUserdata(name, id) {
     userdata.username = name;
     userdata.roomID = id;
-    console.log(userdata);
     socket.connect();
     socket.emit('joinRoom', userdata);
 }
