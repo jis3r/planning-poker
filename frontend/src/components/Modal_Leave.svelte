@@ -15,9 +15,9 @@
 <div class="modal" id="modal" transition:fade>
     <div class="container">
         <div class="row">
-            <div class="twelve columns" style="margin-bottom: 10%; margin-top: 10%; text-align: center">Do you really want to leave this lobby?</div>
+            <div class="twelve columns" style="margin-bottom: 15%; margin-top: 10%; text-align: center">Do you really want to leave this lobby?</div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-bottom: 10%;">
             <div class="six columns">
                 <button class="button-primary-join u-full-width" on:click={stay}>stay</button>
             </div>
