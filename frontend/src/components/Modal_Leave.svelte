@@ -19,10 +19,10 @@
         </div>
         <div class="row" style="margin-bottom: 10%;">
             <div class="six columns">
-                <button class="button-primary-join u-full-width" on:click={stay}>stay</button>
+                <button class="button-primary-join u-full-width" on:click={stay} onclick="this.blur();">stay</button>
             </div>
             <div class="six columns">
-                <button class="button-primary-negative u-full-width" on:click={leave}>leave</button>
+                <button class="button-primary-negative u-full-width" on:click={leave} onclick="this.blur();">leave</button>
             </div>
         </div>
     </div>

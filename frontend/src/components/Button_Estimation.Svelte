@@ -20,5 +20,5 @@
 </script>
 
 <div class="two columns">
-    <button id={value} class="u-full-width" on:click={estimate}>{value}</button>
+    <button id={value} class="u-full-width" on:click={estimate} onclick="this.blur();">{value}</button>
 </div>

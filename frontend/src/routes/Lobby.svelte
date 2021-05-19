@@ -126,7 +126,6 @@
         }
         if(count !== 0) {
             sum = Math.round( (sum / count) * 100 ) / 100;
-
             average = sum.toString();
         }
     }
@@ -170,7 +169,7 @@
             {/if}
         </div>
         <div class="two columns">
-            <button class="button-primary-join u-full-width" on:click={resetValues} style="display: grid; place-items: center;">
+            <button class="button-primary-join u-full-width" style="display: grid; place-items: center;" on:click={resetValues} onclick="this.blur();">
                 <img class="reloadicon" src="/img/reload.svg" alt="reload">
             </button>
         </div>
