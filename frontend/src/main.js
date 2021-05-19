@@ -33,11 +33,6 @@ function changeThemeStyle(darktheme) {
         localStorage.setItem('theme', 'css/light.css');
     }
 }
-
-function leaveRoom() {
-    socket.disconnect();
-}
-
 //////////////////////////////////////////////////////////////////////
 //socket communication////////////////////////////////////////////////
 
@@ -46,6 +41,5 @@ export {
     app,
     socket,
     setUserdata,
-    leaveRoom,
     changeThemeStyle,
 }

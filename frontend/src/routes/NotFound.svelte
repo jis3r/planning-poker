@@ -1,11 +1,12 @@
-<p>404 not found</p>
+<script>
+        import { fade } from "svelte/transition";
+        import { replace } from 'svelte-spa-router';
+</script>
 
-
-<style>
-    p {
-        position: fixed;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -40%);
-    }
-</style>
+<div class="row" style="margin-top: 15%; margin-bottom: 5%;" in:fade>
+    <div class="twelve columns" style="margin-bottom: 10%;">
+        <h3>404 not found.</h3>
+        <a href="https://planning-poker-test.herokuapp.com" style="font-size: 15px">Back to the main menu</a>
+        <span ></span>        
+    </div>
+</div>

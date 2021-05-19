@@ -1,10 +1,9 @@
 <script>
-    import { onMount } from "svelte";
+    import { onMount, onDestroy } from "svelte";
     import { fade } from "svelte/transition";
     import { replace } from 'svelte-spa-router';
 
-    import {    leaveRoom, 
-                socket,
+    import {    socket,
                 setUserdata    } from "../main.js";
     import { copyToClipboard } from '../utils/clipboard.js';
 
@@ -37,6 +36,10 @@
         socket.emit('ready');
 	});
 
+    onDestroy(() => {
+        socket.disconnect();
+	});
+
     const openModal = () => {
         bannerIsVisible = false;
         toggleModal();
@@ -54,7 +57,6 @@
         toggleModal();
         if(e.detail) {
             setTimeout(function(){
-                leaveRoom();
                 replace('/');
             }, 10);
         }

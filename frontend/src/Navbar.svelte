@@ -2,14 +2,13 @@
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
     import { replace } from 'svelte-spa-router';
-    import { changeThemeStyle, leaveRoom } from "./main.js";
+    import { changeThemeStyle } from "./main.js";
 
 
     let darktheme = true;
 
     const setLanding = (e) => {
         e.preventDefault();
-        leaveRoom();
         replace('/');
     }
 
