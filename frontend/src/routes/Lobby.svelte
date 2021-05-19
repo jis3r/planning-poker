@@ -125,7 +125,8 @@
             }
         }
         if(count !== 0) {
-            sum = sum / count;
+            sum = Math.round( (sum / count) * 100 ) / 100;
+
             average = sum.toString();
         }
     }
