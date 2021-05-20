@@ -24,6 +24,7 @@
     let bannerIsVisible = false;
     let allUsers = [];
     let average = '';
+    let readyUsers = 0;
     let modal = false
 
     onMount(() => {
@@ -98,8 +99,10 @@
     });
 
     function replaceUser(user) {
+        if( (allUsers.length - 1) === readyUsers ) user.isReady = false;
         let index = allUsers.findIndex( u => u.id == user.id);
         allUsers[index] = user;
+        readyUsers++;
     }
 
     socket.on('reveal', (foo) => {
@@ -144,6 +147,7 @@
             button[0].classList.remove('button-primary-positive');
         }
         average = '';
+        readyUsers = 0;
         newMessage('Values reseted.');
     }
 
