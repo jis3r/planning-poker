@@ -1,13 +1,20 @@
 /*DARK-THEME*/
+
+:root {
+    --background: #121212;
+    --fontcolor: #C9D1D9
+  }
+
+
 body {
-    color: #C9D1D9;
-    background-color: #121212;
+    color: var(--fontcolor);
+    background-color: var(--background);
 }
 
 .header {
-    color: #C9D1D9;
+    color: var(--fontcolor);
     background-color: #161a1d;
-    box-shadow: none;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
 }
 
 .button,
@@ -15,7 +22,7 @@ button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-    color: #C9D1D9;
+    color: var(--fontcolor);
     background-color: rgb(33, 38, 45, .3);
     border-color: rgb(65, 75, 88, .5);
 }
@@ -36,7 +43,7 @@ input[type="reset"].button-primary,
 input[type="button"].button-primary {
     background-color: rgb(51, 195, 240, .2);
     border-color: rgb(51, 195, 240, .5);
-    color: #C9D1D9;
+    color: var(--fontcolor);
 }
 .button.button-primary:hover,
 button.button-primary:hover,
@@ -57,7 +64,7 @@ input[type="button"].button-primary:focus {
 button.button-primary-start {
     background-color: rgb(125, 163, 218, .2);
     border-color: rgb(125, 163, 218, .5);
-    color: #C9D1D9;
+    color: var(--fontcolor);
 }
 .button.button-primary-start:hover,
 button.button-primary-start:hover,
@@ -72,7 +79,7 @@ button.button-primary-start:focus {
 button.button-primary-join {
     background-color: rgb(62, 95, 160, .2);
     border-color: rgb(62, 95, 160, .5);
-    color: #C9D1D9;
+    color: var(--fontcolor);
 }
 .button.button-primary-join:hover,
 button.button-primary-join:hover,
@@ -87,7 +94,7 @@ button.button-primary-join:focus {
 button.button-primary-negative {
     background-color: rgb(216, 0, 50, .2);
     border-color: rgb(216, 0, 50, .5);
-    color: #C9D1D9;
+    color: var(--fontcolor);
 }
 .button.button-primary-negative:hover,
 button.button-primary-negative:hover,
@@ -103,7 +110,7 @@ button.button-primary-negative:focus {
 button.button-primary-positive {
     background-color: rgb(141, 203, 26, .2);
     border-color: rgb(141, 203, 26, .5);
-    color: #C9D1D9;
+    color: var(--fontcolor);
 }
 .button.button-primary-positive:hover,
 button.button-primary-positive:hover {
@@ -121,9 +128,9 @@ input[type="url"],
 input[type="password"],
 textarea,
 select {
-    background-color: #121212;
+    background-color: var(--background);
     border-color: rgb(65, 75, 88, .5);
-    color: #C9D1D9;
+    color: var(--fontcolor);
 }
 
 input[type="email"]:focus,
@@ -135,8 +142,8 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  background-color: #121212;
-  color: #C9D1D9; 
+  background-color: var(--background);
+  color: var(--fontcolor); 
 }
 
 .copyicon {
@@ -149,5 +156,5 @@ select:focus {
 
 .modal {
     background-color: #161a1d;
-    box-shadow: none;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
 }
