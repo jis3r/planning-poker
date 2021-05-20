@@ -108,6 +108,13 @@ var app = (function (exports) {
         node.addEventListener(event, handler, options);
         return () => node.removeEventListener(event, handler, options);
     }
+    function stop_propagation(fn) {
+        return function (event) {
+            event.stopPropagation();
+            // @ts-ignore
+            return fn.call(this, event);
+        };
+    }
     function attr(node, attribute, value) {
         if (value == null)
             node.removeAttribute(attribute);
@@ -3778,85 +3785,95 @@ var app = (function (exports) {
     const file$4 = "src\\components\\Modal_Leave.svelte";
 
     function create_fragment$4(ctx) {
-    	let div6;
-    	let div5;
-    	let div1;
     	let div0;
-    	let t1;
-    	let div4;
+    	let t0;
+    	let div7;
+    	let div6;
     	let div2;
-    	let button0;
-    	let t3;
+    	let div1;
+    	let t2;
+    	let div5;
     	let div3;
+    	let button0;
+    	let t4;
+    	let div4;
     	let button1;
-    	let div6_transition;
+    	let div7_transition;
     	let current;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			div6 = element("div");
-    			div5 = element("div");
-    			div1 = element("div");
     			div0 = element("div");
-    			div0.textContent = "Do you really want to leave this lobby?";
-    			t1 = space();
-    			div4 = element("div");
+    			t0 = space();
+    			div7 = element("div");
+    			div6 = element("div");
     			div2 = element("div");
+    			div1 = element("div");
+    			div1.textContent = "Do you really want to leave this lobby?";
+    			t2 = space();
+    			div5 = element("div");
+    			div3 = element("div");
     			button0 = element("button");
     			button0.textContent = "stay";
-    			t3 = space();
-    			div3 = element("div");
+    			t4 = space();
+    			div4 = element("div");
     			button1 = element("button");
     			button1.textContent = "leave";
-    			attr_dev(div0, "class", "twelve columns");
-    			set_style(div0, "margin-bottom", "15%");
-    			set_style(div0, "margin-top", "10%");
-    			set_style(div0, "text-align", "center");
-    			add_location(div0, file$4, 17, 12, 425);
-    			attr_dev(div1, "class", "row");
-    			add_location(div1, file$4, 16, 8, 394);
+    			attr_dev(div0, "class", "underlay");
+    			add_location(div0, file$4, 20, 0, 426);
+    			attr_dev(div1, "class", "twelve columns");
+    			set_style(div1, "margin-bottom", "15%");
+    			set_style(div1, "margin-top", "10%");
+    			set_style(div1, "text-align", "center");
+    			add_location(div1, file$4, 24, 12, 600);
+    			attr_dev(div2, "class", "row");
+    			add_location(div2, file$4, 23, 8, 569);
     			attr_dev(button0, "class", "button-primary-join u-full-width");
     			attr_dev(button0, "onclick", "this.blur();");
-    			add_location(button0, file$4, 21, 16, 690);
-    			attr_dev(div2, "class", "six columns");
-    			add_location(div2, file$4, 20, 12, 647);
+    			add_location(button0, file$4, 28, 16, 865);
+    			attr_dev(div3, "class", "six columns");
+    			add_location(div3, file$4, 27, 12, 822);
     			attr_dev(button1, "class", "button-primary-negative u-full-width");
     			attr_dev(button1, "onclick", "this.blur();");
-    			add_location(button1, file$4, 24, 16, 868);
-    			attr_dev(div3, "class", "six columns");
-    			add_location(div3, file$4, 23, 12, 825);
-    			attr_dev(div4, "class", "row");
-    			set_style(div4, "margin-bottom", "10%");
-    			add_location(div4, file$4, 19, 8, 588);
-    			attr_dev(div5, "class", "container");
-    			add_location(div5, file$4, 15, 4, 361);
-    			attr_dev(div6, "class", "modal");
-    			attr_dev(div6, "id", "modal");
-    			add_location(div6, file$4, 14, 0, 309);
+    			add_location(button1, file$4, 31, 16, 1043);
+    			attr_dev(div4, "class", "six columns");
+    			add_location(div4, file$4, 30, 12, 1000);
+    			attr_dev(div5, "class", "row");
+    			set_style(div5, "margin-bottom", "10%");
+    			add_location(div5, file$4, 26, 8, 763);
+    			attr_dev(div6, "class", "container");
+    			add_location(div6, file$4, 22, 4, 536);
+    			attr_dev(div7, "class", "modal");
+    			attr_dev(div7, "id", "modal");
+    			add_location(div7, file$4, 21, 0, 456);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div6, anchor);
+    			insert_dev(target, div0, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div7, anchor);
+    			append_dev(div7, div6);
+    			append_dev(div6, div2);
+    			append_dev(div2, div1);
+    			append_dev(div6, t2);
     			append_dev(div6, div5);
-    			append_dev(div5, div1);
-    			append_dev(div1, div0);
-    			append_dev(div5, t1);
+    			append_dev(div5, div3);
+    			append_dev(div3, button0);
+    			append_dev(div5, t4);
     			append_dev(div5, div4);
-    			append_dev(div4, div2);
-    			append_dev(div2, button0);
-    			append_dev(div4, t3);
-    			append_dev(div4, div3);
-    			append_dev(div3, button1);
+    			append_dev(div4, button1);
     			current = true;
 
     			if (!mounted) {
     				dispose = [
+    					listen_dev(window, "click", /*close*/ ctx[2], false, false, false),
     					listen_dev(button0, "click", /*stay*/ ctx[0], false, false, false),
-    					listen_dev(button1, "click", /*leave*/ ctx[1], false, false, false)
+    					listen_dev(button1, "click", /*leave*/ ctx[1], false, false, false),
+    					listen_dev(div7, "click", stop_propagation(/*click_handler*/ ctx[3]), false, false, true)
     				];
 
     				mounted = true;
@@ -3867,20 +3884,22 @@ var app = (function (exports) {
     			if (current) return;
 
     			add_render_callback(() => {
-    				if (!div6_transition) div6_transition = create_bidirectional_transition(div6, fade, {}, true);
-    				div6_transition.run(1);
+    				if (!div7_transition) div7_transition = create_bidirectional_transition(div7, fade, {}, true);
+    				div7_transition.run(1);
     			});
 
     			current = true;
     		},
     		o: function outro(local) {
-    			if (!div6_transition) div6_transition = create_bidirectional_transition(div6, fade, {}, false);
-    			div6_transition.run(0);
+    			if (!div7_transition) div7_transition = create_bidirectional_transition(div7, fade, {}, false);
+    			div7_transition.run(0);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div6);
-    			if (detaching && div6_transition) div6_transition.end();
+    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div7);
+    			if (detaching && div7_transition) div7_transition.end();
     			mounted = false;
     			run_all(dispose);
     		}
@@ -3901,6 +3920,7 @@ var app = (function (exports) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Modal_Leave", slots, []);
     	const dispatch = createEventDispatcher();
+    	let clicked = false;
 
     	const stay = () => {
     		dispatch("leave", false);
@@ -3910,21 +3930,40 @@ var app = (function (exports) {
     		dispatch("leave", true);
     	};
 
+    	const close = () => {
+    		if (clicked) stay();
+    		clicked = true;
+    	};
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Modal_Leave> was created with unknown prop '${key}'`);
     	});
 
+    	function click_handler(event) {
+    		bubble($$self, event);
+    	}
+
     	$$self.$capture_state = () => ({
     		createEventDispatcher,
     		fade,
     		dispatch,
+    		clicked,
     		stay,
-    		leave
+    		leave,
+    		close
     	});
 
-    	return [stay, leave];
+    	$$self.$inject_state = $$props => {
+    		if ("clicked" in $$props) clicked = $$props.clicked;
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [stay, leave, close, click_handler];
     }
 
     class Modal_Leave extends SvelteComponentDev {

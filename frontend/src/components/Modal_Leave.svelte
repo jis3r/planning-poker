@@ -3,6 +3,7 @@
     import { fade } from "svelte/transition";
 
     const dispatch = createEventDispatcher();
+    let clicked = false;
 
     const stay = () => {
         dispatch("leave", false)
@@ -11,8 +12,14 @@
     const leave = () => {
         dispatch("leave", true);
     }
+    const close = () => {
+        if( clicked ) stay();
+        clicked = true
+    }
+
 </script>
-<div class="modal" id="modal" transition:fade>
+<div class="underlay"></div>
+<div class="modal" id="modal" transition:fade on:click|stopPropagation=''>
     <div class="container">
         <div class="row">
             <div class="twelve columns" style="margin-bottom: 15%; margin-top: 10%; text-align: center">Do you really want to leave this lobby?</div>
@@ -27,3 +34,4 @@
         </div>
     </div>
 </div>
+<svelte:window on:click={close}/>
