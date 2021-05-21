@@ -88,9 +88,11 @@
 
     const setEstimation = (e) => {
         let tempUser = allUsers.find(user => user.id === socket.id);
-        Object.assign(tempUser, {estimation: e.detail, isReady: true});
-        replaceUser(tempUser);
-        socket.emit('estimated', e.detail);
+        if( tempUser.estimation !== e.detail ) {
+            Object.assign(tempUser, {estimation: e.detail, isReady: false});
+            replaceUser(tempUser);
+            socket.emit('estimated', e.detail);
+        }
     }
 
     // Recieve Estimation from another User
@@ -99,7 +101,10 @@
     });
 
     function replaceUser(user) {
-        if( (allUsers.length - 1) === readyUsers ) user.isReady = false;
+        if( (allUsers.length - 1) !== readyUsers ) {
+            user.isReady = true; 
+            console.log('jAHha');
+        }
         let index = allUsers.findIndex( u => u.id == user.id);
         allUsers[index] = user;
         readyUsers++;

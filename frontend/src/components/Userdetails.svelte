@@ -4,7 +4,7 @@ import { socket } from "../main";
     export let name;
     export let id;
     export let estimation;
-    export let isReady;
+    export let isReady = false;
     export let socketid;
 
 </script>
