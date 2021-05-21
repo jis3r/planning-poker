@@ -60,13 +60,14 @@ io.on('connection', socket => {
     
     //broadcasts estimation to all room-members
     socket.broadcast.to(user.room).emit('newEstimation', user);
-    user.isReady = true;
     if( checkAllEstimated(user.room) ) {
       console.log('all users estimated');
       io.to(user.room).emit('reveal', '');
+      user.isReady = false;
     }
     else {
       console.log(`waiting for all users of room ${user.room} to estimate`);
+      user.isReady = true;
     }
   });
 
