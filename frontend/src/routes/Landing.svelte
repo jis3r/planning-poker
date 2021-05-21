@@ -17,7 +17,7 @@
 <div class="row" style="margin-top: 15%; margin-bottom: 5%;" in:fade>
     <div class="nine columns" style="margin-bottom: 10%;">
         <h3>A simple, online planning poker tool.</h3>
-        <span style="font-size: 15px">Just host a session or join an existing one to start estimating your user stories.</span>        
+        <span style="font-size: 15px">Just start a session or join an existing one to estimate your user stories.</span>        
     </div>
     <div class="three columns indexbuttons" style="margin-bottom: 10%;">
         <button class="button-primary-start u-full-width" on:click={setStart}>Start</button>
