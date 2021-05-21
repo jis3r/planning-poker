@@ -1,6 +1,5 @@
 <script>
         import { fade } from "svelte/transition";
-        import { replace } from 'svelte-spa-router';
 </script>
 
 <div class="row" style="margin-top: 15%; margin-bottom: 5%;" in:fade>

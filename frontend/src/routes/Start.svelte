@@ -2,10 +2,9 @@
     import { onMount } from "svelte";
     import { fade } from 'svelte/transition';
 
-    import { setUserdata } from '../main.js';
+    import { setUserdata } from '../utils/user';
     import { validateUsername, validateRoomID } from '../utils/validate';
     import { buttonPulse  } from '../utils/animations';
-
 
 
     let userdata = {

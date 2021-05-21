@@ -1,6 +1,4 @@
 <script>
-import { socket } from "../main";
-
     export let name;
     export let id;
     export let estimation;

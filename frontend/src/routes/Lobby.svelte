@@ -3,16 +3,14 @@
     import { fade } from "svelte/transition";
     import { replace } from 'svelte-spa-router';
 
-    import {    socket,
-                setUserdata    } from "../main.js";
-    import { copyToClipboard } from '../utils/clipboard.js';
+    import {    setUserdata    } from "../utils/user";
+    import { copyToClipboard } from '../utils/clipboard';
 
     import Button_Estimation from '../components/Button_Estimation.svelte';
     import Banner from '../components/Banner.svelte';
     import Userdetails from '../components/Userdetails.svelte';
     import Modal_Leave from '../components/Modal_Leave.svelte';
     import RoomID from '../components/RoomID.svelte';
-import { object_without_properties } from "svelte/internal";
 
     export let params = {}
 
@@ -26,7 +24,7 @@ import { object_without_properties } from "svelte/internal";
     let allUsers = [];
     let average = '';
     let readyUsers = 0;
-    let modal = false
+    let modal = false;
 
     onMount(() => {
         id = params.id;

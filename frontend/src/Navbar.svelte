@@ -2,7 +2,6 @@
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
     import { replace } from 'svelte-spa-router';
-    import { changeThemeStyle } from "./main.js";
 
 
     let darktheme = true;
@@ -24,6 +23,20 @@
             changeThemeStyle( darktheme );
         }
 	});
+
+    function changeThemeStyle(darktheme) {
+        let themeStyle = document.getElementById('themeStyle');
+        if( localStorage.getItem('theme') === undefined ) {
+            localStorage.setItem('theme', 'css/dark.css');
+        }
+        if( darktheme ) {
+            themeStyle.setAttribute('href', 'css/dark.css');
+            localStorage.setItem('theme', 'css/dark.css');
+        } else {
+            themeStyle.setAttribute('href', 'css/light.css')
+            localStorage.setItem('theme', 'css/light.css');
+        }
+    }
 </script>
 
 <div class="content">

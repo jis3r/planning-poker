@@ -5,7 +5,6 @@
 	import Navbar from './Navbar.svelte';
 	import routes from './routes.js';
 
-	export let socket;
 
 	socket.on('newRoom', (newRoom) => {
         push('/room/' + newRoom);
