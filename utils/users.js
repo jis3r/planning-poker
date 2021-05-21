@@ -29,7 +29,8 @@ function validateRoomID(roomID) {
 
 function userJoin(id, username, room) {
     let estimation = '';
-    const user = { id, username, room, estimation };
+    let isReady = false;
+    const user = { id, username, room, estimation, isReady };
   
     users.push(user);
   
@@ -71,11 +72,11 @@ function hasUserEstimated(user){
 
 //resets the estimations of all users
 function resetEstimations(room){
-    let test = getRoomUsers(room)
-    for(let i = 0; i < test.length; i++) {
-        console.log(test[i]);
-        test[i].estimation = '';
-        test[i].isReady = false;
+    let reset = getRoomUsers(room)
+    for(let i = 0; i < reset.length; i++) {
+        console.log(reset[i]);
+        reset[i].estimation = '';
+        reset[i].isReady = false;
     }
     console.log('all estimations were sucessfully reseted.', users);
 }

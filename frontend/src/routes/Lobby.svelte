@@ -12,6 +12,7 @@
     import Userdetails from '../components/Userdetails.svelte';
     import Modal_Leave from '../components/Modal_Leave.svelte';
     import RoomID from '../components/RoomID.svelte';
+import { object_without_properties } from "svelte/internal";
 
     export let params = {}
 
@@ -88,9 +89,10 @@
 
     const setEstimation = (e) => {
         let tempUser = allUsers.find(user => user.id === socket.id);
-        if( tempUser.estimation !== e.detail ) {
-            Object.assign(tempUser, {estimation: e.detail, isReady: false});
-            replaceUser(tempUser);
+        let user = Object.assign( {}, tempUser );
+        if( user.estimation !== e.detail ) {
+            user.estimation = e.detail;
+            replaceUser(user);
             socket.emit('estimated', e.detail);
         }
     }
@@ -103,11 +105,12 @@
     function replaceUser(user) {
         if( (allUsers.length - 1) !== readyUsers ) {
             user.isReady = true; 
-            console.log('jAHha');
         }
         let index = allUsers.findIndex( u => u.id == user.id);
+        if(allUsers[index].estimation === '') {
+            readyUsers++; 
+        } 
         allUsers[index] = user;
-        readyUsers++;
     }
 
     socket.on('reveal', (foo) => {
