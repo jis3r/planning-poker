@@ -4583,63 +4583,63 @@ var app = (function (exports) {
     			if_block1_anchor = empty();
     			if (img0.src !== (img0_src_value = "/img/copy.svg")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "copy");
-    			add_location(img0, file$2, 172, 16, 5018);
+    			add_location(img0, file$2, 172, 16, 5029);
     			attr_dev(div0, "class", "copyicon u-pull-left");
-    			add_location(div0, file$2, 171, 12, 4966);
+    			add_location(div0, file$2, 171, 12, 4977);
     			attr_dev(div1, "class", "four columns");
-    			add_location(div1, file$2, 169, 8, 4884);
+    			add_location(div1, file$2, 169, 8, 4895);
     			attr_dev(div2, "class", "four columns");
     			attr_dev(div2, "id", "bannerfield");
-    			add_location(div2, file$2, 175, 8, 5122);
+    			add_location(div2, file$2, 175, 8, 5133);
     			attr_dev(img1, "class", "reloadicon");
     			if (img1.src !== (img1_src_value = "/img/reload.svg")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "reload");
-    			add_location(img1, file$2, 184, 16, 5575);
+    			add_location(img1, file$2, 184, 16, 5586);
     			attr_dev(button0, "class", "button-primary-join u-full-width");
     			set_style(button0, "display", "grid");
     			set_style(button0, "place-items", "center");
     			attr_dev(button0, "onclick", "this.blur();");
-    			add_location(button0, file$2, 183, 12, 5418);
+    			add_location(button0, file$2, 183, 12, 5429);
     			attr_dev(div3, "class", "two columns");
-    			add_location(div3, file$2, 182, 8, 5379);
+    			add_location(div3, file$2, 182, 8, 5390);
     			attr_dev(button1, "class", "button-primary-negative u-full-width");
-    			add_location(button1, file$2, 188, 12, 5722);
+    			add_location(button1, file$2, 188, 12, 5733);
     			attr_dev(div4, "class", "two columns");
-    			add_location(div4, file$2, 187, 8, 5683);
+    			add_location(div4, file$2, 187, 8, 5694);
     			attr_dev(div5, "class", "row");
     			set_style(div5, "margin-top", "15%");
-    			add_location(div5, file$2, 168, 4, 4832);
-    			add_location(th0, file$2, 197, 24, 6042);
-    			add_location(th1, file$2, 198, 24, 6084);
-    			add_location(tr0, file$2, 196, 20, 6012);
-    			add_location(thead, file$2, 195, 16, 5983);
-    			add_location(td0, file$2, 210, 24, 6603);
+    			add_location(div5, file$2, 168, 4, 4843);
+    			add_location(th0, file$2, 197, 24, 6053);
+    			add_location(th1, file$2, 198, 24, 6095);
+    			add_location(tr0, file$2, 196, 20, 6023);
+    			add_location(thead, file$2, 195, 16, 5994);
+    			add_location(td0, file$2, 210, 24, 6614);
     			attr_dev(td1, "id", "AuMgIVUHfSHpDpgMAAAB");
     			set_style(td1, "color", "#FCA311");
-    			add_location(td1, file$2, 211, 24, 6645);
-    			add_location(tr1, file$2, 209, 20, 6573);
+    			add_location(td1, file$2, 211, 24, 6656);
+    			add_location(tr1, file$2, 209, 20, 6584);
     			attr_dev(tbody, "id", "playerlist");
-    			add_location(tbody, file$2, 201, 16, 6174);
+    			add_location(tbody, file$2, 201, 16, 6185);
     			attr_dev(table, "class", "u-full-width");
-    			add_location(table, file$2, 194, 12, 5937);
+    			add_location(table, file$2, 194, 12, 5948);
     			attr_dev(div6, "class", "four columns");
-    			add_location(div6, file$2, 193, 8, 5897);
-    			add_location(h40, file$2, 217, 12, 6853);
+    			add_location(div6, file$2, 193, 8, 5908);
+    			add_location(h40, file$2, 217, 12, 6864);
     			attr_dev(div7, "class", "four columns");
-    			add_location(div7, file$2, 216, 8, 6813);
-    			add_location(h41, file$2, 220, 12, 6930);
+    			add_location(div7, file$2, 216, 8, 6824);
+    			add_location(h41, file$2, 220, 12, 6941);
     			attr_dev(div8, "class", "three columns");
-    			add_location(div8, file$2, 219, 8, 6889);
+    			add_location(div8, file$2, 219, 8, 6900);
     			attr_dev(div9, "class", "row");
     			set_style(div9, "margin-top", "5%");
-    			add_location(div9, file$2, 192, 4, 5846);
+    			add_location(div9, file$2, 192, 4, 5857);
     			attr_dev(div10, "class", "row");
     			set_style(div10, "margin-top", "5%");
-    			add_location(div10, file$2, 224, 4, 6976);
+    			add_location(div10, file$2, 224, 4, 6987);
     			attr_dev(div11, "class", "row lowerrow");
-    			add_location(div11, file$2, 229, 4, 7184);
+    			add_location(div11, file$2, 229, 4, 7195);
     			attr_dev(div12, "class", "content");
-    			add_location(div12, file$2, 167, 0, 4797);
+    			add_location(div12, file$2, 167, 0, 4808);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5042,13 +5042,13 @@ var app = (function (exports) {
     	});
 
     	function replaceUser(user) {
-    		if (allUsers.length - 1 !== readyUsers) {
-    			user.isReady = true;
-    		}
-
     		let index = allUsers.findIndex(u => u.id == user.id);
 
     		if (allUsers[index].estimation === "") {
+    			if (allUsers.length - 1 !== readyUsers) {
+    				user.isReady = true;
+    			}
+
     			readyUsers++;
     		}
 

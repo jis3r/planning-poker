@@ -103,11 +103,11 @@ import { object_without_properties } from "svelte/internal";
     });
 
     function replaceUser(user) {
-        if( (allUsers.length - 1) !== readyUsers ) {
-            user.isReady = true; 
-        }
         let index = allUsers.findIndex( u => u.id == user.id);
         if(allUsers[index].estimation === '') {
+            if( (allUsers.length - 1) !== readyUsers ) {
+                user.isReady = true;
+            }
             readyUsers++; 
         } 
         allUsers[index] = user;
