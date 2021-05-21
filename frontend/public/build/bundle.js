@@ -4120,7 +4120,7 @@ var app = (function (exports) {
     	return child_ctx;
     }
 
-    // (179:12) {:else}
+    // (177:12) {:else}
     function create_else_block(ctx) {
     	let banner;
     	let current;
@@ -4157,14 +4157,14 @@ var app = (function (exports) {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(179:12) {:else}",
+    		source: "(177:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (177:12) {#if bannerIsVisible}
+    // (175:12) {#if bannerIsVisible}
     function create_if_block_1(ctx) {
     	let banner;
     	let current;
@@ -4208,14 +4208,14 @@ var app = (function (exports) {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(177:12) {#if bannerIsVisible}",
+    		source: "(175:12) {#if bannerIsVisible}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (203:20) {#each allUsers as user}
+    // (201:20) {#each allUsers as user}
     function create_each_block_2(ctx) {
     	let userdetails;
     	let current;
@@ -4265,14 +4265,14 @@ var app = (function (exports) {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(203:20) {#each allUsers as user}",
+    		source: "(201:20) {#each allUsers as user}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (226:8) {#each firstRowValues as currentValue}
+    // (224:8) {#each firstRowValues as currentValue}
     function create_each_block_1(ctx) {
     	let button_estimation;
     	let current;
@@ -4311,14 +4311,14 @@ var app = (function (exports) {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(226:8) {#each firstRowValues as currentValue}",
+    		source: "(224:8) {#each firstRowValues as currentValue}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (231:8) {#each secondRowValues as currentValue}
+    // (229:8) {#each secondRowValues as currentValue}
     function create_each_block(ctx) {
     	let button_estimation;
     	let current;
@@ -4357,14 +4357,14 @@ var app = (function (exports) {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(231:8) {#each secondRowValues as currentValue}",
+    		source: "(229:8) {#each secondRowValues as currentValue}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (237:0) {#if modal}
+    // (235:0) {#if modal}
     function create_if_block(ctx) {
     	let modal_leave;
     	let current;
@@ -4398,7 +4398,7 @@ var app = (function (exports) {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(237:0) {#if modal}",
+    		source: "(235:0) {#if modal}",
     		ctx
     	});
 
@@ -4583,63 +4583,63 @@ var app = (function (exports) {
     			if_block1_anchor = empty();
     			if (img0.src !== (img0_src_value = "/img/copy.svg")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "copy");
-    			add_location(img0, file$2, 172, 16, 5029);
+    			add_location(img0, file$2, 170, 16, 4995);
     			attr_dev(div0, "class", "copyicon u-pull-left");
-    			add_location(div0, file$2, 171, 12, 4977);
+    			add_location(div0, file$2, 169, 12, 4943);
     			attr_dev(div1, "class", "four columns");
-    			add_location(div1, file$2, 169, 8, 4895);
+    			add_location(div1, file$2, 167, 8, 4861);
     			attr_dev(div2, "class", "four columns");
     			attr_dev(div2, "id", "bannerfield");
-    			add_location(div2, file$2, 175, 8, 5133);
+    			add_location(div2, file$2, 173, 8, 5099);
     			attr_dev(img1, "class", "reloadicon");
     			if (img1.src !== (img1_src_value = "/img/reload.svg")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "reload");
-    			add_location(img1, file$2, 184, 16, 5586);
+    			add_location(img1, file$2, 182, 16, 5552);
     			attr_dev(button0, "class", "button-primary-join u-full-width");
     			set_style(button0, "display", "grid");
     			set_style(button0, "place-items", "center");
     			attr_dev(button0, "onclick", "this.blur();");
-    			add_location(button0, file$2, 183, 12, 5429);
+    			add_location(button0, file$2, 181, 12, 5395);
     			attr_dev(div3, "class", "two columns");
-    			add_location(div3, file$2, 182, 8, 5390);
+    			add_location(div3, file$2, 180, 8, 5356);
     			attr_dev(button1, "class", "button-primary-negative u-full-width");
-    			add_location(button1, file$2, 188, 12, 5733);
+    			add_location(button1, file$2, 186, 12, 5699);
     			attr_dev(div4, "class", "two columns");
-    			add_location(div4, file$2, 187, 8, 5694);
+    			add_location(div4, file$2, 185, 8, 5660);
     			attr_dev(div5, "class", "row");
     			set_style(div5, "margin-top", "15%");
-    			add_location(div5, file$2, 168, 4, 4843);
-    			add_location(th0, file$2, 197, 24, 6053);
-    			add_location(th1, file$2, 198, 24, 6095);
-    			add_location(tr0, file$2, 196, 20, 6023);
-    			add_location(thead, file$2, 195, 16, 5994);
-    			add_location(td0, file$2, 210, 24, 6614);
+    			add_location(div5, file$2, 166, 4, 4809);
+    			add_location(th0, file$2, 195, 24, 6019);
+    			add_location(th1, file$2, 196, 24, 6061);
+    			add_location(tr0, file$2, 194, 20, 5989);
+    			add_location(thead, file$2, 193, 16, 5960);
+    			add_location(td0, file$2, 208, 24, 6580);
     			attr_dev(td1, "id", "AuMgIVUHfSHpDpgMAAAB");
     			set_style(td1, "color", "#FCA311");
-    			add_location(td1, file$2, 211, 24, 6656);
-    			add_location(tr1, file$2, 209, 20, 6584);
+    			add_location(td1, file$2, 209, 24, 6622);
+    			add_location(tr1, file$2, 207, 20, 6550);
     			attr_dev(tbody, "id", "playerlist");
-    			add_location(tbody, file$2, 201, 16, 6185);
+    			add_location(tbody, file$2, 199, 16, 6151);
     			attr_dev(table, "class", "u-full-width");
-    			add_location(table, file$2, 194, 12, 5948);
+    			add_location(table, file$2, 192, 12, 5914);
     			attr_dev(div6, "class", "four columns");
-    			add_location(div6, file$2, 193, 8, 5908);
-    			add_location(h40, file$2, 217, 12, 6864);
+    			add_location(div6, file$2, 191, 8, 5874);
+    			add_location(h40, file$2, 215, 12, 6830);
     			attr_dev(div7, "class", "four columns");
-    			add_location(div7, file$2, 216, 8, 6824);
-    			add_location(h41, file$2, 220, 12, 6941);
+    			add_location(div7, file$2, 214, 8, 6790);
+    			add_location(h41, file$2, 218, 12, 6907);
     			attr_dev(div8, "class", "three columns");
-    			add_location(div8, file$2, 219, 8, 6900);
+    			add_location(div8, file$2, 217, 8, 6866);
     			attr_dev(div9, "class", "row");
     			set_style(div9, "margin-top", "5%");
-    			add_location(div9, file$2, 192, 4, 5857);
+    			add_location(div9, file$2, 190, 4, 5823);
     			attr_dev(div10, "class", "row");
     			set_style(div10, "margin-top", "5%");
-    			add_location(div10, file$2, 224, 4, 6987);
+    			add_location(div10, file$2, 222, 4, 6953);
     			attr_dev(div11, "class", "row lowerrow");
-    			add_location(div11, file$2, 229, 4, 7195);
+    			add_location(div11, file$2, 227, 4, 7161);
     			attr_dev(div12, "class", "content");
-    			add_location(div12, file$2, 167, 0, 4808);
+    			add_location(div12, file$2, 165, 0, 4774);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5045,10 +5045,7 @@ var app = (function (exports) {
     		let index = allUsers.findIndex(u => u.id == user.id);
 
     		if (allUsers[index].estimation === "") {
-    			if (allUsers.length - 1 !== readyUsers) {
-    				user.isReady = true;
-    			}
-
+    			if (allUsers.length - 1 !== readyUsers) user.isReady = true;
     			readyUsers++;
     		}
 

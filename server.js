@@ -56,11 +56,11 @@ io.on('connection', socket => {
   socket.on('estimated', (estimation) => {
     let user = getCurrentUser(socket.id);
     user.estimation = estimation;
-    user.isReady = true;
     console.log('User ', user.id, 'with alias ', user.username, 'estimated ', user.estimation);
     
     //broadcasts estimation to all room-members
     socket.broadcast.to(user.room).emit('newEstimation', user);
+    user.isReady = true;
     if( checkAllEstimated(user.room) ) {
       console.log('all users estimated');
       io.to(user.room).emit('reveal', '');
