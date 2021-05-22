@@ -17,6 +17,3 @@
 		<Router {routes}/>
 	</div>
 </main>
-
-<style>
-</style>

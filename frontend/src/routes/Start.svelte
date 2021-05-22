@@ -5,11 +5,16 @@
     import { setUserdata } from '../utils/user';
     import { validateUsername, validateRoomID } from '../utils/validate';
     import { buttonPulse  } from '../utils/animations';
-
+    
+    import Checkbox_Spectator from '../components/Checkbox_Spectator.svelte';
 
     let userdata = {
-        username: "",
-        roomID: ""
+        id: '', 
+        username: '', 
+        room: '', 
+        estimation: '', 
+        isReady: false, 
+        role: 'member'
     }
 
     onMount(() => {
@@ -17,9 +22,14 @@
         if( name )  userdata.username = name; document.getElementById('submitButton').focus();
 	});
 
+    const setRole = (e) => {
+        if( e.detail ) userdata.role = 'spectator';
+        if( !e.detail ) userdata.role = 'member';
+    }
+    
     const submit = () => {
         if( validateUsername(userdata.username) && validateRoomID("00000") ) {
-            setUserdata(userdata.username, userdata.roomID);
+            setUserdata(userdata);
         }
         else {
             buttonPulse();
@@ -35,5 +45,6 @@
     </div>
     <div class="three columns">
         <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit}>submit</button>
+        <Checkbox_Spectator on:isSpectator={setRole}/>
     </div>
 </div>
