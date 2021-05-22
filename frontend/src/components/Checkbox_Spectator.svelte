@@ -9,7 +9,7 @@
 
     const toggleSpectator = () => {
         isSpectator = !isSpectator;
-        dispatch("isSpectator", isSpectator);
+        dispatch("setRole", isSpectator);
     }
 </script>
 

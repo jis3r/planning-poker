@@ -35,7 +35,7 @@ io.on('connection', socket => {
     }
     socket.emit('newRoom', userdata.roomID);
     console.log('Server recieved userdata:', userdata.username, '\n', userdata.roomID);
-    const user = userJoin(socket.id, userdata.username, userdata.roomID);
+    const user = userJoin(socket.id, userdata.username, userdata.roomID, userdata.role);
     socket.join(user.room);
     
     socket.on('ready', function(){

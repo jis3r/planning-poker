@@ -27,10 +27,10 @@ function validateRoomID(roomID) {
     }
 }
 
-function userJoin(id, username, room) {
+function userJoin(id, username, room, role) {
     let estimation = '';
     let isReady = false;
-    const user = { id, username, room, estimation, isReady };
+    const user = { id, username, room, estimation, isReady, role };
   
     users.push(user);
   

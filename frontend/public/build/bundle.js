@@ -2394,9 +2394,19 @@ var app = (function () {
     	}
     }
 
-    function setUserdata(userdata) {
-        localStorage.setItem('username', userdata.name);
-        localStorage.setItem('role', userdata.role);
+    let userdata = {
+        username: '', 
+        roomID: '', 
+        role: ''
+    };
+    function setUserdata(name, id, role) {
+        userdata.username = name || 'user';
+        userdata.roomID = id || '00000';
+        userdata.role = role || 'member';
+
+        console.log(userdata);
+        localStorage.setItem('username', name);
+        localStorage.setItem('role', role);
         socket.connect();
         socket.emit('joinRoom', userdata);
     }
@@ -2434,7 +2444,7 @@ var app = (function () {
     			set_style(img, "vertical-align", "middle");
     			if (img.src !== (img_src_value = "img/eye-off.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "unchecked");
-    			add_location(img, file$a, 19, 4, 532);
+    			add_location(img, file$a, 19, 4, 528);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -2476,7 +2486,7 @@ var app = (function () {
     			set_style(img, "vertical-align", "middle");
     			if (img.src !== (img_src_value = "img/eye.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "checked");
-    			add_location(img, file$a, 17, 4, 436);
+    			add_location(img, file$a, 17, 4, 432);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -2529,9 +2539,9 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "Join as spectator";
     			set_style(span, "vertical-align", "middle");
-    			add_location(span, file$a, 21, 4, 632);
+    			add_location(span, file$a, 21, 4, 628);
     			set_style(div, "vertical-align", "middle");
-    			add_location(div, file$a, 15, 0, 343);
+    			add_location(div, file$a, 15, 0, 339);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2590,7 +2600,7 @@ var app = (function () {
 
     	const toggleSpectator = () => {
     		$$invalidate(0, isSpectator = !isSpectator);
-    		dispatch("isSpectator", isSpectator);
+    		dispatch("setRole", isSpectator);
     	};
 
     	const writable_props = ["isSpectator"];
@@ -2664,8 +2674,13 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	checkbox_spectator = new Checkbox_Spectator({ $$inline: true });
-    	checkbox_spectator.$on("isSpectator", /*setRole*/ ctx[1]);
+
+    	checkbox_spectator = new Checkbox_Spectator({
+    			props: { isSpectator: /*isSpectator*/ ctx[2] },
+    			$$inline: true
+    		});
+
+    	checkbox_spectator.$on("setRole", /*setRole*/ ctx[3]);
 
     	const block = {
     		c: function create() {
@@ -2692,26 +2707,26 @@ var app = (function () {
     			attr_dev(input0, "maxlength", "20");
     			attr_dev(input0, "autocomplete", "off");
     			input0.required = true;
-    			add_location(input0, file$9, 41, 8, 1184);
+    			add_location(input0, file$9, 38, 8, 1162);
     			attr_dev(label, "id", "usernameLabel");
     			attr_dev(label, "for", "usernameInput");
-    			add_location(label, file$9, 42, 8, 1380);
+    			add_location(label, file$9, 39, 8, 1349);
     			attr_dev(input1, "type", "hidden");
     			attr_dev(input1, "name", "room");
     			attr_dev(input1, "id", "roomIDInput");
-    			add_location(input1, file$9, 43, 8, 1471);
+    			add_location(input1, file$9, 40, 8, 1440);
     			attr_dev(div0, "class", "nine columns");
-    			add_location(div0, file$9, 40, 4, 1148);
+    			add_location(div0, file$9, 37, 4, 1126);
     			attr_dev(button, "class", "button-primary button-submit u-full-width");
     			attr_dev(button, "type", "submit");
     			attr_dev(button, "id", "submitButton");
     			set_style(button, "transition", "500ms");
-    			add_location(button, file$9, 46, 8, 1605);
+    			add_location(button, file$9, 43, 8, 1565);
     			attr_dev(div1, "class", "three columns");
-    			add_location(div1, file$9, 45, 4, 1568);
+    			add_location(div1, file$9, 42, 4, 1528);
     			attr_dev(div2, "class", "row");
     			set_style(div2, "margin-top", "15%");
-    			add_location(div2, file$9, 39, 0, 1092);
+    			add_location(div2, file$9, 36, 0, 1070);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2720,12 +2735,12 @@ var app = (function () {
     			insert_dev(target, div2, anchor);
     			append_dev(div2, div0);
     			append_dev(div0, input0);
-    			set_input_value(input0, /*userdata*/ ctx[0].username);
+    			set_input_value(input0, /*username*/ ctx[0]);
     			append_dev(div0, t0);
     			append_dev(div0, label);
     			append_dev(div0, t2);
     			append_dev(div0, input1);
-    			set_input_value(input1, /*userdata*/ ctx[0].roomID);
+    			set_input_value(input1, /*roomID*/ ctx[1]);
     			append_dev(div2, t3);
     			append_dev(div2, div1);
     			append_dev(div1, button);
@@ -2735,21 +2750,21 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[3]),
-    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[4]),
-    					listen_dev(button, "click", /*submit*/ ctx[2], false, false, false)
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[5]),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[6]),
+    					listen_dev(button, "click", /*submit*/ ctx[4], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*userdata*/ 1 && input0.value !== /*userdata*/ ctx[0].username) {
-    				set_input_value(input0, /*userdata*/ ctx[0].username);
+    			if (dirty & /*username*/ 1 && input0.value !== /*username*/ ctx[0]) {
+    				set_input_value(input0, /*username*/ ctx[0]);
     			}
 
-    			if (dirty & /*userdata*/ 1) {
-    				set_input_value(input1, /*userdata*/ ctx[0].roomID);
+    			if (dirty & /*roomID*/ 2) {
+    				set_input_value(input1, /*roomID*/ ctx[1]);
     			}
     		},
     		i: function intro(local) {
@@ -2791,30 +2806,28 @@ var app = (function () {
     function instance$9($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Start", slots, []);
-
-    	let userdata = {
-    		id: "",
-    		username: "",
-    		room: "",
-    		estimation: "",
-    		isReady: false,
-    		role: "member"
-    	};
+    	let username = "";
+    	let roomID = "";
+    	let role = "member";
+    	let isSpectator = false;
 
     	onMount(() => {
-    		let name = localStorage.getItem("username");
-    		if (name) $$invalidate(0, userdata.username = name, userdata);
+    		let localname = localStorage.getItem("username");
+
+    		//isSpectator = localStorage.getItem('role');
+    		if (localname) $$invalidate(0, username = localname);
+
     		document.getElementById("submitButton").focus();
     	});
 
     	const setRole = e => {
-    		if (e.detail) $$invalidate(0, userdata.role = "spectator", userdata);
-    		if (!e.detail) $$invalidate(0, userdata.role = "member", userdata);
+    		if (e.detail) role = "spectator";
+    		if (!e.detail) role = "member";
     	};
 
     	const submit = () => {
-    		if (validateUsername(userdata.username) && validateRoomID("00000")) {
-    			setUserdata(userdata);
+    		if (validateUsername(username) && validateRoomID("00000")) {
+    			setUserdata(username, roomID, role);
     		} else {
     			buttonPulse();
     		}
@@ -2827,13 +2840,13 @@ var app = (function () {
     	});
 
     	function input0_input_handler() {
-    		userdata.username = this.value;
-    		$$invalidate(0, userdata);
+    		username = this.value;
+    		$$invalidate(0, username);
     	}
 
     	function input1_input_handler() {
-    		userdata.roomID = this.value;
-    		$$invalidate(0, userdata);
+    		roomID = this.value;
+    		$$invalidate(1, roomID);
     	}
 
     	$$self.$capture_state = () => ({
@@ -2844,20 +2857,34 @@ var app = (function () {
     		validateRoomID,
     		buttonPulse,
     		Checkbox_Spectator,
-    		userdata,
+    		username,
+    		roomID,
+    		role,
+    		isSpectator,
     		setRole,
     		submit
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("userdata" in $$props) $$invalidate(0, userdata = $$props.userdata);
+    		if ("username" in $$props) $$invalidate(0, username = $$props.username);
+    		if ("roomID" in $$props) $$invalidate(1, roomID = $$props.roomID);
+    		if ("role" in $$props) role = $$props.role;
+    		if ("isSpectator" in $$props) $$invalidate(2, isSpectator = $$props.isSpectator);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [userdata, setRole, submit, input0_input_handler, input1_input_handler];
+    	return [
+    		username,
+    		roomID,
+    		isSpectator,
+    		setRole,
+    		submit,
+    		input0_input_handler,
+    		input1_input_handler
+    	];
     }
 
     class Start extends SvelteComponentDev {
@@ -2877,7 +2904,7 @@ var app = (function () {
     /* src\routes\Join.svelte generated by Svelte v3.38.2 */
     const file$8 = "src\\routes\\Join.svelte";
 
-    // (58:0) {:else}
+    // (54:0) {:else}
     function create_else_block$3(ctx) {
     	let div3;
     	let div0;
@@ -2898,8 +2925,13 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	checkbox_spectator = new Checkbox_Spectator({ $$inline: true });
-    	checkbox_spectator.$on("isSpectator", /*setRole*/ ctx[2]);
+
+    	checkbox_spectator = new Checkbox_Spectator({
+    			props: { isSpectator: /*isSpectator*/ ctx[3] },
+    			$$inline: true
+    		});
+
+    	checkbox_spectator.$on("setRole", /*setRole*/ ctx[4]);
 
     	const block = {
     		c: function create() {
@@ -2930,11 +2962,11 @@ var app = (function () {
     			attr_dev(input0, "maxlength", "20");
     			attr_dev(input0, "autocomplete", "off");
     			input0.required = true;
-    			add_location(input0, file$8, 60, 12, 2172);
+    			add_location(input0, file$8, 56, 12, 2139);
     			attr_dev(label0, "for", "usernameInput");
-    			add_location(label0, file$8, 61, 12, 2372);
+    			add_location(label0, file$8, 57, 12, 2330);
     			attr_dev(div0, "class", "five columns");
-    			add_location(div0, file$8, 59, 8, 2132);
+    			add_location(div0, file$8, 55, 8, 2099);
     			attr_dev(input1, "class", "u-full-width");
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "12345");
@@ -2944,33 +2976,33 @@ var app = (function () {
     			attr_dev(input1, "maxlength", "5");
     			attr_dev(input1, "autocomplete", "off");
     			input1.required = true;
-    			add_location(input1, file$8, 64, 12, 2500);
+    			add_location(input1, file$8, 60, 12, 2458);
     			attr_dev(label1, "for", "roomIdInput");
-    			add_location(label1, file$8, 65, 12, 2688);
+    			add_location(label1, file$8, 61, 12, 2637);
     			attr_dev(div1, "class", "four columns");
-    			add_location(div1, file$8, 63, 8, 2460);
+    			add_location(div1, file$8, 59, 8, 2418);
     			attr_dev(button, "class", "button-primary button-submit u-full-width");
     			attr_dev(button, "type", "submit");
     			attr_dev(button, "id", "submitButton");
     			set_style(button, "transition", "500ms");
-    			add_location(button, file$8, 68, 12, 2813);
+    			add_location(button, file$8, 64, 12, 2762);
     			attr_dev(div2, "class", "three columns");
-    			add_location(div2, file$8, 67, 8, 2772);
+    			add_location(div2, file$8, 63, 8, 2721);
     			attr_dev(div3, "class", "row");
     			set_style(div3, "margin-top", "15%");
-    			add_location(div3, file$8, 58, 4, 2072);
+    			add_location(div3, file$8, 54, 4, 2039);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
     			append_dev(div3, div0);
     			append_dev(div0, input0);
-    			set_input_value(input0, /*userdata*/ ctx[0].username);
+    			set_input_value(input0, /*username*/ ctx[0]);
     			append_dev(div0, t0);
     			append_dev(div0, label0);
     			append_dev(div3, t2);
     			append_dev(div3, div1);
     			append_dev(div1, input1);
-    			set_input_value(input1, /*userdata*/ ctx[0].roomID);
+    			set_input_value(input1, /*roomID*/ ctx[1]);
     			append_dev(div1, t3);
     			append_dev(div1, label1);
     			append_dev(div3, t5);
@@ -2982,21 +3014,21 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input0, "input", /*input0_input_handler_1*/ ctx[7]),
-    					listen_dev(input1, "input", /*input1_input_handler_1*/ ctx[8]),
-    					listen_dev(button, "click", /*submit*/ ctx[3], false, false, false)
+    					listen_dev(input0, "input", /*input0_input_handler_1*/ ctx[9]),
+    					listen_dev(input1, "input", /*input1_input_handler_1*/ ctx[10]),
+    					listen_dev(button, "click", /*submit*/ ctx[5], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*userdata*/ 1 && input0.value !== /*userdata*/ ctx[0].username) {
-    				set_input_value(input0, /*userdata*/ ctx[0].username);
+    			if (dirty & /*username*/ 1 && input0.value !== /*username*/ ctx[0]) {
+    				set_input_value(input0, /*username*/ ctx[0]);
     			}
 
-    			if (dirty & /*userdata*/ 1 && input1.value !== /*userdata*/ ctx[0].roomID) {
-    				set_input_value(input1, /*userdata*/ ctx[0].roomID);
+    			if (dirty & /*roomID*/ 2 && input1.value !== /*roomID*/ ctx[1]) {
+    				set_input_value(input1, /*roomID*/ ctx[1]);
     			}
     		},
     		i: function intro(local) {
@@ -3028,14 +3060,14 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(58:0) {:else}",
+    		source: "(54:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (46:0) {#if hasID}
+    // (42:0) {#if hasID}
     function create_if_block$3(ctx) {
     	let div2;
     	let div0;
@@ -3053,8 +3085,13 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	checkbox_spectator = new Checkbox_Spectator({ $$inline: true });
-    	checkbox_spectator.$on("isSpectator", /*setRole*/ ctx[2]);
+
+    	checkbox_spectator = new Checkbox_Spectator({
+    			props: { isSpectator: /*isSpectator*/ ctx[3] },
+    			$$inline: true
+    		});
+
+    	checkbox_spectator.$on("setRole", /*setRole*/ ctx[4]);
 
     	const block = {
     		c: function create() {
@@ -3081,37 +3118,37 @@ var app = (function () {
     			attr_dev(input0, "maxlength", "20");
     			attr_dev(input0, "autocomplete", "off");
     			input0.required = true;
-    			add_location(input0, file$8, 48, 12, 1379);
+    			add_location(input0, file$8, 44, 12, 1342);
     			attr_dev(label, "id", "usernameLabel");
     			attr_dev(label, "for", "usernameInput");
-    			add_location(label, file$8, 49, 12, 1579);
+    			add_location(label, file$8, 45, 12, 1533);
     			attr_dev(input1, "type", "hidden");
     			attr_dev(input1, "name", "room");
     			attr_dev(input1, "id", "roomIDInput");
-    			add_location(input1, file$8, 50, 12, 1674);
+    			add_location(input1, file$8, 46, 12, 1628);
     			attr_dev(div0, "class", "nine columns");
-    			add_location(div0, file$8, 47, 8, 1339);
+    			add_location(div0, file$8, 43, 8, 1302);
     			attr_dev(button, "class", "button-primary button-submit u-full-width");
     			attr_dev(button, "type", "submit");
     			attr_dev(button, "id", "submitButton");
     			set_style(button, "transition", "500ms");
-    			add_location(button, file$8, 53, 12, 1820);
+    			add_location(button, file$8, 49, 12, 1765);
     			attr_dev(div1, "class", "three columns");
-    			add_location(div1, file$8, 52, 8, 1779);
+    			add_location(div1, file$8, 48, 8, 1724);
     			attr_dev(div2, "class", "row");
     			set_style(div2, "margin-top", "15%");
-    			add_location(div2, file$8, 46, 4, 1279);
+    			add_location(div2, file$8, 42, 4, 1242);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
     			append_dev(div2, div0);
     			append_dev(div0, input0);
-    			set_input_value(input0, /*userdata*/ ctx[0].username);
+    			set_input_value(input0, /*username*/ ctx[0]);
     			append_dev(div0, t0);
     			append_dev(div0, label);
     			append_dev(div0, t2);
     			append_dev(div0, input1);
-    			set_input_value(input1, /*userdata*/ ctx[0].roomID);
+    			set_input_value(input1, /*roomID*/ ctx[1]);
     			append_dev(div2, t3);
     			append_dev(div2, div1);
     			append_dev(div1, button);
@@ -3121,21 +3158,21 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[5]),
-    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[6]),
-    					listen_dev(button, "click", /*submit*/ ctx[3], false, false, false)
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[7]),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[8]),
+    					listen_dev(button, "click", /*submit*/ ctx[5], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*userdata*/ 1 && input0.value !== /*userdata*/ ctx[0].username) {
-    				set_input_value(input0, /*userdata*/ ctx[0].username);
+    			if (dirty & /*username*/ 1 && input0.value !== /*username*/ ctx[0]) {
+    				set_input_value(input0, /*username*/ ctx[0]);
     			}
 
-    			if (dirty & /*userdata*/ 1) {
-    				set_input_value(input1, /*userdata*/ ctx[0].roomID);
+    			if (dirty & /*roomID*/ 2) {
+    				set_input_value(input1, /*roomID*/ ctx[1]);
     			}
     		},
     		i: function intro(local) {
@@ -3167,7 +3204,7 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(46:0) {#if hasID}",
+    		source: "(42:0) {#if hasID}",
     		ctx
     	});
 
@@ -3183,7 +3220,7 @@ var app = (function () {
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*hasID*/ ctx[1]) return 0;
+    		if (/*hasID*/ ctx[2]) return 0;
     		return 1;
     	}
 
@@ -3260,34 +3297,31 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Join", slots, []);
     	let { params = {} } = $$props;
-
-    	let userdata = {
-    		id: "",
-    		username: "",
-    		room: "",
-    		estimation: "",
-    		isReady: false,
-    		role: "member"
-    	};
-
+    	let username = "";
+    	let roomID = "";
+    	let role = "member";
+    	let isSpectator = false;
     	let hasID = false;
 
     	onMount(() => {
-    		let name = localStorage.getItem("username");
-    		if (name) $$invalidate(0, userdata.username = name, userdata);
+    		let localname = localStorage.getItem("username");
+
+    		//isSpectator = localStorage.getItem('role');
+    		if (localname) $$invalidate(0, username = localname);
+
     		document.getElementById("submitButton").focus();
-    		if (params.id) $$invalidate(1, hasID = validateRoomID(params.id));
-    		if (hasID) $$invalidate(0, userdata.roomID = params.id, userdata);
+    		if (params.id) $$invalidate(2, hasID = validateRoomID(params.id));
+    		if (hasID) $$invalidate(1, roomID = params.id);
     	});
 
     	const setRole = e => {
-    		if (e.detail) $$invalidate(0, userdata.role = "spectator", userdata);
-    		if (!e.detail) $$invalidate(0, userdata.role = "member", userdata);
+    		if (e.detail) role = "spectator";
+    		if (!e.detail) role = "member";
     	};
 
     	const submit = () => {
-    		if (validateUsername(userdata.username) && validateRoomID(userdata.roomID)) {
-    			setUserdata(userdata);
+    		if (validateUsername(username) && validateRoomID(roomID)) {
+    			setUserdata(username, roomID, role);
     		} else {
     			buttonPulse();
     		}
@@ -3300,27 +3334,27 @@ var app = (function () {
     	});
 
     	function input0_input_handler() {
-    		userdata.username = this.value;
-    		$$invalidate(0, userdata);
+    		username = this.value;
+    		$$invalidate(0, username);
     	}
 
     	function input1_input_handler() {
-    		userdata.roomID = this.value;
-    		$$invalidate(0, userdata);
+    		roomID = this.value;
+    		$$invalidate(1, roomID);
     	}
 
     	function input0_input_handler_1() {
-    		userdata.username = this.value;
-    		$$invalidate(0, userdata);
+    		username = this.value;
+    		$$invalidate(0, username);
     	}
 
     	function input1_input_handler_1() {
-    		userdata.roomID = this.value;
-    		$$invalidate(0, userdata);
+    		roomID = this.value;
+    		$$invalidate(1, roomID);
     	}
 
     	$$self.$$set = $$props => {
-    		if ("params" in $$props) $$invalidate(4, params = $$props.params);
+    		if ("params" in $$props) $$invalidate(6, params = $$props.params);
     	};
 
     	$$self.$capture_state = () => ({
@@ -3332,16 +3366,22 @@ var app = (function () {
     		buttonPulse,
     		Checkbox_Spectator,
     		params,
-    		userdata,
+    		username,
+    		roomID,
+    		role,
+    		isSpectator,
     		hasID,
     		setRole,
     		submit
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("params" in $$props) $$invalidate(4, params = $$props.params);
-    		if ("userdata" in $$props) $$invalidate(0, userdata = $$props.userdata);
-    		if ("hasID" in $$props) $$invalidate(1, hasID = $$props.hasID);
+    		if ("params" in $$props) $$invalidate(6, params = $$props.params);
+    		if ("username" in $$props) $$invalidate(0, username = $$props.username);
+    		if ("roomID" in $$props) $$invalidate(1, roomID = $$props.roomID);
+    		if ("role" in $$props) role = $$props.role;
+    		if ("isSpectator" in $$props) $$invalidate(3, isSpectator = $$props.isSpectator);
+    		if ("hasID" in $$props) $$invalidate(2, hasID = $$props.hasID);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -3349,8 +3389,10 @@ var app = (function () {
     	}
 
     	return [
-    		userdata,
+    		username,
+    		roomID,
     		hasID,
+    		isSpectator,
     		setRole,
     		submit,
     		params,
@@ -3364,7 +3406,7 @@ var app = (function () {
     class Join extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$8, create_fragment$8, safe_not_equal, { params: 4 });
+    		init(this, options, instance$8, create_fragment$8, safe_not_equal, { params: 6 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -5299,7 +5341,7 @@ var app = (function () {
 
     		if (!socket.connected) {
     			let name = localStorage.getItem("username");
-    			if (name) setUserdata(name);
+    			if (name) setUserdata(name, id);
     			if (!name) replace("/join/" + id);
     		}
 

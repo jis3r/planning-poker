@@ -1,14 +1,16 @@
-let user = {
-    id: '', 
+let userdata = {
     username: '', 
-    room: '', 
-    estimation: '', 
-    isReady: false, 
+    roomID: '', 
     role: ''
 }
-function setUserdata(userdata) {
-    localStorage.setItem('username', userdata.name);
-    localStorage.setItem('role', userdata.role);
+function setUserdata(name, id, role) {
+    userdata.username = name || 'user';
+    userdata.roomID = id || '00000';
+    userdata.role = role || 'member';
+
+    console.log(userdata);
+    localStorage.setItem('username', name);
+    localStorage.setItem('role', role);
     socket.connect();
     socket.emit('joinRoom', userdata);
 }
