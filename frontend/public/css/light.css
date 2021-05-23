@@ -88,7 +88,7 @@ select:focus {
 }
 
 .copyicon {
-  filter: invert(0%) sepia(100%) saturate(21%) hue-rotate(2deg) brightness(101%) contrast(107%);
+  filter: invert(6%) sepia(58%) saturate(0%) hue-rotate(215deg) brightness(102%) contrast(86%);  vertical-align: middle;
 }
 
 .reloadicon {

@@ -13,7 +13,7 @@
     }
 </script>
 
-<div style="vertical-align: middle;" on:click={toggleSpectator}>
+<div style="cursor: pointer;" on:click={toggleSpectator}>
     {#if isSpectator}
     <img style="vertical-align: middle;" src="img/eye.svg" alt="checked" in:fade>
     {:else}
