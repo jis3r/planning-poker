@@ -25,6 +25,7 @@
     let average = '';
     let readyUsers = 0;
     let modal = false;
+    let preReveal = true;
 
     onMount(() => {
         id = params.id;
@@ -67,20 +68,21 @@
         socket.emit('reset', '' );
     }
 
+    socket.on('resetReveal', function(){
+        preReveal = true;
+        average = '';
+    });
+
     socket.on('bannermessage', (message) => {
         newMessage(message)
     });
 
     // Get room and users
     socket.on('roomUsers', ({ /*room,*/ users }) => {
-        average = '';
         members = [];
         spectators = [];
-
-        for(let i = 0; i < users.length; i++) {
-            if( users[i].role === 'member' ) members = [...members, users[i]];
-            if( users[i].role === 'spectator' ) spectators = [...spectators, users[i]];
-        }
+        members = users.filter(user => user.role === 'member');
+        spectators = users.filter(user => user.role === 'spectator');
     });
 
     function newMessage(msg) {
@@ -121,9 +123,7 @@
     });
 
     function revealEstimations() {
-        for(let i = 0; i < members.length; i++) {
-            members[i].isReady = false;
-        }
+        preReveal = false;
     }
 
     function averageCalc() {
@@ -150,8 +150,8 @@
     function clearList() {
         for(let i = 0; i < members.length; i++) {
             members[i].estimation = '';
-            members[i].isReady = false;
         }
+        preReveal = true;
         let button = document.getElementsByClassName('button-primary-positive');
         if(button[0] !== undefined) {
             button[0].classList.remove('button-primary-positive');
@@ -206,7 +206,7 @@
                             <Userdetails name={member.username}
                                 id={member.id}
                                 estimation={member.estimation}
-                                isReady={member.isReady}
+                                isReady={preReveal}
                                 socketid={socket.id}/>
                         {/each}
                         <tr>

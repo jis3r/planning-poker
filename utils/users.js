@@ -1,28 +1,11 @@
-const activeRooms = ['00000'];
 const users = [];
-
-function generateRoomID() {
-    let roomID = '';
-    for(let i = 0; i < 5; i++) {
-        roomID += Math.floor(Math.random() * 10).toString();
-    }
-    if( activeRooms.includes(roomID) === false ) {
-        activeRooms.push(roomID);
-    }
-    else {
-        generateRoomID();
-    }
-    console.log('Generator Output: ', roomID, activeRooms);
-    return roomID;
-}
 
 function validateRoomID(roomID) {
     console.log('Active rooms on validation', activeRooms, roomID);
 	if (activeRooms.includes(roomID) === true )
 	{
 		return true;
-	}
-    else {
+	} else {
         return false;
     }
 }
@@ -64,15 +47,14 @@ function checkAllEstimated(room) {
 function hasUserEstimated(user){
     if( user.estimation !== '' || user.role === 'spectator') {
         return true
-    }
-    else {
+    } else {
         return false;
     }
 }
 
 //resets the estimations of all users
-function resetEstimations(room){
-    let reset = getRoomUsers(room)
+function resetEstimations(room) {
+    let reset = getRoomUsers(room);
     for(let i = 0; i < reset.length; i++) {
         console.log(reset[i]);
         reset[i].estimation = '';
@@ -82,7 +64,6 @@ function resetEstimations(room){
 }
 
 module.exports = {
-    generateRoomID,
     validateRoomID,
     userJoin,
     userLeave,

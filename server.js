@@ -2,14 +2,15 @@ const express = require('express');
 const socketio = require('socket.io');
 const path = require('path');
 const http = require('http');
-const { generateRoomID, 
-        validateRoomID,
+const { validateRoomID,
         userJoin,
         userLeave,
         getCurrentUser,
         getRoomUsers,
         checkAllEstimated,
         resetEstimations    } = require('./utils/users');
+const { generateRoomID, 
+        addRoom             } = require('./utils/rooms');
 
 
 const app = express();
@@ -33,22 +34,30 @@ io.on('connection', socket => {
     if (userdata.roomID === "") {
       userdata.roomID = generateRoomID();
     }
+
     socket.emit('newRoom', userdata.roomID);
     console.log('Server recieved userdata:', userdata.username, '\n', userdata.roomID);
     const user = userJoin(socket.id, userdata.username, userdata.roomID, userdata.role);
+
+    //add user to room
     socket.join(user.room);
     
     socket.on('ready', function(){
       //welcome current user
-      socket.emit('bannermessage', 'Welcome.')
+      socket.emit('bannermessage', 'Welcome.');
       //broadcast when a user connects
       socket.broadcast.to(user.room).emit('bannermessage', `${user.username} has joined.`);
-      
       // Send users and room info
       io.to(user.room).emit('roomUsers', {
         /*room: user.room,*/
         users: getRoomUsers(user.room)
       });
+
+      if( user.role !== 'spectator' ) {
+        io.to(user.room).emit('resetReveal');
+      } else {
+        if( checkAllEstimated(user.room) ) socket.emit('reveal', false);
+      }
     });
   });
 
@@ -62,12 +71,9 @@ io.on('connection', socket => {
     socket.broadcast.to(user.room).emit('newEstimation', user);
     if( checkAllEstimated(user.room) ) {
       console.log('all users estimated');
-      io.to(user.room).emit('reveal', '');
-      user.isReady = false;
-    }
-    else {
+      io.to(user.room).emit('reveal', false);
+    } else {
       console.log(`waiting for all users of room ${user.room} to estimate`);
-      user.isReady = true;
     }
   });
 
@@ -90,7 +96,7 @@ io.on('connection', socket => {
 
       // Send users and room info
       io.to(user.room).emit('roomUsers', {
-        room: user.room,
+        //room: user.room,
         users: getRoomUsers(user.room)
       });
     }
@@ -99,8 +105,7 @@ io.on('connection', socket => {
       if( checkAllEstimated(tempUser.room) === true ) {
         console.log('all users estimated');
         io.to(tempUser.room).emit('reveal', '');
-      }
-      else {
+      } else {
         console.log(`waiting for all users of room ${tempUser.room} to estimate`);
       }
     }

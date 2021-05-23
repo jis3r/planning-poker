@@ -14,7 +14,7 @@
         <td id="{id}">{name}</td>
     {/if}
     {#if estimation !== 'spectator'}
-        {#if isReady}
+        {#if isReady && estimation !== ''}
             <td class="estimation">
                 <img src="/img/check.svg" alt="ready" style="vertical-align: middle;">
             </td>
