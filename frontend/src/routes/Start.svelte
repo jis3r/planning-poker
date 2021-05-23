@@ -8,20 +8,20 @@
     
     import Checkbox_Spectator from '../components/Checkbox_Spectator.svelte';
 
-    let username = '';
+    let username = localStorage.getItem('username') || '';
     let roomID = '';
-    let role = 'member';
+    let role = localStorage.getItem('role') || 'member';
     let isSpectator = false;
 
     onMount(() => {
-        let localname = localStorage.getItem('username');
-        //isSpectator = localStorage.getItem('role');
-        if( localname ) username = localname; document.getElementById('submitButton').focus();
+        if( username ) document.getElementById('submitButton').focus();
+        if( role === "spectator" ) isSpectator = true;
 	});
 
     const setRole = (e) => {
         if( e.detail ) role = 'spectator';
         if( !e.detail ) role = 'member';
+        localStorage.setItem('role', role);
     }
 
     const submit = () => {
@@ -36,7 +36,7 @@
 
 <div class="row" style="margin-top: 15%;" in:fade>
     <div class="nine columns">
-        <input class="u-full-width" type="text" placeholder="Username" name="username" id="usernameInput" minlength="3" maxlength="20" autocomplete="off" required bind:value={username}>
+        <input class="u-full-width" type="text" placeholder="Username" name="username" id="usernameInput" minlength="3" maxlength="12" autocomplete="off" required bind:value={username}>
         <label id="usernameLabel" for="usernameInput">Please enter your username.</label>
         <input type="hidden" name="room" id="roomIDInput" bind:value={roomID}>
     </div>

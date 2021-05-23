@@ -1,14 +1,14 @@
 let userdata = {
     username: '', 
     roomID: '', 
-    role: ''
+    role: 'member'
 }
-function setUserdata(name, id, role) {
-    userdata.username = name || 'user';
-    userdata.roomID = id || '00000';
-    userdata.role = role || 'member';
 
-    console.log(userdata);
+function setUserdata(name, id, role='member') {
+    userdata.username = name || 'user';
+    userdata.roomID = id || '';
+    userdata.role = role;
+
     localStorage.setItem('username', name);
     localStorage.setItem('role', role);
     socket.connect();
@@ -16,5 +16,6 @@ function setUserdata(name, id, role) {
 }
 
 export {
+    userdata,
     setUserdata
 }

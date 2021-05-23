@@ -13,11 +13,13 @@
     {:else}
         <td id="{id}">{name}</td>
     {/if}
-    {#if isReady}
-        <td class="estimation">
-            <img src="/img/check.svg" alt="ready" style="vertical-align: middle;">
-        </td>
-    {:else}
-        <td class="estimation">{estimation}</td>
+    {#if estimation !== 'spectator'}
+        {#if isReady}
+            <td class="estimation">
+                <img src="/img/check.svg" alt="ready" style="vertical-align: middle;">
+            </td>
+        {:else}
+            <td class="estimation">{estimation}</td>
+        {/if}
     {/if}
 </tr>

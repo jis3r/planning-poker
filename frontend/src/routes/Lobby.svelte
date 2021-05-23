@@ -3,7 +3,7 @@
     import { fade } from "svelte/transition";
     import { replace } from 'svelte-spa-router';
 
-    import {    setUserdata    } from "../utils/user";
+    import { userdata, setUserdata } from "../utils/user";
     import { copyToClipboard } from '../utils/clipboard';
 
     import Button_Estimation from '../components/Button_Estimation.svelte';
@@ -14,14 +14,14 @@
 
     export let params = {}
 
-    //let url = 'http://localhost:3000'; 
     let url = 'https://planning-poker-test.herokuapp.com'
     let id;
     let firstRowValues = ['0', '1', '2', '3', '5', '8'];
     let secondRowValues = ['13', '20', '40', '100', '?', 'coffee'];
     let bannermessage = '';
     let bannerIsVisible = false;
-    let allUsers = [];
+    let members = [];
+    let spectators = [];
     let average = '';
     let readyUsers = 0;
     let modal = false;
@@ -30,8 +30,9 @@
         id = params.id;
         if(!socket.connected) {
             let name = localStorage.getItem('username');
-            if( name ) setUserdata(name, id);
-            if( !name ) replace('/join/' + id);
+            let role = localStorage.getItem('role');
+            //if( name ) setUserdata(name, id, role);
+            replace('/join/' + id);
         }
         socket.emit('ready');
 	});
@@ -73,8 +74,13 @@
     // Get room and users
     socket.on('roomUsers', ({ /*room,*/ users }) => {
         average = '';
-        allUsers = [];
-        allUsers = users;
+        members = [];
+        spectators = [];
+
+        for(let i = 0; i < users.length; i++) {
+            if( users[i].role === 'member' ) members = [...members, users[i]];
+            if( users[i].role === 'spectator' ) spectators = [...spectators, users[i]];
+        }
     });
 
     function newMessage(msg) {
@@ -86,7 +92,7 @@
     }
 
     const setEstimation = (e) => {
-        let tempUser = allUsers.find(user => user.id === socket.id);
+        let tempUser = members.find(user => user.id === socket.id);
         let user = Object.assign( {}, tempUser );
         if( user.estimation !== e.detail ) {
             user.estimation = e.detail;
@@ -101,12 +107,12 @@
     });
 
     function replaceUser(user) {
-        let index = allUsers.findIndex( u => u.id == user.id);
-        if(allUsers[index].estimation === '') {
-            if( (allUsers.length - 1) !== readyUsers ) user.isReady = true;
+        let index = members.findIndex( u => u.id == user.id);
+        if(members[index].estimation === '') {
+            if( (members.length - 1) !== readyUsers ) user.isReady = true;
             readyUsers++; 
         } 
-        allUsers[index] = user;
+        members[index] = user;
     }
 
     socket.on('reveal', (foo) => {
@@ -115,8 +121,8 @@
     });
 
     function revealEstimations() {
-        for(let i = 0; i < allUsers.length; i++) {
-            allUsers[i].isReady = false;
+        for(let i = 0; i < members.length; i++) {
+            members[i].isReady = false;
         }
     }
 
@@ -124,10 +130,10 @@
         let sum = 0;
         let count = 0;
         average = '';
-        for(let i = 0; i < allUsers.length; i++) {
-            let estimation = allUsers[i].estimation;
+        for(let i = 0; i < members.length; i++) {
+            let estimation = members[i].estimation;
             if( estimation !== '' && estimation !== '?' && estimation !== 'coffee' ) {
-                sum = sum + parseInt(allUsers[i].estimation);
+                sum = sum + parseInt(members[i].estimation);
                 count++;
             }
         }
@@ -142,9 +148,9 @@
     });
 
     function clearList() {
-        for(let i = 0; i < allUsers.length; i++) {
-            allUsers[i].estimation = '';
-            allUsers[i].isReady = false;
+        for(let i = 0; i < members.length; i++) {
+            members[i].estimation = '';
+            members[i].isReady = false;
         }
         let button = document.getElementsByClassName('button-primary-positive');
         if(button[0] !== undefined) {
@@ -164,10 +170,7 @@
 <div class="content" in:fade>
     <div class="row" style="margin-top: 15%;">
         <div class="four columns">
-            <RoomID id={id || '00000'}/>
-            <div class="copyicon u-pull-left">
-                <img src="/img/copy.svg" alt="copy" on:click={copyRoomID}>
-            </div>
+            <RoomID id={id || '00000'} on:copy={copyRoomID}/>
         </div>
         <div class="four columns" id="bannerfield">
             {#if bannerIsVisible}
@@ -178,7 +181,7 @@
         </div>
         <div class="two columns">
             <button class="button-primary-join u-full-width" style="display: grid; place-items: center;" on:click={resetValues} onclick="this.blur();">
-                <img class="reloadicon" src="/img/reload.svg" alt="reload">
+                <img class="reloadicon" src="/img/rotate-cw.svg" alt="reset">
             </button>
         </div>
         <div class="two columns">
@@ -188,46 +191,71 @@
 
     <div class="row" style="margin-top: 5%;">
         <div class="four columns">
-            <table class="u-full-width">
-                <thead>
-                    <tr>
-                        <th>Members</th>
-                        <th>Estimation</th>
-                    </tr>
-                </thead>
-                <tbody id="playerlist">
-                    {#each allUsers as user}
-                        <Userdetails name={user.username}
-                                id={user.id}
-                                estimation={user.estimation}
-                                isReady={user.isReady}
+            {#if members.length === 0}
+                <h4> </h4>
+            {:else}
+                <table class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Members</th>
+                            <th>Estimation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="playerlist">
+                        {#each members as member}
+                            <Userdetails name={member.username}
+                                id={member.id}
+                                estimation={member.estimation}
+                                isReady={member.isReady}
                                 socketid={socket.id}/>
-                    {/each}
-                    <tr>
-                        <td>Average</td>
-                        <td id="AuMgIVUHfSHpDpgMAAAB" style="color: #FCA311">{average}</td>
-                    </tr>
-                </tbody>
-            </table>
+                        {/each}
+                        <tr>
+                            <td>Average</td>
+                            <td id="AuMgIVUHfSHpDpgMAAAB" style="color: #FCA311">{average}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            {/if}
         </div>
-        <div class="four columns">
+        <div class="six columns">
             <h4> </h4>
         </div>
-        <div class="three columns">
-            <h4> </h4>
+        <div class="two columns">
+            {#if spectators.length === 0}
+                <h4> </h4>
+            {:else}
+                <table class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Spectators</th>
+                        </tr>
+                    </thead>
+                    <tbody id="spectatorlist">
+                        {#each spectators as spectator}
+                            <Userdetails name={spectator.username}
+                                id={spectator.id}
+                                estimation={'spectator'}
+                                socketid={socket.id}/>
+                        {/each}
+                    </tbody>
+                </table>
+            {/if}
         </div>
     </div>
 
-    <div class="row" style="margin-top: 5%;">
-        {#each firstRowValues as currentValue}
-        <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
-        {/each}
-    </div>
-    <div class="row lowerrow">
-        {#each secondRowValues as currentValue}
-            <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
-        {/each}
-    </div>
+    {#if userdata.role === 'member'}
+        <div class="row" style="margin-top: 5%;">
+            {#each firstRowValues as currentValue}
+                <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
+            {/each}
+        </div>
+        <div class="row lowerrow">
+            {#each secondRowValues as currentValue}
+                <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
+            {/each}
+        </div>
+    {/if}
+
 </div>
 
 {#if modal}
