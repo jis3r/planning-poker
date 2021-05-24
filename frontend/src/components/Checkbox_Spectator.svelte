@@ -9,6 +9,7 @@
     onMount(() => {
         toggleSpectator();
         toggleSpectator();
+        console.log('works');
 	});
 
 
