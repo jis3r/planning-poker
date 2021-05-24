@@ -158,12 +158,12 @@
         }
         average = '';
         readyUsers = 0;
-        newMessage('Values reseted.');
+        newMessage('Estimations reseted.');
     }
 
     const copyRoomID = () => {
         copyToClipboard(url + '/#/room/' + id);
-        newMessage('Copied.');
+        newMessage('Invitation link copied.');
     }
 </script>
 
@@ -181,7 +181,8 @@
         </div>
         <div class="two columns">
             <button class="button-primary-join u-full-width" style="display: grid; place-items: center;" on:click={resetValues} onclick="this.blur();">
-                <img class="reloadicon" src="/img/rotate-cw.svg" alt="reset">
+                <!--img class="reloadicon" src="/img/rotate-cw.svg" alt="reset"-->
+                reset
             </button>
         </div>
         <div class="two columns">
