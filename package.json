@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
