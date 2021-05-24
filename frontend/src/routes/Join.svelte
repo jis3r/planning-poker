@@ -17,6 +17,8 @@
     let hasID = false;
 
     onMount(() => {
+        console.log('works');
+
         if( validateRoomID(params.id) ) {
             hasID = true;
             roomID = params.id;
