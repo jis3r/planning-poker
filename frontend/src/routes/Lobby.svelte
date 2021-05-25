@@ -14,7 +14,7 @@
 
     export let params = {}
 
-    let url = process.env.PORT || 'http://localhost:3000'
+    let url = process.env.URL || 'http://localhost:3000';
     let id;
     let firstRowValues = ['0', '1', '2', '3', '5', '8'];
     let secondRowValues = ['13', '20', '40', '100', '?', 'coffee'];
