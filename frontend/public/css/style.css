@@ -109,8 +109,7 @@ input[type=number] {
 }
 
 .modal {
-  /*display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
+  position: fixed;
   z-index: 2;
   top: 40%;
   left: 50%;
@@ -151,4 +150,12 @@ input[type=number] {
     margin-top: 6px;
     margin-left: .8rem;
   }
+}
+
+.checkboxContainer {
+  box-sizing: border-box;
+  width: 19px;
+  height: 24px;
+  float: left;
+  padding: 0 4px 4.5px 0;
 }
