@@ -59,7 +59,7 @@
         </div>
     {/if}
     <div class="three columns">
-        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit}>submit input</button>
+        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit}>join</button>
         <Checkbox_Spectator isSpectator={isSpectator} on:setRole={setRole}/>
     </div>
 </div>
