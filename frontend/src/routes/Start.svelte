@@ -41,7 +41,7 @@
         <input type="hidden" name="room" id="roomIDInput" bind:value={roomID}>
     </div>
     <div class="three columns">
-        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit}>submit</button>
+        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit}>start</button>
         <Checkbox_Spectator isSpectator={isSpectator} on:setRole={setRole}/>
     </div>
 </div>
