@@ -1,7 +1,6 @@
 <script>
     import { createEventDispatcher } from "svelte";
     export let value;
-    export let isDisabled = false;
 
     const dispatch = createEventDispatcher();
 
@@ -21,5 +20,5 @@
 </script>
 
 <div class="two columns">
-    <button id={value} class="u-full-width" on:click={estimate} onclick="this.blur();" disabled='{isDisabled}'>{value}</button>
+    <button id={value} class="u-full-width" on:click={estimate} onclick="this.blur();">{value}</button>
 </div>
