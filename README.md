@@ -6,7 +6,7 @@ Go to https://planning-poker-live.herokuapp.com if you want to take a look at th
 
 # Getting started
 
-To get the sourcecode you can either clone it via `git clone https://github.com/jis3r/planning-poker.git` or [download it as a zip](https://github.com/jis3r/planning-poker/releases/download/2.0/planning-poker-2.0.zip).
+To get the sourcecode you can either clone it via `git clone https://github.com/jis3r/planning-poker.git` or [download it as a zip](https://github.com/jis3r/planning-poker/archive/refs/heads/master.zip).
 
 ## Backend
 
