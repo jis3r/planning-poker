@@ -26,6 +26,7 @@
     let readyUsers = 0;
     let modal = false;
     let preReveal = true;
+    let disableEstimations = false;
 
     onMount(() => {
         id = params.id;
@@ -66,11 +67,13 @@
 
     const resetValues = () => {
         socket.emit('reset', '' );
+        disableEstimations = false;
     }
 
     socket.on('resetReveal', function(){
         preReveal = true;
         average = '';
+        disableEstimations = false;
     });
 
     socket.on('bannermessage', (message) => {
@@ -119,12 +122,9 @@
 
     socket.on('reveal', (foo) => {
         averageCalc();
-        revealEstimations();
-    });
-
-    function revealEstimations() {
         preReveal = false;
-    }
+        disableEstimations = true;
+    });
 
     function averageCalc() {
         let sum = 0;
@@ -247,12 +247,12 @@
     {#if userdata.role === 'member'}
         <div class="row" style="margin-top: 5%;">
             {#each firstRowValues as currentValue}
-                <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
+                <Button_Estimation value={currentValue} isDisabled={disableEstimations} on:setEstimation={setEstimation}/>
             {/each}
         </div>
         <div class="row lowerrow">
             {#each secondRowValues as currentValue}
-                <Button_Estimation value={currentValue} on:setEstimation={setEstimation}/>
+                <Button_Estimation value={currentValue} isDisabled={disableEstimations} on:setEstimation={setEstimation}/>
             {/each}
         </div>
     {/if}
