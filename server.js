@@ -79,7 +79,7 @@ io.on('connection', socket => {
     resetEstimations(user.room);
 
     //broadcast command to empty all estimations to all room-members
-    io.to(user.room).emit('emptyList', '');
+    io.to(user.room).emit('emptyList');
   });
 
   // Runs when client leaves or disconnects

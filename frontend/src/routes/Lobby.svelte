@@ -67,7 +67,6 @@
 
     const resetValues = () => {
         socket.emit('reset');
-        disableEstimations = false;
     }
 
     socket.on('resetReveal', () => {
@@ -144,8 +143,9 @@
         }
     }
 
-    socket.on('emptyList', (foo) => {
+    socket.on('emptyList', () => {
         clearList();
+        disableEstimations = false;
     });
 
     function clearList() {
