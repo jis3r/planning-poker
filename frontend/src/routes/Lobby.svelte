@@ -66,22 +66,23 @@
     }
 
     const resetValues = () => {
-        socket.emit('reset', '' );
+        socket.emit('reset');
         disableEstimations = false;
     }
 
-    socket.on('resetReveal', function(){
+    socket.on('resetReveal', () => {
         preReveal = true;
         average = '';
         disableEstimations = false;
     });
 
+    //recieve bannermessage from server
     socket.on('bannermessage', (message) => {
         newMessage(message)
     });
 
-    // Get room and users
-    socket.on('roomUsers', ({ /*room,*/ users }) => {
+    //recieve users of current room from server when someone joins or leaves
+    socket.on('roomUsers', (users) => {
         members = [];
         spectators = [];
         members = users.filter(user => user.role === 'member');
@@ -120,7 +121,7 @@
         members[index] = user;
     }
 
-    socket.on('reveal', (foo) => {
+    socket.on('reveal', () => {
         averageCalc();
         preReveal = false;
         disableEstimations = true;

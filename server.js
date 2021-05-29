@@ -42,21 +42,18 @@ io.on('connection', socket => {
     //add user to room
     socket.join(user.room);
     
-    socket.on('ready', function(){
+    socket.on('ready', () => {
       //welcome current user
       socket.emit('bannermessage', 'Welcome.');
       //broadcast when a user connects
       socket.broadcast.to(user.room).emit('bannermessage', `${user.username} has joined.`);
       // Send users and room info
-      io.to(user.room).emit('roomUsers', {
-        /*room: user.room,*/
-        users: getRoomUsers(user.room)
-      });
+      io.to(user.room).emit('roomUsers', getRoomUsers(user.room) );
 
       if( user.role !== 'spectator' ) {
         io.to(user.room).emit('resetReveal');
       } else {
-        if( checkAllEstimated(user.room) ) socket.emit('reveal', false);
+        if( checkAllEstimated(user.room) ) socket.emit('reveal');
       }
     });
   });
@@ -71,13 +68,13 @@ io.on('connection', socket => {
     socket.broadcast.to(user.room).emit('newEstimation', user);
     if( checkAllEstimated(user.room) ) {
       console.log('all users estimated');
-      io.to(user.room).emit('reveal', false);
+      io.to(user.room).emit('reveal');
     } else {
       console.log(`waiting for all users of room ${user.room} to estimate`);
     }
   });
 
-  socket.on('reset', (foo) => {
+  socket.on('reset', () => {
     let user = getCurrentUser(socket.id);
     resetEstimations(user.room);
 
@@ -104,7 +101,7 @@ io.on('connection', socket => {
     if(tempUser) {
       if( checkAllEstimated(tempUser.room) === true ) {
         console.log('all users estimated');
-        io.to(tempUser.room).emit('reveal', '');
+        io.to(tempUser.room).emit('reveal');
       } else {
         console.log(`waiting for all users of room ${tempUser.room} to estimate`);
       }
