@@ -92,14 +92,11 @@ io.on('connection', socket => {
       io.to(user.room).emit('bannermessage', `${user.username} has left.`);
 
       // Send users and room info
-      io.to(user.room).emit('roomUsers', {
-        //room: user.room,
-        users: getRoomUsers(user.room)
-      });
+      io.to(user.room).emit('roomUsers', getRoomUsers(user.room) );
     }
 
     if(tempUser) {
-      if( checkAllEstimated(tempUser.room) === true ) {
+      if( checkAllEstimated(tempUser.room) ) {
         console.log('all users estimated');
         io.to(tempUser.room).emit('reveal');
       } else {
