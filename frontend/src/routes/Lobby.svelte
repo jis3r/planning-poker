@@ -5,6 +5,8 @@
 
     import { userdata, setUserdata } from "../utils/user";
     import { copyToClipboard } from '../utils/clipboard';
+    import { outliers, average, setOutliers, resetOutliers, setAverage, resetAverage } from '../utils/estimations';
+
 
     import Button_Estimation from '../components/Button_Estimation.svelte';
     import Banner from '../components/Banner.svelte';
@@ -22,11 +24,11 @@
     let bannerIsVisible = false;
     let members = [];
     let spectators = [];
-    let average = '';
     let readyUsers = 0;
     let modal = false;
     let preReveal = true;
     let disableEstimations = false;
+    let avg = '';
 
     onMount(() => {
         id = params.id;
@@ -71,8 +73,9 @@
 
     socket.on('resetReveal', () => {
         preReveal = true;
-        average = '';
         disableEstimations = false;
+        resetAverage();
+        avg = average;
     });
 
     //recieve bannermessage from server
@@ -82,8 +85,6 @@
 
     //recieve users of current room from server when someone joins or leaves
     socket.on('roomUsers', (users) => {
-        members = [];
-        spectators = [];
         members = users.filter(user => user.role === 'member');
         spectators = users.filter(user => user.role === 'spectator');
     });
@@ -102,6 +103,7 @@
         if( user.estimation !== e.detail ) {
             user.estimation = e.detail;
             replaceUser(user);
+            console.log('socketemit');
             socket.emit('estimated', e.detail);
         }
     }
@@ -118,32 +120,24 @@
             readyUsers++; 
         } 
         members[index] = user;
+        console.log('replacedone');
     }
 
     socket.on('reveal', () => {
-        averageCalc();
+        console.log('reveal');
+        setAverage(members);
+        avg = average;
+        setOutliers(members);
         preReveal = false;
         disableEstimations = true;
+        console.log(average);
+        console.log(outliers);
     });
 
-    function averageCalc() {
-        let sum = 0;
-        let count = 0;
-        average = '';
-        for(let i = 0; i < members.length; i++) {
-            let estimation = members[i].estimation;
-            if( estimation !== '' && estimation !== '?' && estimation !== 'coffee' ) {
-                sum = sum + parseInt(members[i].estimation);
-                count++;
-            }
-        }
-        if(count !== 0) {
-            sum = Math.round( (sum / count) * 100 ) / 100;
-            average = sum.toString();
-        }
-    }
-
     socket.on('emptyList', () => {
+        resetAverage();
+        avg = average;
+        resetOutliers();
         clearList();
         disableEstimations = false;
     });
@@ -157,7 +151,6 @@
         if(button[0] !== undefined) {
             button[0].classList.remove('button-primary-positive');
         }
-        average = '';
         readyUsers = 0;
         newMessage('Estimations reseted.');
     }
@@ -209,11 +202,12 @@
                                 id={member.id}
                                 estimation={member.estimation}
                                 isReady={preReveal}
-                                socketid={socket.id}/>
+                                socketid={socket.id}
+                                outliers={outliers}/>
                         {/each}
                         <tr>
                             <td>Average</td>
-                            <td id="AuMgIVUHfSHpDpgMAAAB" style="color: #FCA311">{average}</td>
+                            <td id="AuMgIVUHfSHpDpgMAAAB" style="color: #FCA311">{avg}</td>
                         </tr>
                     </tbody>
                 </table>

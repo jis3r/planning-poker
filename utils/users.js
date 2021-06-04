@@ -45,7 +45,7 @@ function checkAllEstimated(room) {
 
 //checks if user has already submitted an estimation
 function hasUserEstimated(user){
-    if( user.estimation !== '' || user.role === 'spectator') {
+    if(user.estimation !== '' || user.role === 'spectator') {
         return true
     } else {
         return false;

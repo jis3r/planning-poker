@@ -2,10 +2,9 @@ let outliers = {
     lowest: {},
     highest: {}
 }
-
-let average = 'lul';
-
+let average = '';
 let relevantMembers = [];
+
 
 function setOutliers(members) {
     relevantMembers = [ ...members.filter(checkNumber)];
