@@ -103,7 +103,6 @@
         if( user.estimation !== e.detail ) {
             user.estimation = e.detail;
             replaceUser(user);
-            console.log('socketemit');
             socket.emit('estimated', e.detail);
         }
     }
@@ -120,18 +119,14 @@
             readyUsers++; 
         } 
         members[index] = user;
-        console.log('replacedone');
     }
 
     socket.on('reveal', () => {
-        console.log('reveal');
         setAverage(members);
         avg = average;
         setOutliers(members);
         preReveal = false;
         disableEstimations = true;
-        console.log(average);
-        console.log(outliers);
     });
 
     socket.on('emptyList', () => {

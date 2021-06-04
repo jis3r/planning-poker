@@ -8,7 +8,6 @@ let relevantMembers = [];
 
 function setOutliers(members) {
     relevantMembers = [ ...members.filter(checkNumber)];
-    console.log(relevantMembers);
     if( relevantMembers.length ) {
         let lo = getLowest(relevantMembers);
         let hi = getHighest(relevantMembers);
