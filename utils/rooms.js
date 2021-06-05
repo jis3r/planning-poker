@@ -1,5 +1,15 @@
 const activeRooms = [];
 
+function validateRoomID(roomID) {
+    console.log('Active rooms on validation', activeRooms, roomID);
+	if (activeRooms.includes(roomID) === true )
+	{
+		return true;
+	} else {
+        return false;
+    }
+}
+
 function generateRoomID() {
     let roomID = '';
     for(let i = 0; i < 5; i++) {
@@ -23,9 +33,8 @@ function addRoom(id) {
     return room;
 }
 
-
-
 module.exports = {
+    validateRoomID,
     generateRoomID,
     addRoom
 };

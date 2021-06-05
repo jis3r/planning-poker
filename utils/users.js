@@ -1,15 +1,5 @@
 const users = [];
 
-function validateRoomID(roomID) {
-    console.log('Active rooms on validation', activeRooms, roomID);
-	if (activeRooms.includes(roomID) === true )
-	{
-		return true;
-	} else {
-        return false;
-    }
-}
-
 function userJoin(id, username, room, role) {
     let estimation = '';
     let isReady = false;

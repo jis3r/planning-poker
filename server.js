@@ -9,7 +9,8 @@ const { validateRoomID,
         getRoomUsers,
         checkAllEstimated,
         resetEstimations    } = require('./utils/users');
-const { generateRoomID, 
+const { validateRoomID, 
+        generateRoomID, 
         addRoom             } = require('./utils/rooms');
 
 
