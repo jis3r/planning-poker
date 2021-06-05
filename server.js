@@ -2,14 +2,14 @@ const express = require('express');
 const socketio = require('socket.io');
 const path = require('path');
 const http = require('http');
-const { validateRoomID,
-        userJoin,
+const { userJoin,
         userLeave,
         getCurrentUser,
         getRoomUsers,
         checkAllEstimated,
         resetEstimations    } = require('./utils/users');
-const { generateRoomID, 
+const { validateRoomID, 
+        generateRoomID, 
         addRoom             } = require('./utils/rooms');
 
 
@@ -30,17 +30,16 @@ io.on('connection', socket => {
   });
 
   socket.on('joinRoom', (userdata) => {
-    console.log(userdata);
+    console.log('Server recieved userdata:', userdata);
     if (userdata.roomID === "") {
       userdata.roomID = generateRoomID();
     }
-
     socket.emit('newRoom', userdata.roomID);
-    console.log('Server recieved userdata:', userdata.username, '\n', userdata.roomID);
     const user = userJoin(socket.id, userdata.username, userdata.roomID, userdata.role);
 
     //add user to room
     socket.join(user.room);
+    console.log(user.username, 'with id', user.id, 'joined room', user.room);
     
     socket.on('ready', () => {
       //welcome current user
@@ -62,7 +61,7 @@ io.on('connection', socket => {
   socket.on('estimated', (estimation) => {
     let user = getCurrentUser(socket.id);
     user.estimation = estimation;
-    console.log('User ', user.id, 'with alias ', user.username, 'estimated ', user.estimation);
+    console.log(user.username, 'with id', user.id, 'estimated', user.estimation);
     
     //broadcasts estimation to all room-members
     socket.broadcast.to(user.room).emit('newEstimation', user);
@@ -76,6 +75,7 @@ io.on('connection', socket => {
 
   socket.on('reset', () => {
     let user = getCurrentUser(socket.id);
+    console.log(user.username, 'with id', user.id, 'requests a reset');
     resetEstimations(user.room);
 
     //broadcast command to empty all estimations to all room-members
@@ -85,18 +85,17 @@ io.on('connection', socket => {
   // Runs when client leaves or disconnects
   socket.on('disconnect', () => {
     let tempUser = getCurrentUser(socket.id);
-    console.log('tempuser', tempUser);
     const user = userLeave(socket.id);
     
     if (user) {
       io.to(user.room).emit('bannermessage', `${user.username} has left.`);
-
       // Send users and room info
       io.to(user.room).emit('roomUsers', getRoomUsers(user.room) );
+      console.log(user.username, 'with id', user.id, 'left room', user.room);
     }
 
     if(tempUser) {
-      if( checkAllEstimated(tempUser.room) === true ) {
+      if( checkAllEstimated(tempUser.room) ) {
         console.log('all users estimated');
         io.to(tempUser.room).emit('reveal');
       } else {

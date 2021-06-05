@@ -1,32 +1,17 @@
 const users = [];
 
-function validateRoomID(roomID) {
-    console.log('Active rooms on validation', activeRooms, roomID);
-	if (activeRooms.includes(roomID) === true )
-	{
-		return true;
-	} else {
-        return false;
-    }
-}
-
 function userJoin(id, username, room, role) {
     let estimation = '';
     let isReady = false;
     const user = { id, username, room, estimation, isReady, role };
-  
     users.push(user);
-  
     return user;
 }
 
 // User leaves chat
 function userLeave(id) {
     const index = users.findIndex(user => user.id === id);
-    
-    if (index !== -1) {
-        return users.splice(index, 1)[0];
-      }
+    if (index !== -1) return users.splice(index, 1)[0];
   }
   
 function getCurrentUser(id) {
@@ -45,7 +30,7 @@ function checkAllEstimated(room) {
 
 //checks if user has already submitted an estimation
 function hasUserEstimated(user){
-    if( user.estimation !== '' || user.role === 'spectator') {
+    if(user.estimation !== '' || user.role === 'spectator') {
         return true
     } else {
         return false;
@@ -56,15 +41,13 @@ function hasUserEstimated(user){
 function resetEstimations(room) {
     let reset = getRoomUsers(room);
     for(let i = 0; i < reset.length; i++) {
-        console.log(reset[i]);
         reset[i].estimation = '';
         reset[i].isReady = false;
     }
-    console.log('all estimations were sucessfully reseted.', users);
+    console.log('all estimations were sucessfully reseted');
 }
 
 module.exports = {
-    validateRoomID,
     userJoin,
     userLeave,
     getCurrentUser,
