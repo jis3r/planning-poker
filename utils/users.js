@@ -44,7 +44,7 @@ function resetEstimations(room) {
         reset[i].estimation = '';
         reset[i].isReady = false;
     }
-    console.log('all estimations were sucessfully reseted.');
+    console.log('all estimations were sucessfully reseted');
 }
 
 module.exports = {
