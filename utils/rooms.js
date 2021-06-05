@@ -20,7 +20,7 @@ function generateRoomID() {
     } else {
         generateRoomID();
     }
-    console.log('Generator Output: ', roomID, activeRooms);
+    console.log('room', roomID, 'was created');
     return roomID;
 }
 
