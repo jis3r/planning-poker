@@ -75,7 +75,7 @@ io.on('connection', socket => {
 
   socket.on('reset', () => {
     let user = getCurrentUser(socket.id);
-    console.log('User', user.id, 'with alias', user.username, 'requests a reset');
+    console.log(user.username, 'with id', user.id, 'requests a reset');
     resetEstimations(user.room);
 
     //broadcast command to empty all estimations to all room-members
