@@ -2,8 +2,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const path = require('path');
 const http = require('http');
-const { validateRoomID,
-        userJoin,
+const { userJoin,
         userLeave,
         getCurrentUser,
         getRoomUsers,

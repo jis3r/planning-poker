@@ -48,7 +48,6 @@ function resetEstimations(room) {
 }
 
 module.exports = {
-    validateRoomID,
     userJoin,
     userLeave,
     getCurrentUser,
