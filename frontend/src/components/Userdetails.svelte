@@ -5,22 +5,17 @@
     export let isReady = false;
     export let socketid;
     export let outliers;
-
 </script>
 
+
 <tr>
-    {#if id === socketid}
-        <td id="{id}" style="color: #33C3F0">{name}</td>
-    {:else}
-        <td id="{id}">{name}</td>
-    {/if}
+    <td class:isSelf="{id === socketid}">{name}</td>
+
     {#if estimation !== 'spectator'}
-        {#if isReady && estimation !== ''}
-            <td class="estimation">
+        <td class="estimation">
+            {#if isReady && estimation !== ''}
                 <img src="/img/check.svg" alt="ready" style="vertical-align: middle;">
-            </td>
-        {:else}
-            <td class="estimation">
+            {:else}
                 <div class="u-pull-left">
                     {estimation}
                 </div>
@@ -33,7 +28,7 @@
                         <img src="/img/arrow-up.svg" alt="highest" style="vertical-align: middle; margin-right: 2.5rem;">
                     </div>
                 {/if}
-            </td>
-        {/if}
+            {/if}
+        </td>
     {/if}
 </tr>

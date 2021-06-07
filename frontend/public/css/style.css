@@ -159,3 +159,7 @@ input[type=number] {
   float: left;
   padding: 0 4px 4.5px 0;
 }
+
+.isSelf {
+	color: #33C3F0;
+}
