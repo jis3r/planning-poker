@@ -35,8 +35,8 @@
         if(!socket.connected) {
             let name = localStorage.getItem('username');
             let role = localStorage.getItem('role');
-            //if( name ) setUserdata(name, id, role);
-            replace('/join/' + id);
+            if( name ) setUserdata(name, id, role);
+            //replace('/join/' + id);
         }
         socket.emit('ready');
 	});
@@ -85,8 +85,20 @@
 
     //recieve users of current room from server when someone joins or leaves
     socket.on('roomUsers', (users) => {
+        members = [];
+        spectators = [];
         members = users.filter(user => user.role === 'member');
         spectators = users.filter(user => user.role === 'spectator');
+    });
+
+    socket.on('addUser', (user) => {
+        if( user.role === 'member') members = [...members, user];
+        if( user.role === 'spectator') spectators = [...spectators, user];
+    });
+
+    socket.on('removeUser', (user) => {
+        if( user.role === 'member') members = members.filter(m => m.id !== user.id);
+        if( user.role === 'spectator') spectators = spectators.filter(s => s.id !== user.id);
     });
 
     function newMessage(msg) {
@@ -200,10 +212,12 @@
                                 socketid={socket.id}
                                 outliers={outliers}/>
                         {/each}
-                        <tr>
-                            <td>Average</td>
-                            <td id="AuMgIVUHfSHpDpgMAAAB" style="color: #FCA311">{avg}</td>
-                        </tr>
+                        {#if avg !== ''}
+                            <tr style="color: #FCA311">
+                                <td>Average</td>
+                                <td id="AuMgIVUHfSHpDpgMAAAB">{avg}</td>
+                            </tr>
+                        {/if}
                     </tbody>
                 </table>
             {/if}

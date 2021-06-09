@@ -1,5 +1,7 @@
 const express = require('express');
+const cors = require('cors');
 const socketio = require('socket.io');
+const { instrument } = require("@socket.io/admin-ui");
 const path = require('path');
 const http = require('http');
 const { userJoin,
@@ -14,8 +16,13 @@ const { validateRoomID,
 
 
 const app = express();
+app.use(cors());
 const server = http.createServer(app);
 const io = socketio(server);
+
+instrument(io, {
+  auth: false
+});
 
 //set static folder
 app.use(express.static(path.join(__dirname, 'frontend', 'public')));
@@ -46,8 +53,9 @@ io.on('connection', socket => {
       socket.emit('bannermessage', 'Welcome.');
       //broadcast when a user connects
       socket.broadcast.to(user.room).emit('bannermessage', `${user.username} has joined.`);
-      // Send users and room info
-      io.to(user.room).emit('roomUsers', getRoomUsers(user.room) );
+      // Send users info
+      socket.emit('roomUsers', getRoomUsers(user.room));
+      socket.broadcast.to(user.room).emit('addUser', user);
 
       if( user.role !== 'spectator' ) {
         io.to(user.room).emit('resetReveal');
@@ -90,7 +98,7 @@ io.on('connection', socket => {
     if (user) {
       io.to(user.room).emit('bannermessage', `${user.username} has left.`);
       // Send users and room info
-      io.to(user.room).emit('roomUsers', getRoomUsers(user.room) );
+      socket.broadcast.to(user.room).emit('removeUser', user);
       console.log(user.username, 'with id', user.id, 'left room', user.room);
     }
 
