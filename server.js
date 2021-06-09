@@ -1,7 +1,5 @@
 const express = require('express');
-const cors = require('cors');
 const socketio = require('socket.io');
-const { instrument } = require("@socket.io/admin-ui");
 const path = require('path');
 const http = require('http');
 const { userJoin,
@@ -16,13 +14,8 @@ const { validateRoomID,
 
 
 const app = express();
-app.use(cors());
 const server = http.createServer(app);
 const io = socketio(server);
-
-instrument(io, {
-  auth: false
-});
 
 //set static folder
 app.use(express.static(path.join(__dirname, 'frontend', 'public')));
