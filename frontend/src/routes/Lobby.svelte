@@ -35,8 +35,8 @@
         if(!socket.connected) {
             let name = localStorage.getItem('username');
             let role = localStorage.getItem('role');
-            if( name ) setUserdata(name, id, role);
-            //replace('/join/' + id);
+            //if( name ) setUserdata(name, id, role);
+            replace('/join/' + id);
         }
         socket.emit('ready');
 	});
