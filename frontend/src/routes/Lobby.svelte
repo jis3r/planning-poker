@@ -91,16 +91,6 @@
         spectators = users.filter(user => user.role === 'spectator');
     });
 
-    socket.on('addUser', (user) => {
-        if( user.role === 'member') members = [...members, user];
-        if( user.role === 'spectator') spectators = [...spectators, user];
-    });
-
-    socket.on('removeUser', (user) => {
-        if( user.role === 'member') members = members.filter(m => m.id !== user.id);
-        if( user.role === 'spectator') spectators = spectators.filter(s => s.id !== user.id);
-    });
-
     function newMessage(msg) {
         bannermessage = msg;
         bannerIsVisible = true;
@@ -212,12 +202,10 @@
                                 socketid={socket.id}
                                 outliers={outliers}/>
                         {/each}
-                        {#if avg !== ''}
-                            <tr style="color: #FCA311">
-                                <td>Average</td>
-                                <td id="AuMgIVUHfSHpDpgMAAAB">{avg}</td>
-                            </tr>
-                        {/if}
+                        <tr style="color: #FCA311">
+                            <td>Average</td>
+                            <td id="AuMgIVUHfSHpDpgMAAAB">{avg}</td>
+                        </tr>
                     </tbody>
                 </table>
             {/if}
