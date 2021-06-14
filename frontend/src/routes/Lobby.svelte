@@ -149,7 +149,7 @@
             button[0].classList.remove('button-primary-positive');
         }
         readyUsers = 0;
-        newMessage('Estimations reseted.');
+        newMessage('Estimations were reset.');
     }
 
     const copyRoomID = () => {
