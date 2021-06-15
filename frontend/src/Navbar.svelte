@@ -14,7 +14,6 @@
     function toggleTheme() {
         darktheme = !darktheme;
         changeThemeStyle( darktheme );
-        //localStorage.removeItem('username');
     }
 
     onMount(() => {
@@ -41,16 +40,40 @@
 
 <div class="content">
     <div id="header" class="header">
-        <div class="container">
+        <img src="img/logo.svg" alt="logo" class="navbaricon logo u-pull-left" style="">
+        <h6 class="header-title u-pull-left" style="margin-bottom: 0">
+            <strong>
+                Planning Poker
+            </strong>
+        </h6>
+
+        <div id="darkmodetrigger" class="navbaricon darkmodetrigger u-pull-right" on:click={toggleTheme}>
+            {#if darktheme}
+            <img id="themeIcon" src="img/sun.svg" alt="sun" in:fly="{{ y: 50, duration: 500 }}">
+            {:else}
+            <img id="themeIcon" src="img/moon.svg" alt="moon" in:fly="{{ y: 50, duration: 500 }}">
+            {/if}
+        </div>
+        <a href="https://www.pm.carat.de/doku/display/Trainee/Bedienung" target="_blank">
+            <img src="img/help-circle.svg" alt="help" class="navbaricon icon-basic u-pull-right" style="margin-right: 1rem">        
+        </a>
+    </div>
+</div>
+
+<!--
+
+            <div class="container">
             <div class="row">
-                <div class="one column theme-column"><h6> </h6></div>
+                <div class="one column navbaricon">
+                    <img src="img/logo.svg" alt="logo">
+                </div>
                 <div class="ten columns title-column">
                     <div on:click={setLanding}>
-                        <h1 class="header-title">Planning Poker</h1>
+                        <h3 class="header-title">Planning Poker</h3>
                     </div>
                 </div>
                 <div class="one column theme-column u-pull-right" style="height: 100%; margin-bottom: 0%;">
-                    <div id="darkmodetrigger" class="darkmodetrigger u-pull-right" on:click={toggleTheme}>
+                    <div id="darkmodetrigger" class="navbaricon u-pull-right" on:click={toggleTheme}>
                         {#if darktheme}
                         <img id="themeIcon" src="img/sun.svg" alt="sun" in:fly="{{ y: 50, duration: 500 }}">
                         {:else}
@@ -60,5 +83,8 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    
+
+
+
+-->
