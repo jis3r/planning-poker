@@ -19,6 +19,7 @@ html {
 body {
   margin: 0;
   transition: 0.15s;
+  min-height: 100vh;
 }
 
 /* HTML5 display definitions
