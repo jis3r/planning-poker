@@ -40,12 +40,14 @@
 
 <div class="content">
     <div id="header" class="header">
-        <img src="img/logo.svg" alt="logo" class="navbaricon logo u-pull-left" style="">
-        <h6 class="header-title u-pull-left" style="margin-bottom: 0">
-            <strong>
-                Planning Poker
-            </strong>
-        </h6>
+        <div on:click={setLanding} style="cursor: pointer;">
+            <img src="img/logo.svg" alt="logo" class="navbaricon logo u-pull-left" style="">
+            <h6 class="header-title u-pull-left" style="margin-bottom: 0">
+                <strong>
+                    Planning Poker
+                </strong>
+            </h6>
+        </div>
 
         <div id="darkmodetrigger" class="navbaricon darkmodetrigger u-pull-right" on:click={toggleTheme}>
             {#if darktheme}
@@ -53,9 +55,7 @@
             {:else}
             <img id="themeIcon" src="img/moon.svg" alt="moon" in:fly="{{ y: 50, duration: 500 }}">
             {/if}
-        </div>
-        <img src="img/templogo.svg" alt="help" class="navbaricon logo u-pull-right" style="margin-right: 1rem">        
-        <img src="img/logo.svg" alt="help" class="navbaricon logo u-pull-right" style="margin-right: 1rem">        
+        </div>    
         <a href="https://www.pm.carat.de/doku/display/Trainee/Bedienung" target="_blank">
             <img src="img/help-circle.svg" alt="help" class="navbaricon icon-basic u-pull-right" style="margin-right: 1rem">        
         </a>
