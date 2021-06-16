@@ -29,6 +29,7 @@
     let preReveal = true;
     let disableEstimations = false;
     let avg = '';
+    let timer;
 
     onMount(() => {
         id = params.id;
@@ -39,11 +40,17 @@
             //replace('/join/' + id);
         }
         socket.emit('ready');
+        idleTimer();
 	});
 
     onDestroy(() => {
         socket.disconnect();
 	});
+
+    const idleTimer = () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => replace('/join/' + id), 1000 * 60);
+    }
 
     const openModal = () => {
         bannerIsVisible = false;
@@ -69,6 +76,7 @@
 
     const resetValues = () => {
         socket.emit('reset');
+        idleTimer();
     }
 
     socket.on('resetReveal', () => {
@@ -117,6 +125,7 @@
             replaceUser(user);
             socket.emit('estimated', e.detail);
         }
+        idleTimer();
     }
 
     // Recieve Estimation from another User
@@ -139,6 +148,7 @@
         setOutliers(members);
         preReveal = false;
         disableEstimations = true;
+        idleTimer();
     });
 
     socket.on('emptyList', () => {
