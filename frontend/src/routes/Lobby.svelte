@@ -31,6 +31,7 @@
     let avg = '';
     let timer;
     let delay = 0;
+    let uTimer;
 
     onMount(() => {
         id = params.id;
@@ -51,6 +52,15 @@
     const idleTimer = () => {
         clearTimeout(timer);
         timer = setTimeout(() => replace('/join/' + id), 1000 * 900);
+    }
+
+    const updateTimer = () => {
+        clearTimeout(uTimer);
+        timer = setTimeout(function (){
+            members = [...members];
+            spectators = [...spectators];
+            console.log("success");
+        }, 1000);
     }
 
     const openModal = () => {
@@ -101,6 +111,7 @@
                 spectators = users.filter(user => user.role === 'spectator');
             }, delay * delay * 10);
             delay--;
+            updateTimer();
         });
     });
 
