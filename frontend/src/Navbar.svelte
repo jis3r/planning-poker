@@ -61,32 +61,3 @@
         </a>
     </div>
 </div>
-
-<!--
-
-            <div class="container">
-            <div class="row">
-                <div class="one column navbaricon">
-                    <img src="img/logo.svg" alt="logo">
-                </div>
-                <div class="ten columns title-column">
-                    <div on:click={setLanding}>
-                        <h3 class="header-title">Planning Poker</h3>
-                    </div>
-                </div>
-                <div class="one column theme-column u-pull-right" style="height: 100%; margin-bottom: 0%;">
-                    <div id="darkmodetrigger" class="navbaricon u-pull-right" on:click={toggleTheme}>
-                        {#if darktheme}
-                        <img id="themeIcon" src="img/sun.svg" alt="sun" in:fly="{{ y: 50, duration: 500 }}">
-                        {:else}
-                        <img id="themeIcon" src="img/moon.svg" alt="moon" in:fly="{{ y: 50, duration: 500 }}">
-                        {/if}
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-
-
-
--->
