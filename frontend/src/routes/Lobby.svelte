@@ -93,8 +93,6 @@
 
     //recieve users of current room from server when someone joins or leaves
     socket.on('roomUsers', (users) => {
-        members = [];
-        spectators = [];
         members = users.filter(user => user.role === 'member');
         spectators = users.filter(user => user.role === 'spectator');
     });
