@@ -57,10 +57,14 @@
     const updateTimer = () => {
         clearTimeout(uTimer);
         uTimer = setTimeout(function (){
-            members = [...members];
-            spectators = [...spectators];
+            let tempMembers = members;
+            let tempSpectators = spectators;
+            members = [];
+            spectators = [];
+            members = [...members, tempMembers];
+            spectators = [...spectators, tempSpectators];
             console.log("success");
-        }, 10000);
+        }, 1000);
     }
 
     const openModal = () => {
