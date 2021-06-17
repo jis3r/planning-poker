@@ -94,8 +94,8 @@
 
     //recieve users of current room from server when someone joins or leaves
     socket.on('roomUsers', (users) => {
+        delay++;
         tick().then(() => {
-            delay++;
             setTimeout(function(){
                 members = users.filter(user => user.role === 'member');
                 spectators = users.filter(user => user.role === 'spectator');
