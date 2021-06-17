@@ -49,7 +49,7 @@
 
     const idleTimer = () => {
         clearTimeout(timer);
-        timer = setTimeout(() => replace('/join/' + id), 1000 * 60);
+        timer = setTimeout(() => replace('/join/' + id), 1000 * 900);
     }
 
     const openModal = () => {
