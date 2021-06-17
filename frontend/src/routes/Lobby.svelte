@@ -30,6 +30,7 @@
     let disableEstimations = false;
     let avg = '';
     let timer;
+    let delay = 0;
 
     onMount(() => {
         id = params.id;
@@ -93,8 +94,12 @@
 
     //recieve users of current room from server when someone joins or leaves
     socket.on('roomUsers', (users) => {
-        members = users.filter(user => user.role === 'member');
-        spectators = users.filter(user => user.role === 'spectator');
+        delay++;
+        setTimeout(function(){
+            members = users.filter(user => user.role === 'member');
+            spectators = users.filter(user => user.role === 'spectator');
+        }, delay * delay * 10);
+        delay--;
     });
 
     socket.on('addUser', (user) => {
