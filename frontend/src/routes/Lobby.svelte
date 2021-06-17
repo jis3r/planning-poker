@@ -56,11 +56,11 @@
 
     const updateTimer = () => {
         clearTimeout(uTimer);
-        timer = setTimeout(function (){
+        uTimer = setTimeout(function (){
             members = [...members];
             spectators = [...spectators];
             console.log("success");
-        }, 1000);
+        }, 10000);
     }
 
     const openModal = () => {
