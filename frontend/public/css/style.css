@@ -2,14 +2,16 @@
   width: 100%;
   height: 5%;
   transition: 0.15s;
+  padding: 1.6rem 2rem;
+  box-sizing: border-box;
+  display: table;
 }
 
 .header-title {
   box-sizing: border-box;
-  text-align: center;
-  vertical-align: bottom;
-  height: 5%;
-  margin-bottom: 0;
+  text-align: left;
+  vertical-align: middle;
+  margin: 0.35rem 0 0.35rem 0.35rem;
 }
 
 /* hover-attributes only used for desktop devices*/
@@ -35,7 +37,7 @@
     color: #ffffff;
   }
 
-  .copyicon:hover {
+  .icon-basic:hover {
     transform: translateY(-3px);
   }
   .darkmodetrigger:hover {
@@ -72,12 +74,9 @@ input[type=number] {
   height: 3rem;
 }
 
-.darkmodetrigger {
-  width: 31px;
-  height: 31px;
+.navbaricon {
+  height: 3.1rem;
   transition: 0.3s;
-  margin-top: 15.5px;
-  margin-bottom: 15.5px;
   box-sizing: border-box;
 }
 

@@ -62,12 +62,6 @@
   margin-top: 0%;
 }
 
-.header-title {
-  margin-top: 7px;
-  margin-bottom: 7px;
-  font-size: 40px;
-}
-
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
@@ -108,11 +102,6 @@
 
   .theme-column { 
     max-width: 100%;
-  }
-
-  .header-title {
-    margin: auto;
-    font-size: 50px;
   }
 
   .one.column,

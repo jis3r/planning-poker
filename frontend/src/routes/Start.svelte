@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { fade } from 'svelte/transition';
+    import { SpinLine } from 'svelte-loading-spinners';
 
     import { setUserdata } from '../utils/user';
     import { validateUsername, validateRoomID } from '../utils/validate';
@@ -12,6 +13,7 @@
     let roomID = '';
     let role = localStorage.getItem('role') || 'member';
     let isSpectator = false;
+    let isLoading = false;
 
     onMount(() => {
         if( username ) document.getElementById('submitButton').focus();
@@ -25,11 +27,13 @@
     }
 
     const submit = () => {
+        isLoading = true;
         if( validateUsername(username) && validateRoomID("00000") ) {
-            setUserdata(username, roomID, role);
+            setTimeout(() => setUserdata(username, roomID, role), 1000);
         }
         else {
             buttonPulse();
+            isLoading = false;
         }
     }
 </script>
@@ -41,7 +45,17 @@
         <input type="hidden" name="room" id="roomIDInput" bind:value={roomID}>
     </div>
     <div class="three columns">
-        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit}>start</button>
+        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit} onclick="this.blur();" disabled='{isLoading}'>
+            {#if isLoading}
+                <div style="display: inline-block; vertical-align: middle;">
+                    <div class="u-pull-left">
+                        <SpinLine size="50" color="#33C3F0" duration="5s"></SpinLine>
+                    </div> 
+                </div>
+            {:else}
+                start
+            {/if}
+        </button>
         <Checkbox_Spectator isSpectator={isSpectator} on:setRole={setRole}/>
     </div>
 </div>

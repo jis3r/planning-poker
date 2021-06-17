@@ -16,7 +16,7 @@
 
     export let params = {}
 
-    let url = 'https://planning-poker-live.herokuapp.com';
+    let url = 'https://planning-poker-qs.herokuapp.com';
     let id;
     let firstRowValues = ['0', '1', '2', '3', '5', '8'];
     let secondRowValues = ['13', '20', '40', '100', '?', 'coffee'];
@@ -29,21 +29,29 @@
     let preReveal = true;
     let disableEstimations = false;
     let avg = '';
+    let timer;
+    let delay = 0;
 
     onMount(() => {
         id = params.id;
         if(!socket.connected) {
             let name = localStorage.getItem('username');
             let role = localStorage.getItem('role');
-            //if( name ) setUserdata(name, id, role);
+            //if( name ) setUserdata(name, id, role); //direct rejoin -> for dev
             replace('/join/' + id);
         }
         socket.emit('ready');
+        idleTimer();
 	});
 
     onDestroy(() => {
         socket.disconnect();
 	});
+
+    const idleTimer = () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => replace('/join/' + id), 1000 * 900);
+    }
 
     const openModal = () => {
         bannerIsVisible = false;
@@ -69,6 +77,7 @@
 
     const resetValues = () => {
         socket.emit('reset');
+        idleTimer();
     }
 
     socket.on('resetReveal', () => {
@@ -85,10 +94,12 @@
 
     //recieve users of current room from server when someone joins or leaves
     socket.on('roomUsers', (users) => {
-        members = [];
-        spectators = [];
-        members = users.filter(user => user.role === 'member');
-        spectators = users.filter(user => user.role === 'spectator');
+        delay++;
+        setTimeout(function(){
+            members = users.filter(user => user.role === 'member');
+            spectators = users.filter(user => user.role === 'spectator');
+        }, delay * delay * 10);
+        delay--;
     });
 
     function newMessage(msg) {
@@ -107,6 +118,7 @@
             replaceUser(user);
             socket.emit('estimated', e.detail);
         }
+        idleTimer();
     }
 
     // Recieve Estimation from another User
@@ -129,6 +141,7 @@
         setOutliers(members);
         preReveal = false;
         disableEstimations = true;
+        idleTimer();
     });
 
     socket.on('emptyList', () => {

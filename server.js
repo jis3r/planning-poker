@@ -47,7 +47,8 @@ io.on('connection', socket => {
       //broadcast when a user connects
       socket.broadcast.to(user.room).emit('bannermessage', `${user.username} has joined.`);
       // Send users info
-      io.to(user.room).emit('roomUsers', getRoomUsers(user.room) );
+      socket.emit('roomUsers', getRoomUsers(user.room));
+      socket.broadcast.to(user.room).emit('roomUsers', getRoomUsers(user.room));
 
       if( user.role !== 'spectator' ) {
         io.to(user.room).emit('resetReveal');
@@ -90,7 +91,8 @@ io.on('connection', socket => {
     if (user) {
       io.to(user.room).emit('bannermessage', `${user.username} has left.`);
       // Send users and room info
-      io.to(user.room).emit('roomUsers', getRoomUsers(user.room) );
+      socket.broadcast.to(user.room).emit('roomUsers', getRoomUsers(user.room));
+      console.log(user.username, 'with id', user.id, 'left room', user.room);
     }
 
     if(tempUser) {

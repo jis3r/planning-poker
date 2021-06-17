@@ -146,11 +146,11 @@ select:focus {
   color: var(--fontcolor); 
 }
 
-.copyicon {
+.icon-basic {
     filter: invert(96%) sepia(2%) saturate(1760%) hue-rotate(179deg) brightness(85%) contrast(100%);
 }
 
-.reloadicon {
+.logo {
     filter: invert(96%) sepia(2%) saturate(1760%) hue-rotate(179deg) brightness(85%) contrast(100%);
 }
 
