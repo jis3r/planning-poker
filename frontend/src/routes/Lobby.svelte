@@ -215,7 +215,7 @@
                                 socketid={socket.id}
                                 outliers={outliers}/>
                         {/each}
-                        <tr style="color: #FCA311">
+                        <tr style="color: #FCA311; border-bottom: 1px solid #E1E1E1;">
                             <td>Average</td>
                             <td id="AuMgIVUHfSHpDpgMAAAB">{avg}</td>
                         </tr>

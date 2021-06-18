@@ -8,7 +8,7 @@
 </script>
 
 
-<tr>
+<tr style="border-bottom: 1px solid #E1E1E1;">
     <td class:isSelf="{id === socketid}">{name}</td>
 
     {#if estimation !== 'spectator'}
