@@ -49,7 +49,7 @@
             {#if isLoading}
                 <div style="display: inline-block; vertical-align: middle;">
                     <div class="u-pull-left">
-                        <SpinLine size="50" color="#33C3F0" duration="5s"></SpinLine>
+                        <SpinLine size="50" color="#C9D1D9" duration="5s"></SpinLine>
                     </div> 
                 </div>
             {:else}
