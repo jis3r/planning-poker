@@ -21,6 +21,7 @@
   "dependencies": {
     "sirv-cli": "^1.0.0",
     "socket.io": "^4.0.0",
+    "svelte-loading-spinners": "^0.1.5",
     "svelte-spa-router": "^3.1.0"
   }
 }
