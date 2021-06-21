@@ -13,7 +13,18 @@
 
 <main>
 	<Navbar/>
-	<div class="container" style="margin-top: 80px">
+	<div class="container">
 		<Router {routes}/>
 	</div>
 </main>
+
+<style>
+	.container {
+		margin-top: 80px;
+	}
+	@media (min-width: 550px) {
+		.container {
+			margin-top: 0px;
+		}
+	}
+</style>

@@ -4,74 +4,111 @@
 </script>
 
 
-<div class="row" style="margin-top: 15%; margin-bottom: 5%;" in:fade>
+<div class="row card" style="margin-top: 15%;" in:fade>
     <div class="six columns">
         <img src="/img/startsession.gif" alt="how to start a session" style="width:100%">
     </div>
-    <div class="six columns">
-        <h5  style="margin-bottom: 0;">Start a session</h5>
+    <div class="six columns card-text">
+        <h5 style="margin-bottom: 0;"><strong>Start a session</strong></h5>
         <hr style="margin-top: 0; margin-bottom: 3%;">
-        <p>Um eine Session zu starten, im Hauptmenu auf "Start" klicken, einen Nutzernamen eingeben und erneut auf "Start" klicken.</p>
-        <p>Verwendet man das Tool regelmäßig, ist es hilfreich, die erstellte Session als Lesezeichen zu speichern. So kann man immer wieder dieselbe Session nutzen, ohne jedes Mal eine Neue erstellen zu müssen.</p>
+        <p>To start a session, klick 'start' on the landingpage, enter your username and click 'start' again.
+        <p>If you use the tool regularly, it is helpful to save the created session as a bookmark. This way you can use the same session over and over again without having to create a new one each time.</p>
     </div>
 </div>
 
-<div class="row" style="margin-bottom: 5%;" in:fade>
+<div class="row card" in:fade>
     <div class="six columns">
         <img src="/img/joinsession.gif" alt="how to join a session" style="width:100%">
     </div>
-    <div class="six columns">
-        <h5  style="margin-bottom: 0;">Join a session</h5>
+    <div class="six columns card-text">
+        <h5 style="margin-bottom: 0;"><strong>Join a session</strong></h5>
         <hr style="margin-top: 0; margin-bottom: 3%;">
-        <p>Um einer Session manuell beizutreten, im Hauptmenu auf "Join" klicken, einen Nutzernamen sowie eine Raum-ID eingeben und erneut auf "Join" klicken. Wenn die eingegebene ID nicht existiert, wird eine neue Session mit dieser ID erstellt.</p>
-        <p>Einer bestehenden Session kann nicht nur manuell, sondern auch per Einladungslink beigetreten werden. Mit dem Link muss man nur den Nutzernamen eingeben und kann direkt beitreten.</p>
-        <p>Wenn das Tool bereits genutzt wurde, wird der zuletzt verwendete Nutzername vorausgefüllt. Man kann ihn jedoch bei jedem Start oder Beitritt einer Session ändern.</p>
+        <p>To join a session manually, click 'join' on the landingpage, enter your username and a room ID and click on 'join' again. If the entered ID does not exist, a new session will be created with this ID.</p>
+        <p>An existing session can not only be joined manually, but also via an invitation link. With the link you only have to enter your username to join directly.</p>
+        <p>If the tool has already been used, the last used username will be pre-filled. However, you can change it every time you start or join a session.</p>
     </div>
 </div>
 
-<div class="row" style="margin-bottom: 5%;" in:fade>
+<div class="row card" in:fade>
     <div class="six columns">
         <img src="/img/copyinvitationlink.gif" alt="how to copy an invitation link" style="width:100%">
     </div>
-    <div class="six columns">
-        <h5  style="margin-bottom: 0;">Copy invitation link</h5>
+    <div class="six columns card-text">
+        <h5 style="margin-bottom: 0;"><strong>Copy invitation link</strong></h5>
         <hr style="margin-top: 0; margin-bottom: 3%;">
-        <p>Um den Einladungslink zu einer Session in die Zwischenablage zu kopieren, das Copy-Icon neben der "room-id" anklicken. Der Link kann anschließend direkt an Kollegen weitergeschickt werden.</p>
+        <p>To copy the invitation link for a session to the clipboard, click the copy icon next to the 'room-id'. The link can then be sent directly to team members.</p>
     </div>
 </div>
 
-<div class="row" style="margin-bottom: 5%;" in:fade>
+<div class="row card" in:fade>
     <div class="six columns">
         <img src="/img/estimationsandreset.gif" alt="how to estimate and reset" style="width:100%">
     </div>
-    <div class="six columns">
-        <h5  style="margin-bottom: 0;">Set and reset estimations</h5>
+    <div class="six columns card-text">
+        <h5 style="margin-bottom: 0;"><strong>Set and reset estimations</strong></h5>
         <hr style="margin-top: 0; margin-bottom: 3%;">
-        <p>Um eine Schätzung abzugeben, einen der Buttons im unteren Bereich anklicken. Bis alle Teilnehmer ihre Schätzung abgegeben haben, erscheint statt der Schätzung ein Haken, um zu zeigen, wer bereits geschätzt hat. Die eigene Schätzung kann nur geändert werden, wenn noch nicht alle geschätzt haben.</p>
-        <p>Sobald jeder Teilnehmer eine Schätzung abgegeben hat, werden alle Werte zeitgleich aufgedeckt. Der Durchschnitt aller Zahlenwerte wird am Ende der Liste in orange ausgegeben. Der Nutzer mit der höchsten/niedrigsten Schätzung wird mit einem Pfeil nach oben bzw. unten hervorgehoben. Ohne höchste oder niedrigste Schätzung erscheinen keine Pfeile.</p>
-        <p>Tritt ein Teilnehmer nach dem Aufdecken bei, werden alle Werte verdeckt, damit der neue Teilnehmer seine Schätzung unbeeinflusst abgeben kann.</p>
-        <p>Um alle Schätzungen zurückzusetzen, den blauen "Reset" Button betätigen.</p>
+        <p>To submit an estimation, click one of the estimaiton-buttons. Until all participants have submitted their estimate, a tick appears instead of the estimation to show who is ready.</p>
+        <p>As soon as each participant has made an estimation, all values ​​are revealed at the same time. The average of all numerical values ​​is displayed in orange at the bottom of the list. If there is a highest/lowest estimaiton, it will be highlighted with an arrow. If a participant joins after the reveal, all values ​​are hidden so that the new participant can submit his estimate unaffected.</p>
+        <p>To reset all estimations, press the 'reset' button.</p>
     </div>
 </div>
 
-<div class="row" style="margin-bottom: 5%;" in:fade>
+<div class="row card" in:fade>
     <div class="six columns">
         <img src="/img/joinasspectator.gif" alt="how to join as spectator" style="width:100%">
-    </div>
-    <div class="six columns">
-        <h5  style="margin-bottom: 0;">Join as spectator</h5>
+    </div>        
+    <div class="six columns card-text">
+        <h5 style="margin-bottom: 0;"><strong>Join as spectator</strong></h5>
         <hr style="margin-top: 0; margin-bottom: 3%;">
-        <p>Möchte man der Session teilnehmen ohne mitzuschätzen, hat man die Möglichkeit, als Zuschauer beizutreten. Hierzu beim Beitreten einfach die Option "Join as spectator" aktivieren. Als Zuschauer ist man seperat aufgelistet und kann lediglich die Schätzungen zurücksetzen.</p>
+        <p>If you want to participate in the session without estimating, you have the opportunity to join as a spectator. To do this, simply activate the 'Join as spectator' option when joining. As a viewer you are listed separately and can only reset the estimations.</p>
     </div>
 </div>
 
-<div class="row" style="margin-bottom: 5%;" in:fade>
-    <div class="six columns">
+<div class="row card" in:fade>
+    <div class="six columns" style="box-sizing: border-box;">
         <img src="/img/changetheme.gif" alt="how to change the theme" style="width:100%">
-    </div>
-    <div class="six columns">
-        <h5  style="margin-bottom: 0;">Change theme</h5>
+    </div>        
+    <div class="six columns card-text">
+        <h5 style="margin-bottom: 0;"><strong>Change theme</strong></h5>
         <hr style="margin-top: 0; margin-bottom: 3%;">
-        <p>Das Erscheinungsbild kann über das Theme-Icon (Mond/Sonne) in der rechten oberen Ecke geändert werden. Die eingestellten Präferenzen werden gespeichert.</p>
+        <p>The theme can be changed via the theme icon (moon / sun) in the top right corner. The set preferences are saved.</p>
     </div>
 </div>
+
+
+<style>
+    p {
+        margin-bottom: 2%;
+    }
+    img {
+        border-radius: 4px 4px 0px 0px;
+    }
+    .card {
+        margin-bottom: 3%;
+        border-radius: 4px;
+        /*border: 1px solid #bbb;*/
+    }
+    .card-text {
+        padding: 2%;
+    }
+    @media (min-width: 750px) {
+        img {
+            border-radius: 4px 0px 0px 4px;
+            margin: 0;
+            padding: 0;
+        }
+
+        p { 
+            margin-bottom: 2%;
+        }
+
+        .card {
+            padding: 1% 1% .5% 1%;
+        }
+
+        .card-text {
+            padding: 0;
+        }
+    }
+
+</style>

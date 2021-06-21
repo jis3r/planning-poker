@@ -7,7 +7,6 @@
     import { copyToClipboard } from '../utils/clipboard';
     import { outliers, average, setOutliers, resetOutliers, setAverage, resetAverage } from '../utils/estimations';
 
-
     import Button_Estimation from '../components/Button_Estimation.svelte';
     import Banner from '../components/Banner.svelte';
     import Userdetails from '../components/Userdetails.svelte';
