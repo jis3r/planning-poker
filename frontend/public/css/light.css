@@ -99,3 +99,7 @@ select:focus {
   box-shadow: 2px 2px 4px 2px rgba(208, 208, 208, 0.5);
   background-color: #ffffff;
 }
+
+.card {
+  box-shadow: 2px 2px 4px 2px rgba(208, 208, 208, 0.5);
+}
