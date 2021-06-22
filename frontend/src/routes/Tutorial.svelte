@@ -4,7 +4,7 @@
 </script>
 
 
-<div class="row card" style="margin-top: 15%;" in:fade>
+<div class="row card" style="margin-top: 6%;" in:fade>
     <div class="six columns">
         <img src="/img/startsession.gif" alt="how to start a session" style="width:100%">
     </div>
@@ -84,7 +84,7 @@
         border-radius: 4px 4px 0px 0px;
     }
     .card {
-        margin-bottom: 3%;
+        margin-bottom: 6%;
         border-radius: 4px;
         /*border: 1px solid #bbb;*/
     }

@@ -5,7 +5,6 @@
     --fontcolor: #C9D1D9
   }
 
-
 body {
     color: var(--fontcolor);
     background-color: var(--background);
