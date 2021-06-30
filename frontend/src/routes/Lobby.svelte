@@ -1,12 +1,11 @@
 <script>
-    import { onMount, onDestroy } from "svelte";
+    import { onMount, onDestroy, tick } from "svelte";
     import { fade } from "svelte/transition";
     import { replace } from 'svelte-spa-router';
 
     import { userdata, setUserdata } from "../utils/user";
     import { copyToClipboard } from '../utils/clipboard';
     import { outliers, average, setOutliers, resetOutliers, setAverage, resetAverage } from '../utils/estimations';
-
 
     import Button_Estimation from '../components/Button_Estimation.svelte';
     import Banner from '../components/Banner.svelte';
@@ -37,8 +36,8 @@
         if(!socket.connected) {
             let name = localStorage.getItem('username');
             let role = localStorage.getItem('role');
-            //if( name ) setUserdata(name, id, role); //direct rejoin -> for dev
-            replace('/join/' + id);
+            if( name ) setUserdata(name, id, role); //direct rejoin -> for dev
+            //replace('/join/' + id);
         }
         socket.emit('ready');
         idleTimer();
@@ -95,11 +94,13 @@
     //recieve users of current room from server when someone joins or leaves
     socket.on('roomUsers', (users) => {
         delay++;
-        setTimeout(function(){
-            members = users.filter(user => user.role === 'member');
-            spectators = users.filter(user => user.role === 'spectator');
-        }, delay * delay * 10);
-        delay--;
+        tick().then(() => {
+            setTimeout(function(){
+                members = users.filter(user => user.role === 'member');
+                spectators = users.filter(user => user.role === 'spectator');
+            }, delay * delay * 10);
+            delay--;
+        });
     });
 
     function newMessage(msg) {

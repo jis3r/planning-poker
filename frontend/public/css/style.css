@@ -5,6 +5,7 @@
   padding: 1.6rem 2rem;
   box-sizing: border-box;
   display: table;
+  z-index: 1;
 }
 
 .header-title {

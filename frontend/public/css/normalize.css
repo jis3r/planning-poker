@@ -10,6 +10,7 @@ html {
   font-family: sans-serif; /* 1 */
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  min-height: 100vh;
 }
 
 /**
@@ -19,7 +20,6 @@ html {
 body {
   margin: 0;
   transition: 0.15s;
-  min-height: 100vh;
 }
 
 /* HTML5 display definitions
