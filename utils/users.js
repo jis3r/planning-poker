@@ -30,17 +30,13 @@ function checkAllEstimated(room) {
 
 //checks if user has already submitted an estimation
 function hasUserEstimated(user){
-    if(user.estimation !== '' || user.role === 'spectator') {
-        return true
-    } else {
-        return false;
-    }
+    if(user.estimation !== '' || user.role === 'spectator') return true;
 }
 
 //resets the estimations of all users
 function resetEstimations(room) {
     let reset = getRoomUsers(room);
-    for(let i = 0; i < reset.length; i++) {
+    for(let i of reset.length) {
         reset[i].estimation = '';
         reset[i].isReady = false;
     }
