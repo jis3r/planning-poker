@@ -42,7 +42,7 @@ function setAverage(members) {
     let sum = 0;
     let count = 0;
     average = '';
-    for(let i = 0; i < members.length; i++) {
+    for(let i of members.length) {
         let estimation = members[i].estimation;
         if( estimation !== '' && estimation !== '?' && estimation !== 'coffee' ) {
             sum = sum + parseInt(members[i].estimation);
