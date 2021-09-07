@@ -36,7 +36,7 @@ function hasUserEstimated(user){
 //resets the estimations of all users
 function resetEstimations(room) {
     let reset = getRoomUsers(room);
-    for(let i of reset) {
+    for(let i = 0; i < reset.length; i++) {
         reset[i].estimation = '';
         reset[i].isReady = false;
     }
