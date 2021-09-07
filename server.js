@@ -103,7 +103,6 @@ io.on('connection', socket => {
         console.log(`waiting for all users of room ${tempUser.room} to estimate`);
       }
     }
-    //socket.disconnect();
   });
 });
 
