@@ -34,9 +34,9 @@
     onMount(() => {
         id = params.id;
         if(!socket.connected) {
-            let name = localStorage.getItem('username');
+            /*let name = localStorage.getItem('username');
             let role = localStorage.getItem('role');
-            if( name ) setUserdata(name, id, role); //direct rejoin -> for dev
+            if( name ) setUserdata(name, id, role); //direct rejoin -> for dev */
             replace('/join/' + id);
         }
         socket.emit('ready');
