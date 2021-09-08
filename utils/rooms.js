@@ -2,7 +2,12 @@ const activeRooms = [];
 
 function validateRoomID(roomID) {
     console.log('Active rooms on validation', activeRooms, roomID);
-    if (activeRooms.includes(roomID) === true ) return true;
+    if (activeRooms.includes(roomID) === true )
+	{
+		return true;
+	} else {
+        return false;
+    }
 }
 
 function generateRoomID() {
