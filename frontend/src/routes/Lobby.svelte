@@ -37,7 +37,7 @@
             let name = localStorage.getItem('username');
             let role = localStorage.getItem('role');
             if( name ) setUserdata(name, id, role); //direct rejoin -> for dev
-            //replace('/join/' + id);
+            replace('/join/' + id);
         }
         socket.emit('ready');
         idleTimer();
