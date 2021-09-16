@@ -45,7 +45,7 @@
         <input type="hidden" name="room" id="roomIDInput" bind:value={roomID}>
     </div>
     <div class="three columns">
-        <button class="button-primary button-submit u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit} onclick="this.blur();" disabled='{isLoading}'>
+        <button class="button-primary u-full-width" type="submit" id="submitButton" style="transition: 500ms" on:click={submit} onclick="this.blur();" disabled='{isLoading}'>
             {#if isLoading}
                 <div style="display: inline-block; vertical-align: middle;">
                     <div class="u-pull-left">

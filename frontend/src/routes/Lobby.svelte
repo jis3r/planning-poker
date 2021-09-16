@@ -185,7 +185,7 @@
             {/if}
         </div>
         <div class="two columns">
-            <button class="button-primary-join u-full-width" style="display: grid; place-items: center;" on:click={resetValues} onclick="this.blur();">
+            <button class="button-primary u-full-width" style="display: grid; place-items: center;" on:click={resetValues} onclick="this.blur();">
                 <!--img class="reloadicon" src="/img/rotate-cw.svg" alt="reset"-->
                 reset
             </button>

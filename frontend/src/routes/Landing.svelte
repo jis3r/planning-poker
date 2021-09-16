@@ -20,7 +20,7 @@
         <span style="font-size: 15px">Just start a session or join an existing one to estimate your user stories.</span>        
     </div>
     <div class="three columns indexbuttons" style="margin-bottom: 10%;">
-        <button class="button-primary-start u-full-width" on:click={setStart}>Start</button>
-        <button class="button-primary-join u-full-width" on:click={setJoin}>Join</button>
+        <button class="button-primary u-full-width" on:click={setStart}>Start</button>
+        <button class="button u-full-width" on:click={setJoin}>Join</button>
     </div>
 </div>

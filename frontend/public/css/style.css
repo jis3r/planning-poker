@@ -1,3 +1,8 @@
+:root {
+  --readycolor: #8dcb1a;
+  --maincolor: #33C3F0;
+}
+
 .header {
   width: 100%;
   height: 5%;
@@ -17,27 +22,6 @@
 
 /* hover-attributes only used for desktop devices*/
 @media(hover: hover) and (pointer: fine) {
-  .button-primary-start:hover{
-    background-color: #61A2E2;
-    color: #ffffff;
-  }
-
-  .button-primary-start:active{
-    background-color: #45A0EA;
-    color: #ffffff;
-  }
-
-  .button-primary-join:hover{
-    background-color: #3E5FA0;
-    /*background-color: #00406e;*/
-    color: #ffffff;
-  }
-
-  .button-primary-join:active{
-    background-color: #274B91;
-    color: #ffffff;
-  }
-
   .icon-basic:hover {
     transform: translateY(-3px);
   }
@@ -59,7 +43,7 @@ input[type=number] {
 }
 
 .readycolor {
-  color: #8dcb1a;
+  color: var(--readycolor);
 }
 
 .copyicon {
@@ -87,7 +71,7 @@ input[type=number] {
 }
 
 .estimation {
-  color: #8dcb1a;
+  color: var(--readycolor);
 }
 
 
