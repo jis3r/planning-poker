@@ -28,7 +28,6 @@
     let preReveal = true;
     let disableEstimations = false;
     let avg = '';
-    let timer;
     let delay = 0;
 
     onMount(() => {
@@ -40,17 +39,11 @@
             replace('/join/' + id);
         }
         socket.emit('ready');
-        idleTimer();
 	});
 
     onDestroy(() => {
         socket.disconnect();
 	});
-
-    const idleTimer = () => {
-        clearTimeout(timer);
-        timer = setTimeout(() => replace('/join/' + id), 1000 * 900);
-    }
 
     const openModal = () => {
         bannerIsVisible = false;
@@ -76,7 +69,6 @@
 
     const resetValues = () => {
         socket.emit('reset');
-        idleTimer();
     }
 
     socket.on('resetReveal', () => {
