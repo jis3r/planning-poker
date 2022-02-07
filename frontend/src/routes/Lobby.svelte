@@ -111,7 +111,6 @@
             replaceUser(user);
             socket.emit('estimated', e.detail);
         }
-        idleTimer();
     }
 
     // Recieve Estimation from another User
@@ -134,7 +133,6 @@
         setOutliers(members);
         preReveal = false;
         disableEstimations = true;
-        idleTimer();
     });
 
     socket.on('emptyList', () => {
