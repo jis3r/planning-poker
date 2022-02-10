@@ -90,6 +90,13 @@
             setTimeout(function(){
                 members = users.filter(user => user.role === 'member');
                 spectators = users.filter(user => user.role === 'spectator');
+                if(!preReveal) {
+                    resetOutliers();
+                    setAverage(members);
+                    avg = average;
+                    console.log(members, outliers);
+                    setOutliers(members);
+                }
             }, delay * delay * 10);
             delay--;
         });

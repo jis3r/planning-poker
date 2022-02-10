@@ -14,6 +14,7 @@ function setOutliers(members) {
         if(lo.estimation !== hi.estimation) {
             Object.assign(outliers, {lowest: lo, highest: hi});
         }
+        outliers = outliers;
     }
 }
 
@@ -35,7 +36,7 @@ function getHighest(members) {
 }
 
 function checkNumber(member) {
-    if( !isNaN(parseInt(member.estimation)) ) return member;
+    if( !isNaN(parseInt(member.estimation)) ) return  member;
 }
 
 function setAverage(members) {
