@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'Carat-Planning-Poker'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_552D7DA38A204166B914CB6B34BA0C9B }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_42EFD470A2EE41C0857386959FA5BA3D }}
           package: .
