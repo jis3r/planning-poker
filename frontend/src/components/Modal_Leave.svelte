@@ -17,7 +17,7 @@
         clicked = true
     }
 </script>
-<div class="modal" id="modal" transition:fade on:click|stopPropagation=''>
+<div class="modal" id="modal" transition:fade on:click|stopPropagation>
     <div class="container">
         <div class="row">
             <div class="twelve columns" style="margin-bottom: 15%; margin-top: 10%; text-align: center">Do you really want to leave the lobby?</div>
