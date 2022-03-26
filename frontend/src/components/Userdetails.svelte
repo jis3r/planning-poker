@@ -8,7 +8,7 @@
 </script>
 
 
-<tr style="border-bottom: 1px solid #E1E1E1;">
+<tr>
     <td class:isSelf="{id === socketid}">{name}</td>
 
     {#if estimation !== 'spectator'}
@@ -20,15 +20,28 @@
                     {estimation}
                 </div>
                 {#if id === outliers.lowest.id}
-                    <div class="u-pull-right">
-                        <img src="/img/arrow-down.svg" alt="lowest" style="vertical-align: middle; margin-right: 2.5rem;">
+                    <div class="arrow">
+                        <img src="/img/arrow-down.svg" alt="lowest" class="arrow-inner">
                     </div>
                 {:else if id === outliers.highest.id}
-                    <div class="u-pull-right">
-                        <img src="/img/arrow-up.svg" alt="highest" style="vertical-align: middle; margin-right: 2.5rem;">
+                    <div class="arrow">
+                        <img src="/img/arrow-up.svg" alt="highest" class="arrow-inner">
                     </div>
                 {/if}
             {/if}
         </td>
     {/if}
 </tr>
+
+<style>
+.arrow {
+	position: relative;
+    vertical-align: middle;
+}
+
+.arrow-inner {
+	position: absolute;
+	left: 48px;
+    top: 3.5px;
+}
+</style>

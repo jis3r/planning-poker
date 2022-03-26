@@ -18,7 +18,7 @@
     let url = 'https://carat-planning-poker.azurewebsites.net';
     let id;
     let firstRowValues = ['0', '1', '2', '3', '5', '8'];
-    let secondRowValues = ['13', '20', '40', '100', '?', 'coffee'];
+    let secondRowValues = ['13', '20', '40', '100', '?', '☕'];
     let bannermessage = '';
     let bannerIsVisible = false;
     let members = [];
@@ -213,7 +213,7 @@
                                 socketid={socket.id}
                                 outliers={outliers}/>
                         {/each}
-                        <tr style="color: #FCA311; border-bottom: 1px solid #E1E1E1;">
+                        <tr style="color: #FCA311;">
                             <td>Average</td>
                             <td id="AuMgIVUHfSHpDpgMAAAB">{avg}</td>
                         </tr>
