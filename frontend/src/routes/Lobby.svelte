@@ -18,7 +18,7 @@
     let url = 'https://carat-planning-poker.azurewebsites.net';
     let id;
     let firstRowValues = ['0', '1', '2', '3', '5', '8'];
-    let secondRowValues = ['13', '20', '40', '100', '?', 'coffee'];
+    let secondRowValues = ['13', '20', '40', '100', '?', '☕'];
     let bannermessage = '';
     let bannerIsVisible = false;
     let members = [];
