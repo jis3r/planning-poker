@@ -15,7 +15,7 @@
 
     export let params = {}
 
-    let url = 'https://planning-poker-live.herokuapp.com';
+    let url = 'https://planning-poker-live.onrender.com';
     let id;
     let firstRowValues = ['0', '1', '2', '3', '5', '8'];
     let secondRowValues = ['13', '20', '40', '100', '?', '☕'];
