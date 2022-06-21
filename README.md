@@ -1,8 +1,8 @@
 
-# [Planning Poker](https://planning-poker-live.herokuapp.com)
+# [Planning Poker](https://planning-poker-live.onrender.com)
 A simple web-based planning poker application.
 
-Go to https://planning-poker-live.herokuapp.com if you want to take a look at the application or use it directly.
+Go to https://planning-poker-live.onrender.com if you want to take a look at the application or use it directly.
 
 # Getting started
 
