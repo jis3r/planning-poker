@@ -56,7 +56,7 @@
             <img id="themeIcon" src="img/moon.svg" alt="moon" in:fly="{{ y: 50, duration: 500 }}">
             {/if}
         </div>    
-        <a href="https://planning-poker-live.herokuapp.com/#/tutorial" target="_blank">
+        <a href="https://planning-poker-live.onrender.com/#/tutorial" target="_blank">
             <img src="img/help-circle.svg" alt="help" class="navbaricon icon-basic u-pull-right" style="margin-right: 1rem">        
         </a>
     </div>
